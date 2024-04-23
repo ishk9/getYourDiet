@@ -12,10 +12,10 @@ function Navbar() {
                 <Link href="/">
                     <p className="text-white font-semibold">Our Method</p>
                 </Link>
-                <Link href="/">
+                <Link href="/Pricing">
                     <p className="text-white font-semibold">Pricing</p>
                 </Link>
-                <Link href="/">
+                <Link href="/Reviews">
                     <p className="text-white font-semibold">Reviews</p>
                 </Link>
             </div>
