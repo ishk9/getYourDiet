@@ -31,3 +31,23 @@ body {
     text-wrap: balance;
   }
 }
+
+::-webkit-scrollbar {
+  width: 7px; /* Width of the scrollbar */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #4a5568; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Radius of the scrollbar thumb */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #718096; /* Color of the scrollbar thumb on hover */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: black; /* Color of the scrollbar track */
+}
