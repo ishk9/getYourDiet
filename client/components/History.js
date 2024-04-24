@@ -80,7 +80,6 @@ function History() {
             </div>
 
 
-
             <div className='flex flex-col'>
                 {/* All Diets */}
                 <div className='flex flex-col mt-2'>
