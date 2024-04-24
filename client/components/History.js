@@ -2,6 +2,12 @@ import React from 'react'
 import { FiEdit } from "react-icons/fi";
 import { GoSearch } from "react-icons/go";
 import { BsPinAngle } from "react-icons/bs";
+import Chat from './Chat';
+
+const dummyData = [
+    {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
+    {id: 2, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+]
 
 function History() {
     return (
@@ -25,10 +31,20 @@ function History() {
 
                 
 
-            <div className='flex justify-start items-start mt-5'>
-                <BsPinAngle className='text-neutral-600'/>
-                <p className='text-neutral-600 font-semibold text-[10px] uppercase'>Pinned</p>
+            <div className='flex flex-col mt-5'>
+                <div className='flex justify-start items-start'>
+                    <BsPinAngle className='text-neutral-600'/>
+                    <p className='text-neutral-600 font-semibold text-[10px] uppercase'>Pinned</p>
+                </div>
+
+
                 {/* Pinned Diets */}
+                <div className='flex flex-col mt-2'>
+                    {dummyData.map((data, id) => (
+                        <Chat key={id} props={data}/>
+                    ))}
+                </div>
+
             </div>
 
             <div>
