@@ -34,7 +34,7 @@ function History() {
             <div className='flex flex-col mt-5'>
                 <div className='flex justify-start items-start'>
                     <BsPinAngle className='text-neutral-600'/>
-                    <p className='text-neutral-600 font-semibold text-[10px] uppercase'>Pinned</p>
+                    <p className='text-neutral-600 font-semibold text-[10px] uppercase ml-1'>Pinned</p>
                 </div>
 
 
