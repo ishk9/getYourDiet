@@ -16,7 +16,7 @@ function History() {
                 </div>
 
                 {/* Create new button */}
-                <div className="flex justify-center items-center h-8 w-10 ml-2 bg-stone-100 rounded-lg">
+                <div className="flex justify-center items-center h-8 w-10 ml-2 bg-[#CBBCA5] rounded-lg">
                     <FiEdit color='black' size={16}/>
                 </div>
 
