@@ -2,8 +2,8 @@ import React from 'react'
 
 function Chat({props}) {
     return (
-        <button className="container hover:bg-neutral-900  p-3 my-1 rounded-lg">
-            <div className="flex justify-between items-center">
+        <button className="flex flex-col justify-center items-start hover:bg-neutral-900  p-3 my-1 rounded-lg">
+            <div className="flex w-full justify-between items-center">
                 {/* Name */}
                 <p className='text-[15px]'>{props.name}</p>
                 {/* Date */}
