@@ -2,11 +2,22 @@ import React from 'react'
 import { FiEdit } from "react-icons/fi";
 import { GoSearch } from "react-icons/go";
 import { BsPinAngle } from "react-icons/bs";
+import { MdOutlineDataset } from "react-icons/md";
 import Chat from './Chat';
 
+const dummyDataPinned = [
+    {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
+    {id: 2, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+]
 const dummyData = [
     {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
     {id: 2, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+    {id: 3, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+    {id: 4, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+    {id: 5, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+    {id: 6, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+    {id: 7, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
 ]
 
 function History() {
@@ -40,17 +51,29 @@ function History() {
 
                 {/* Pinned Diets */}
                 <div className='flex flex-col mt-2'>
-                    {dummyData.map((data, id) => (
+                    {dummyDataPinned.map((data, id) => (
                         <Chat key={id} props={data}/>
                     ))}
                 </div>
 
             </div>
 
-            <div>
-                {/* All Diets */}
-            </div>
 
+            <div className='flex flex-col mt-5'>
+                <div className='flex justify-start items-start'>
+                    <MdOutlineDataset className='text-neutral-600'/>
+                    <p className='text-neutral-600 font-semibold text-[10px] uppercase ml-1'>All</p>
+                </div>
+
+
+                {/* All Diets */}
+                <div className='flex flex-col mt-2'>
+                    {dummyData.map((data, id) => (
+                        <Chat key={id} props={data}/>
+                    ))}
+                </div>
+
+            </div>
 
             <div>
                 {/* Clear all button */}
