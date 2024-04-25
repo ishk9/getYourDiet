@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 import { FiEdit } from "react-icons/fi";
 import { GoSearch } from "react-icons/go";
@@ -9,43 +10,54 @@ const dummyDataPinned = [
     {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
     {id: 2, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
 ]
-const dummyData = [
-    {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
-    {id: 2, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 3, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 4, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 5, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 6, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 7, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-]
 
 function History() {
+    const [dummyData, setDummyData] = React.useState([
+        {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
+        {id: 2, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 3, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 4, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 5, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 6, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 7, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 8, name: "xyz", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+    ])
+    const [query, setQuery] = React.useState(""); 
+
+    const filteredData = dummyData.filter(item => {
+        return item.name.toLowerCase().includes(query.toLowerCase())
+    }) 
+
     return (
         <div className="w-1/5 px-5 overflow-auto">
             {/* Search Bar */}
             <div className='backdrop-filter backdrop-brightness-0 sticky top-0 z-10 py-5'>
                 <div className='flex justify-center items-center backdrop-filter backdrop-brightness-0'>
                     <div className='flex'>
-                        <input className="h-9 rounded-l-lg w-full bg-neutral-900 p-2 outline-none" 
+                        <input 
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            className="h-9 rounded-l-lg w-full bg-neutral-900 p-2 outline-none" 
                         />
-                        <button className="flex justify-center items-center hover:bg-neutral-800 h-9 w-8 bg-neutral-900 rounded-r-lg">
+                        <button 
+                            className="flex justify-center items-center hover:bg-neutral-800 h-9 w-8 bg-neutral-900 rounded-r-lg">
                             <GoSearch />
                         </button>
                     </div>
@@ -83,7 +95,7 @@ function History() {
             <div className='flex flex-col'>
                 {/* All Diets */}
                 <div className='flex flex-col mt-2'>
-                    {dummyData.map((data, id) => (
+                    {filteredData.map((data, id) => (
                         <Chat key={id} props={data}/>
                     ))}
                 </div>
