@@ -4,9 +4,9 @@ import React from 'react'
 function Navbar() {
     return (
         <navbar className="flex flex-row w-full justify-between items-center">
-            <div>
+            <Link href="/">
                 <p className="text-white font-semibold">GetYourDiet</p>
-            </div>
+            </Link>
 
             <div className="flex flex-row w-1/4 justify-around items-center">
                 <Link href="/">
@@ -21,9 +21,9 @@ function Navbar() {
             </div>
 
             <div>
-                <button>
-                    <p className="text-white font-semibold">Sign Up</p>
-                </button>
+                <Link href="/Signup" className='flex justify-center items-center border p-2 px-3 rounded-lg hover:bg-neutral-800'>
+                    <p className="text-white text-sm font-semibold">Sign Up</p>
+                </Link>
             </div>
         </navbar>
     )
