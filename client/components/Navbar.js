@@ -21,9 +21,9 @@ function Navbar() {
             </div>
 
             <div>
-                <Link href="/Signup" className='flex justify-center items-center border p-2 px-3 rounded-lg hover:bg-neutral-800'>
+                <button className='flex justify-center items-center border p-2 px-3 rounded-lg hover:bg-neutral-800'>
                     <p className="text-white text-sm font-semibold">Sign Up</p>
-                </Link>
+                </button>
             </div>
         </navbar>
     )
