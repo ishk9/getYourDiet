@@ -6,7 +6,7 @@ export default function LandingPage() {
     return (
         <div className="flex w-full h-full justify-center items-center overflow-hidden">
             
-            <div className="flex w-3/4 cursor-default">
+            <div className="flex lg:w-3/4 w-11/12 cursor-default">
                 <div className="flex flex-col w-full justify-center items-start">
                     <h1 className="font-extrabold text-white lg:text-[9em] text-[3em] leading-[1] tracking-[-2px]">YOU CAN EAT ANYTHING</h1>
 
@@ -21,13 +21,7 @@ export default function LandingPage() {
                         <FaArrowRightLong />
                     </Link>
                 </div>
-            </div>
-
-
-            <div className="flex w-1/4 justify-center items-center">       
-                {/* <p>&quot;Get Healthy for yourself. It&apos;s about you, not others.&quot;</p> */}
-            </div>
-             
+            </div>             
         </div>
     )
 }
