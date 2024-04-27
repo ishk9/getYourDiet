@@ -4,8 +4,8 @@ import React from 'react'
 
 const prices = [
     {id: 1, title: 'Single', price: '3', description: 'Best for single users', popular: 0},
-    {id: 2, title: 'Family', price: '15', description: 'Best for single users', popular: 1},
-    {id: 3, title: 'Professional', price: '30', description: 'Best for single users', popular: 0},
+    {id: 2, title: 'Family', price: '15', description: 'Best for family', popular: 1},
+    {id: 3, title: 'Professional', price: '30', description: 'Best for Professional', popular: 0},
 ]
 
 export default function PricingPage() {
