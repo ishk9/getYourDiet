@@ -48,7 +48,7 @@ function History() {
     return (
         <div className="px-5 mr-3">
             {/* Search Bar */}
-            <div className='backdrop-filter backdrop-brightness-0 sticky top-0 z-10 py-5'>
+            <div className='backdrop-filter backdrop-brightness-0 backdrop-opacity-100 sticky top-0 z-10 py-5'>
                 <div className='flex justify-center items-center backdrop-filter backdrop-brightness-0'>
                     <div className='flex'>
                         <input 
