@@ -21,7 +21,8 @@ export default function LandingPage() {
                         <FaArrowRightLong />
                     </Link>
                 </div>
-            </div>             
+            </div>      
+            <div className="lg:w-1/4 w-1/12"></div>       
         </div>
     )
 }
