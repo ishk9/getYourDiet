@@ -4,6 +4,7 @@ import { FiEdit } from "react-icons/fi";
 import { GoSearch } from "react-icons/go";
 import { BsPinAngle } from "react-icons/bs";
 import { MdOutlineDataset } from "react-icons/md";
+import { MdOutlineCancel } from "react-icons/md";
 import Chat from './Chat';
 
 const dummyDataPinned = [
@@ -20,18 +21,6 @@ function History() {
         {id: 5, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
         {id: 6, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
         {id: 7, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
         {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
         {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
         {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
@@ -99,11 +88,6 @@ function History() {
                         <Chat key={id} props={data}/>
                     ))}
                 </div>
-
-            </div>
-
-            <div>
-                {/* Clear all button */}
             </div>
 
         </div>
