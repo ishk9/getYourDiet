@@ -8,7 +8,7 @@ export default function Home() {
     const [history, showHistory] = useState(false);
     return (
         <main className='flex flex-row h-screen w-screen'>
-            <div className={`${history ? "w-3/5" : "w-0"} lg:w-1/5 overflow-auto`}>
+            <div className={`${history ? "w-4/5" : "w-0"} lg:w-1/5 overflow-auto`}>
                 <History />
             </div>
 
