@@ -4,9 +4,11 @@ import History from '@/components/History'
 import { IoReorderThreeOutline } from "react-icons/io5";
 import { BsThreeDots } from "react-icons/bs";
 
+
 export default function Home() {
     const [history, showHistory] = useState(false);
     const [diets, numberDiets] = useState(10);
+
     return (
         <main className='flex flex-row h-screen w-screen'>
             <div className={`${history ? "w-3/5" : "w-0"} lg:w-1/5 overflow-auto`}>
@@ -19,9 +21,10 @@ export default function Home() {
                         </div>
                     </div>
                     <button onClick={() => {}}>
-                        <BsThreeDots />
+                        <BsThreeDots className='z-20' />
                     </button>
-
+                    
+                    
                 </div>
 
 
