@@ -1,4 +1,6 @@
 import React from 'react'
+import { MdOutlineDelete } from "react-icons/md";
+import { MdOutlineEdit } from "react-icons/md";
 
 function Chat({props}) {
     return (
@@ -10,8 +12,21 @@ function Chat({props}) {
                 <p className='text-[12px]'>{props.date}</p>
             </div>
 
-            {/* Description */}
-            <p className='text-[12px] mt-1'>{props.description}</p>
+            <div className='flex w-full justify-between items-center'>
+                {/* Description */}
+                <p className='text-[12px] mt-1'>{props.description}</p>
+
+                <div className='flex'>
+                    <button onClick={() => {}}>
+                        <MdOutlineDelete className='hover:text-white text-zinc-800' size={18} />
+                    </button>
+                        
+                    <button onClick={() => {}}>
+                        <MdOutlineEdit className='hover:text-white text-zinc-800' size={18} />
+                    </button>
+
+                </div>
+            </div>
         </button>
     )
 }
