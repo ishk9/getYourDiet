@@ -4,7 +4,7 @@ import { MdOutlineEdit } from "react-icons/md";
 
 function Chat({props}) {
     return (
-        <button className="flex flex-col justify-center items-start hover:bg-neutral-900  p-3 my-1 rounded-lg">
+        <div className="flex flex-col justify-center items-start hover:bg-neutral-900  p-3 my-1 rounded-lg">
             <div className="flex w-full justify-between items-center">
                 {/* Name */}
                 <p className='text-[15px]'>{props.name}</p>
@@ -27,7 +27,7 @@ function Chat({props}) {
 
                 </div>
             </div>
-        </button>
+        </div>
     )
 }
 
