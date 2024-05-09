@@ -1,24 +1,15 @@
 import express from 'express';
 import User from '../models/user.js';
+import {getUser, getUserById, addUser, updateUserById} from '../controller/user.js'
 
 const router = express.Router();
 
-router.get("/", async(req, res) => {
-    const isUser = await User.find({phoneNumber: req.data.phoneNumber});
-});
+router.get("/", getUser);
 
-router.post("/", async(req, res) => {
-    const body = req.body;
-    if(!body || !body.phoneNumber || !body.FullName){
-        return res.status(400).json({msg: "All fields are required"});
-    }
+router.route("/:id").get(getUserById).patch(updateUserById);
 
-    const result = await User.create({
-        FullName: body.FullName,
-        phoneNumber: body.PhoneNumber
-    });
+router.post("/submit", addUser);
 
-    return res.status(201).json({ msg: "Success"} );
-})
+// router.post("/", )
 
 export default router;
