@@ -19,7 +19,7 @@ function Navbar() {
                     <p className="text-white font-semibold">Pricing</p>
                 </Link>
                 <Link href="/Reviews">
-                    <p className="text-white font-semibold">Reviews</p>
+                    <p className="text-white font-semibold hidden sm:block">Reviews</p>
                 </Link>
             </div>
 
