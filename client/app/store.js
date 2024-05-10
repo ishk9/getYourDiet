@@ -1,8 +1,10 @@
 import { create } from 'zustand';
 
 const useStore = create((set) => ({
-  openModal: false,
-  setOpenModal: () => set((state) => ({ openModal: !state.openModal}))
+  openOnboardingModal: false,
+  openSignInModal: true,
+  setOpenOnboardingModal: () => set((state) => ({ openOnboardingModal: !state.openOnboardingModal})),
+  setOpenSignInModal: () => set((state) => ({ openSignInModal: !state.openSignInModal})),
 }));
 
 export default useStore;
