@@ -8,12 +8,12 @@ function SignupPage() {
         <div className="h-full w-full p-4 flex flex-col justify-evenly items-center">
             <h1 className='text-black text-[24px] font-semibold'>Get Started Now</h1>
             <div className='flex flex-col px-2'>
-                <input className='my-1 p-2 rounded-md text-black border-2 border-black hover:-translate-y-0.5' placeholder='John'/>
-                <input className='my-1 p-2 rounded-md text-black border-2 border-black hover:-translate-y-0.5' placeholder='Doe' />
+                <input className='my-1 p-2 rounded-md text-black border-2 border-black hover:-translate-y-0.5 outline-none' placeholder='John'/>
+                <input className='my-1 p-2 rounded-md text-black border-2 border-black hover:-translate-y-0.5 outline-none' placeholder='Doe' />
 
                 <div className='flex w-full justify-center items-center'>
-                    <input className='my-1 w-1/4 p-2 rounded-md text-black mr-2 border-2 border-black hover:-translate-y-0.5' placeholder='+91' />
-                    <input className='my-1 w-3/4 p-2 rounded-md text-black border-2 border-black hover:-translate-y-0.5' placeholder='985762XXXX' />
+                    <input className='my-1 w-1/4 p-2 rounded-md text-black mr-2 border-2 border-black hover:-translate-y-0.5 outline-none' placeholder='+91' />
+                    <input className='my-1 w-3/4 p-2 rounded-md text-black border-2 border-black hover:-translate-y-0.5 outline-none' placeholder='985762XXXX' />
                 </div>
 
             </div>
