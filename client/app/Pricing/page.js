@@ -10,11 +10,11 @@ const prices = [
 
 export default function PricingPage() {
     return (
-        <div className="flex flex-col w-screen h-screen items-center bg-black p-5 overflow-x-hidden">
+        <div className="flex flex-col w-screen h-screen items-center p-5 overflow-x-hidden">
             <Navbar />
             
-            <h1 className="text-[3em] font-semibold mt-20">Simple, straightforward pricing.</h1>
-            <p className='mt-3'>Choose the plan that&apos;s right for you. Whether you want a plan for yourself or your family, We got your back.</p>
+            <h1 className="text-[3em] font-semibold mt-20 text-black">Simple, straightforward pricing.</h1>
+            <p className='mt-3 text-black'>Choose the plan that&apos;s right for you. Whether you want a plan for yourself or your family, We got your back.</p>
             
             <div className='flex h-full w-full justify-center items-center'>
                 {
