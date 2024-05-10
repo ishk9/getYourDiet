@@ -11,7 +11,7 @@ function Navbar() {
                 <p className="text-white font-semibold">GetYourDiet</p>
             </Link>
 
-            <div className="flex flex-row w-1/4 justify-around items-center">
+            <div className="flex flex-row w-2/4 lg:w-1/4 justify-evenly items-center">
                 <Link href="/">
                     <p className="text-white font-semibold">Our Method</p>
                 </Link>
