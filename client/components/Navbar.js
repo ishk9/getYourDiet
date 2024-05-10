@@ -4,7 +4,7 @@ import React from 'react'
 import useStore from '@/app/store'
 
 function Navbar() {
-    const {openModal, setOpenModal} = useStore();
+    const {openOnboardingModal, setOpenOnboardingModal} = useStore();
     return (
         <navbar className="flex flex-row w-full justify-between items-center">
             <Link href="/">
@@ -26,8 +26,8 @@ function Navbar() {
             <div>
                 <button 
                     onClick={() => {
-                        console.log(openModal);
-                        setOpenModal();
+                        console.log(openOnboardingModal);
+                        setOpenOnboardingModal();
                     }}
                     className='flex justify-center items-center border p-2 px-3 rounded-lg hover:bg-neutral-800'>
                     <p className="text-white text-sm font-semibold">Sign Up</p>
