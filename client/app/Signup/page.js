@@ -6,7 +6,7 @@ function SignupPage() {
     const {setOpenSignInModal} = useStore();
     return (
         <div className="h-full w-full p-4 rounded-xl absolute z-10 flex flex-col justify-evenly items-center bg-slate-100">
-            <h1 className='text-black text-[24px] font-semibold'>Signup</h1>
+            <h1 className='text-black text-[24px] font-semibold'>Get Started Now</h1>
             <div className='flex flex-col'>
                 <input className='my-1 p-2 rounded-md text-black' placeholder='John'/>
                 <input className='my-1 p-2 rounded-md text-black' placeholder='Doe' />
