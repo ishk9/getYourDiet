@@ -6,20 +6,20 @@ import useStore from '@/app/store'
 function Navbar() {
     const {openOnboardingModal, setOpenOnboardingModal} = useStore();
     return (
-        <navbar className="flex flex-row w-full justify-between items-center">
+        <navbar className="flex flex-row w-full justify-between items-center px-2">
             <Link href="/">
-                <p className="text-white font-semibold">GetYourDiet</p>
+                <p className="text-black text-lg font-bold">GetYourDiet</p>
             </Link>
 
             <div className="flex flex-row w-2/4 lg:w-1/4 justify-evenly items-center">
-                <Link href="/">
-                    <p className="text-white font-semibold">Our Method</p>
+                <Link className="hover:-translate-y-0.5" href="/">
+                    <p className="text-black font-semibold">Our Method</p>
                 </Link>
-                <Link href="/Pricing">
-                    <p className="text-white font-semibold">Pricing</p>
+                <Link className="hover:-translate-y-0.5" href="/Pricing">
+                    <p className="text-black font-semibold">Pricing</p>
                 </Link>
-                <Link href="/Reviews">
-                    <p className="text-white font-semibold hidden sm:block">Reviews</p>
+                <Link className="hover:-translate-y-0.5" href="/Reviews">
+                    <p className="text-black font-semibold hidden sm:block">Reviews</p>
                 </Link>
             </div>
 
@@ -29,8 +29,8 @@ function Navbar() {
                         console.log(openOnboardingModal);
                         setOpenOnboardingModal();
                     }}
-                    className='flex justify-center items-center border p-2 px-3 rounded-lg hover:bg-neutral-800'>
-                    <p className="text-white text-sm font-semibold">Sign Up</p>
+                    className='flex justify-center items-center border-2 border-black p-2 px-3 rounded-lg hover:-translate-y-0.5'>
+                    <p className="text-black text-sm font-semibold">Sign Up</p>
                 </button>
             </div>
         </navbar>
