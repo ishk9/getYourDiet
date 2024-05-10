@@ -2,7 +2,7 @@ import React from 'react'
 
 function PriceCard({props}) {
     return (
-        <div className={`flex flex-col ${props.popular ? "h-4/5" : "h-3/5"} w-1/5 shadow-lg shadow-slate-600 bg-white rounded-xl mx-3 p-5`}>
+        <div className={`flex flex-col ${props.popular ? "h-4/5" : "h-3/5"} w-1/5 shadow-lg shadow-slate-600 bg-slate-50 rounded-xl mx-3 p-5`}>
             <div className="h-3/4">
                 <h1 className="text-md text-black font-semibold uppercase">{props.title}</h1>
                 <p className="text-black font-bold md:text-[28px] text-[11px]">${props.price}</p>
