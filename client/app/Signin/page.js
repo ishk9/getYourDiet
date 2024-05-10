@@ -6,10 +6,10 @@ import useStore from '../store';
 function SigninPage() {
     const {setOpenSignInModal} = useStore();
     return (
-        <div className="h-full w-full p-4 flex flex-col justify-evenly items-center bg-white">
+        <div className="h-full w-full p-4 flex flex-col justify-evenly items-center">
             <h1 className='text-black text-[24px] font-semibold'>Sign in</h1>
             
-            <div className='flex w-full justify-center items-center'>
+            <div className='flex w-full justify-center items-center px-2'>
                 <input className='my-1 w-1/4 p-2 rounded-md text-black mr-2 border-2 border-black hover:-translate-y-0.5' placeholder='+91' />
                 <input className='my-1 w-3/4 p-2 rounded-md text-black border-2 border-black hover:-translate-y-0.5' placeholder='985762XXXX' />
             </div>
