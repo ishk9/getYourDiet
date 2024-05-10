@@ -5,9 +5,9 @@ import useStore from '../store'
 function SignupPage() {
     const {setOpenSignInModal} = useStore();
     return (
-        <div className="h-full w-full p-4 flex flex-col justify-evenly items-center bg-white">
+        <div className="h-full w-full p-4 flex flex-col justify-evenly items-center">
             <h1 className='text-black text-[24px] font-semibold'>Get Started Now</h1>
-            <div className='flex flex-col'>
+            <div className='flex flex-col px-2'>
                 <input className='my-1 p-2 rounded-md text-black border-2 border-black hover:-translate-y-0.5' placeholder='John'/>
                 <input className='my-1 p-2 rounded-md text-black border-2 border-black hover:-translate-y-0.5' placeholder='Doe' />
 
