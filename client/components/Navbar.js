@@ -1,7 +1,10 @@
+"use client";
 import Link from 'next/link'
 import React from 'react'
+import useStore from '@/app/store'
 
 function Navbar() {
+    const {openModal, setOpenModal} = useStore();
     return (
         <navbar className="flex flex-row w-full justify-between items-center">
             <Link href="/">
@@ -21,7 +24,12 @@ function Navbar() {
             </div>
 
             <div>
-                <button className='flex justify-center items-center border p-2 px-3 rounded-lg hover:bg-neutral-800'>
+                <button 
+                    onClick={() => {
+                        console.log(openModal);
+                        setOpenModal();
+                    }}
+                    className='flex justify-center items-center border p-2 px-3 rounded-lg hover:bg-neutral-800'>
                     <p className="text-white text-sm font-semibold">Sign Up</p>
                 </button>
             </div>
