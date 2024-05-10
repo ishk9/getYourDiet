@@ -3,20 +3,17 @@ import React from 'react'
 import { FaArrowRightLong } from "react-icons/fa6";
 import Link from 'next/link';
 import useStore from '../store';
-import SigninPage from '../Signin/page';
+import OnboardingPage from '../Onboarding/page';
+
 
 export default function LandingPage() {
-    const {openModal, setOpenModal} = useStore();
-
-
-
-
-    
+    const {openOnboardingModal} = useStore();
     return (
         <div className="flex w-full h-full justify-center items-center overflow-hidden">
             {
-                openModal && <SigninPage />
+                openOnboardingModal && <OnboardingPage />
             }
+
             <div className="flex lg:w-3/4 w-11/12 cursor-default">
                 <div className="flex flex-col w-full justify-center items-start">
                     <h1 className="font-extrabold text-white lg:text-[9em] text-[2.6em] leading-[1] tracking-[-2px]">YOU CAN EAT ANYTHING</h1>
