@@ -2,17 +2,20 @@
 import React from 'react'
 import { FaArrowRightLong } from "react-icons/fa6";
 import Link from 'next/link';
-import SigninPage from '../Signin/page';
 import useStore from '../store';
+import SigninPage from '../Signin/page';
 
 export default function LandingPage() {
     const {openModal, setOpenModal} = useStore();
+
+
+
+
+    
     return (
         <div className="flex w-full h-full justify-center items-center overflow-hidden">
             {
-                openModal && (
-                    <SigninPage />
-                )
+                openModal && <SigninPage />
             }
             <div className="flex lg:w-3/4 w-11/12 cursor-default">
                 <div className="flex flex-col w-full justify-center items-start">
