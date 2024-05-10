@@ -35,22 +35,18 @@ export default function Home() {
                     onClick={toggleHistory}
                 >   
                     {historyOpen ? 
-                        <MdOutlineKeyboardArrowLeft size={28} />
+                        <MdOutlineKeyboardArrowLeft size={32} color='black' />
                         : 
-                        <MdOutlineKeyboardArrowRight size={28}/>
+                        <MdOutlineKeyboardArrowRight size={32} color='black'/>
                     }
                 </button>
             </div>
 
             {/* Diet Formation Section */}
-            <div className={`${historyOpen ? "md:w-3/5" : "md:w-4/5"} flex justify-center items-center`}>
-                <h1>Welcome Onboard!</h1>
+            <div className={`${historyOpen ? "md:w-3/5" : "w-full"} flex justify-center items-center`}>
+                <h1 className='text-black'>Welcome Onboard!</h1>
             </div>
 
-            {/* User Input Section */}
-            <div className={`${historyOpen ? "w-0 md:w-1/5" : "md:w-1/5"} bg-black`}>
-                {/* User Input */}
-            </div>
         </main>
     );
 }
