@@ -10,6 +10,7 @@ import { DialogDemo } from './CreateFolder';
 const dummyDataPinned = [
     {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
     {id: 2, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+    {id: 3, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
 ]
 
 function History() {
