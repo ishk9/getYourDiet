@@ -1,11 +1,12 @@
 "use client";
 import React from 'react'
-import { FiEdit } from "react-icons/fi";
 import { GoSearch } from "react-icons/go";
 import { BsPinAngle } from "react-icons/bs";
 import { MdOutlineDataset } from "react-icons/md";
-import { MdOutlineCancel } from "react-icons/md";
 import Chat from './Chat';
+
+import useStore from '@/app/store';
+import { DialogDemo } from './Creatediet';
 
 const dummyDataPinned = [
     {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
@@ -13,6 +14,7 @@ const dummyDataPinned = [
 ]
 
 function History() {
+    const {setOpenCreateDiet} = useStore();
     const [dummyData, setDummyData] = React.useState([
         {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
         {id: 2, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
@@ -47,13 +49,15 @@ function History() {
                         />
                         <button 
                             className="flex justify-center items-center hover:bg-neutral-800 h-9 w-8 bg-neutral-900 rounded-r-lg">
-                            <GoSearch />
+                            <GoSearch color='white'/>
                         </button>
                     </div>
 
                     {/* Create new button */}
-                    <button className="flex justify-center items-center h-9 w-11 ml-2 bg-[#CBBCA5] rounded-lg">
-                        <FiEdit color='black' size={16}/>
+                    <button 
+                        onClick={setOpenCreateDiet}
+                        className="flex justify-center items-center h-9 w-11 ml-2 bg-[#CBBCA5] rounded-lg">
+                        <DialogDemo />
                     </button>
                 </div>
 
