@@ -7,14 +7,14 @@ function Chat({props}) {
         <div className="flex flex-col justify-center items-start hover:bg-neutral-900  p-3 my-1 rounded-lg">
             <div className="flex w-full justify-between items-center">
                 {/* Name */}
-                <p className='text-[15px]'>{props.name}</p>
+                <p className='text-[15px] text-neutral-400'>{props.name}</p>
                 {/* Date */}
-                <p className='text-[12px]'>{props.date}</p>
+                <p className='text-[12px] text-neutral-400'>{props.date}</p>
             </div>
 
             <div className='flex w-full justify-between items-center'>
                 {/* Description */}
-                <p className='text-[12px] mt-1'>{props.description}</p>
+                <p className='text-[12px] mt-1 text-neutral-400'>{props.description}</p>
 
                 <div className='flex'>
                     <button onClick={() => {}}>
