@@ -9,6 +9,7 @@ export default function Home() {
     const toggleHistory = () => {
         setHistoryOpen(!historyOpen);
     };
+    
     return (
         <main className='flex flex-row h-screen w-screen'>
             {/* History Section */}
