@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -16,7 +17,7 @@ export function DialogDemo() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline" className="bg-[#CBBCA5]">
+        <Button variant="outline">
             <FiEdit color='black' size={16}/>
         </Button>
       </DialogTrigger>
