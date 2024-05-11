@@ -1,3 +1,4 @@
+"use client";
 import PriceCard from '@/components/PriceCard'
 import React from 'react'
 
