@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import router from "./routes/user.js";
+import dataRouter from './routes/data.js';
 import connectMongoDb from './connection.js';
 
 const app = express();
@@ -10,8 +11,13 @@ app.use(express.json());
 
 // Routes and other configurations
 app.use("/user", router);
+app.use("/data", dataRouter);
 
-// connectMongoDb(process.env.MONGOURL);
+connectMongoDb(process.env.MONGOURL).then(() => {
+  console.log("Connected to MongoDB");
+}).catch((err) => {
+  console.log(err);
+});
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
