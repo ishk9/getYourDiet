@@ -10,6 +10,8 @@ export default function Home() {
         setHistoryOpen(!historyOpen);
     };
 
+
+    
     return (
         <main className='flex flex-row h-screen w-screen'>
             {/* History Section */}
