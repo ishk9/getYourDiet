@@ -1,11 +1,11 @@
 "use client";
 import React from 'react'
-import { FiEdit } from "react-icons/fi";
 import { GoSearch } from "react-icons/go";
 import { BsPinAngle } from "react-icons/bs";
 import { MdOutlineDataset } from "react-icons/md";
 import { MdOutlineCancel } from "react-icons/md";
 import Chat from './Chat';
+import { DialogDemo } from './CreateFolder';
 
 const dummyDataPinned = [
     {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
@@ -52,9 +52,10 @@ function History() {
                     </div>
 
                     {/* Create new button */}
-                    <button className="flex justify-center items-center h-9 w-11 ml-2 bg-[#CBBCA5] rounded-lg">
-                        <FiEdit color='black' size={16}/>
-                    </button>
+                    {/* className="flex justify-center items-center h-9 w-11 ml-2 bg-[#CBBCA5] rounded-lg"> */}
+                    <DialogDemo />
+                
+                    
                 </div>
 
     
