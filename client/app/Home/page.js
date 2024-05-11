@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import History from '@/components/History';
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from "react-icons/md";
-import useStore from '../store';
 
 export default function Home() {
     const [historyOpen, setHistoryOpen] = useState(true);
