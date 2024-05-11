@@ -9,7 +9,7 @@ import OnboardingPage from '../Onboarding/page';
 export default function LandingPage() {
     const {openOnboardingModal} = useStore();
     return (
-        <div className="flex w-screen h-screen justify-center items-center px-10 py-2">
+        <div className="flex w-screen h-screen justify-center items-center px-10 py-2 bg-[#DE3B3C]">
             {
                 openOnboardingModal && <OnboardingPage />
             }
