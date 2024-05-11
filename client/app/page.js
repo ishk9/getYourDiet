@@ -1,13 +1,20 @@
+"use client";
+import React, { useRef } from "react";
 import Navbar from "@/components/Navbar";
 import LandingPage from "./Landing/page";
+import PricingPage from "./Pricing/page";
+import Reviews from "./Reviews/page";
 
 
 
 export default function Home() {
+
   return (
-    <main className="flex h-screen flex-col items-center justify-between px-10 py-6">
+    <main className="overflow-x-hidden">
       <Navbar />
       <LandingPage />
+      <PricingPage />
+      <Reviews />
     </main>
   );
 }
