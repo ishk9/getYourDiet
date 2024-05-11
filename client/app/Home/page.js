@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import History from '@/components/History';
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import useStore from '../store';
 
 export default function Home() {
     const [historyOpen, setHistoryOpen] = useState(true);
@@ -9,7 +10,6 @@ export default function Home() {
     const toggleHistory = () => {
         setHistoryOpen(!historyOpen);
     };
-
     return (
         <main className='flex flex-row h-screen w-screen'>
             {/* History Section */}
@@ -45,6 +45,7 @@ export default function Home() {
             {/* Diet Formation Section */}
             <div className={`${historyOpen ? "md:w-3/5" : "w-full"} flex justify-center items-center`}>
                 <h1 className='text-black'>Welcome Onboard!</h1>
+             
             </div>
 
         </main>
