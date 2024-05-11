@@ -52,10 +52,10 @@ function History() {
                     </div>
 
                     {/* Create new button */}
-                    <button 
-                        className="flex justify-center items-center h-9 w-11 ml-2 bg-[#CBBCA5] rounded-lg">
-                        <DialogDemo />
-                    </button>
+                    {/* className="flex justify-center items-center h-9 w-11 ml-2 bg-[#CBBCA5] rounded-lg"> */}
+                    <DialogDemo />
+                    
+                   
                 </div>
 
     
