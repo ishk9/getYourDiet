@@ -5,7 +5,7 @@ import useStore from '@/app/store'
 function Navbar() {
     const {openOnboardingModal, setOpenOnboardingModal} = useStore();
     return (
-        <navbar className="flex flex-row w-full justify-between items-center px-10 py-2 bg-[#DE3B3C]">
+        <div className="flex flex-row w-full justify-between items-center px-10 py-2 bg-[#DE3B3C]">
             <button>
                 <p className="text-black text-lg font-bold uppercase">GetYourDiet</p>
             </button>
@@ -33,7 +33,7 @@ function Navbar() {
                     <p className="text-black text-sm font-semibold">Sign Up</p>
                 </button>
             </div>
-        </navbar>
+        </div>
     )
 }
 
