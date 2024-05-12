@@ -7,7 +7,7 @@ function Navbar() {
     
     const {openOnboardingModal, setOpenOnboardingModal} = useStore();
     return (
-        <navbar className="flex flex-row w-full justify-between items-center px-10 py-2">
+        <navbar className="flex flex-row w-full justify-between items-center px-10 py-2 bg-[#E7C25A]">
             <Link href="/">
                 <p className="text-black text-lg font-bold uppercase">GetYourDiet</p>
             </Link>
