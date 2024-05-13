@@ -11,7 +11,7 @@ export default function Home() {
     };
 
     return (
-        <main className='flex flex-row h-screen w-screen'>
+        <main className='flex flex-row h-screen w-screen bg-[#E7C25A]'>
             {/* History Section */}
             <div className={`${historyOpen ? "w-3/5 md:w-1/5" : "w-0"} overflow-auto bg-black transition-width duration-300`}>
                 <div className='flex justify-between px-5 items-center mt-4 sticky top-0 backdrop-filter backdrop-brightness-0 backdrop-opacity-100'>
