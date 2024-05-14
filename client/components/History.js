@@ -44,7 +44,7 @@ function History() {
                         <input 
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            className="h-9 rounded-l-lg w-full bg-neutral-900 p-2 outline-none" 
+                            className="h-9 rounded-l-lg w-full bg-neutral-900 p-2 outline-none text-white" 
                         />
                         <button 
                             className="flex justify-center items-center hover:bg-neutral-800 h-9 w-8 bg-neutral-900 rounded-r-lg">
