@@ -1,3 +1,4 @@
+import React, {useState} from "react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -7,12 +8,20 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { FiEdit } from "react-icons/fi";
+import useStore from "@/app/store"
+
 
 export function DialogDemo() {
+  const [val, setVal] = useState("");
+  const {addToDummyData} = useStore();
+  const handleChange = (e) => {
+    setVal(e.target.value);
+  }
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -33,9 +42,12 @@ export function DialogDemo() {
               Name
             </Label>
             <Input
+              type='text'
               id="name"
               defaultValue="Joe"
               className="col-span-3"
+              value={val}
+              onChange={handleChange}
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -43,6 +55,7 @@ export function DialogDemo() {
               Description
             </Label>
             <Input
+              type='text'
               id="description"
               defaultValue="My fatloss diet"
               className="col-span-3"
@@ -50,7 +63,10 @@ export function DialogDemo() {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save</Button>
+          <DialogClose>
+            <Button onClick={() =>console.log('hello')} type="submit">Save</Button>
+          </DialogClose>
+
         </DialogFooter>
       </DialogContent>
     </Dialog>
