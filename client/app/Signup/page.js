@@ -19,8 +19,8 @@ function SignupPage() {
             </div>
 
             <div className='flex flex-col w-3/4 justify-center items-center'>
-                <button className='w-full rounded-md py-3 mt-2 bg-slate-700 hover:bg-slate-600'>
-                    <p>Sign up</p>
+                <button className='w-full rounded-md py-3 mt-2 bg-black hover:bg-slate-700'>
+                    <p className='text-white'>Sign up</p>
                 </button>
 
                 <button className='mt-2' onClick={setOpenSignInModal}>
