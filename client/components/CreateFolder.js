@@ -15,6 +15,8 @@ import { Label } from "@/components/ui/label"
 import { FiEdit } from "react-icons/fi";
 import useStore from "@/app/store"
 
+import { useToast } from "@/components/ui/use-toast"
+
 
 export function DialogDemo() {
   const [val, setVal] = useState("");
@@ -22,6 +24,7 @@ export function DialogDemo() {
   const handleChange = (e) => {
     setVal(e.target.value);
   }
+  const {toast} = useToast();
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -64,7 +67,15 @@ export function DialogDemo() {
         </div>
         <DialogFooter>
           <DialogClose>
-            <Button onClick={() =>console.log('hello')} type="submit">Save</Button>
+            <Button onClick={() => {
+              toast({
+                title: "Scheduled: Catch up",
+                description: "Friday, February 10, 2023 at 5:57 PM",
+              })
+              console.log('hello')
+            }} type="submit">
+              Save
+            </Button>
           </DialogClose>
 
         </DialogFooter>
