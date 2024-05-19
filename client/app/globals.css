@@ -75,19 +75,20 @@
     }
   }
 
-  ::-webkit-scrollbar {
-    width: 6px; /* Width of the entire scrollbar */
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #948e8e; /* Color of the track */
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #5c5555; /* Color of the scroll thumb */
-    border-radius: 4px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color of the scroll thumb on hover */
-  }
+  /* Customizing scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 7px; /* Width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #333; /* Color of the track in dark theme */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666; /* Color of the scroll thumb in dark theme */
+  border-radius: 4px; /* Make the scrollbar thumb slightly rounded */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888; /* Color of the scroll thumb on hover in dark theme */
+}
