@@ -1,5 +1,5 @@
-import React, {useState} from "react"
-import { Button } from "@/components/ui/button"
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -9,27 +9,35 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogClose
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { FiEdit } from "react-icons/fi";
-import useStore from "@/app/store"
-
-import { useToast } from "@/components/ui/use-toast"
-
+import { useToast } from "@/components/ui/use-toast";
 
 export function DialogDemo() {
-  const [val, setVal] = useState("");
-  const {addToDummyData} = useStore();
-  const handleChange = (e) => {
-    setVal(e.target.value);
-  }
-  const {toast} = useToast();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const { toast } = useToast();
+  const date = new Date();
+
+  const formatDateTime = (date) => {
+    const dayOptions = { weekday: 'long' };
+    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+
+    const day = date.toLocaleDateString(undefined, dayOptions);
+    const dateStr = date.toLocaleDateString(undefined, dateOptions);
+    const time = date.toLocaleTimeString(undefined, timeOptions);
+
+    return `${day}, ${dateStr} at ${time}`;
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button className='bg-[#D1C6B2] hover:bg-[#e5decf]' variant="outline">
-            <FiEdit color='black' size={16}/>
+          <FiEdit color='black' size={16}/>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
@@ -47,10 +55,9 @@ export function DialogDemo() {
             <Input
               type='text'
               id="name"
-              defaultValue="Joe"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="col-span-3"
-              value={val}
-              onChange={handleChange}
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -60,7 +67,8 @@ export function DialogDemo() {
             <Input
               type='text'
               id="description"
-              defaultValue="My fatloss diet"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               className="col-span-3"
             />
           </div>
@@ -69,17 +77,16 @@ export function DialogDemo() {
           <DialogClose>
             <Button onClick={() => {
               toast({
-                title: "Scheduled: Catch up",
-                description: "Friday, February 10, 2023 at 5:57 PM",
-              })
-              console.log('hello')
+                title: `Description: ${description}`,
+                description: `${formatDateTime(date)}`,
+              });
+              console.log('Created new diet');
             }} type="submit">
               Save
             </Button>
           </DialogClose>
-
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
