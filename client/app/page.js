@@ -13,7 +13,7 @@ export default function Home() {
     <main className="overflow-x-hidden">
       <Navbar />
       <LandingPage />
-      <PricingPage />
+      <PricingPage/>
       <Reviews />
     </main>
   );
