@@ -1,16 +1,16 @@
 "use client";
 import React from 'react'
+// Icons
 import { GoSearch } from "react-icons/go";
 import { BsPinAngle } from "react-icons/bs";
 import { MdOutlineDataset } from "react-icons/md";
-import { MdOutlineCancel } from "react-icons/md";
+
+// Components
 import Chat from './Chat';
 import { DialogDemo } from './CreateFolder';
 
 const dummyDataPinned = [
     {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
-    {id: 2, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-    {id: 3, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
 ]
 
 function History() {
@@ -20,14 +20,9 @@ function History() {
         {id: 3, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
         {id: 4, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
         {id: 5, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 6, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+        {id: 6, name: "xyz", date: '24 April', description: 'abcscwdvnovnefwdcf'},
         {id: 7, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 8, name: "xyz", date: '24 April', description: 'abcscwdvnovnefwdcf'},
+
     ])
     const [query, setQuery] = React.useState(""); 
 
