@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from 'react';
+import { useState } from 'react';
 import History from '@/components/History';
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import UserInputSection from '@/components/UserInputSection';
 
 export default function Home() {
     const [historyOpen, setHistoryOpen] = useState(true);
@@ -46,7 +47,11 @@ export default function Home() {
             <div className={`${historyOpen ? "md:w-3/5" : "w-full"} flex justify-center items-center`}>
                 <h1 className='text-black'>Welcome Onboard!</h1>
             </div>
-
+            
+            <div className={`md:w-1/5 flex flex-col justify-evenly items-center bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30 transition-width w-3/5 py-2 p-4`}>
+                <h1 className='text-white font-bold text-[1.4em]'>Customize your diet</h1>
+                <UserInputSection />
+            </div>
         </main>
     );
 }
