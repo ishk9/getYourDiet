@@ -59,7 +59,7 @@ function UserInputSection() {
             </div>
 
             <div className="p-2 w-full">
-                <button className="w-full rounded-md p-2 bg-transparent border border-zinc-700 hover:border-white">
+                <button className="w-full rounded-md p-2 bg-transparent border border-zinc-700 hover:border-white duration-200">
                     <p className="text-white">Generate</p>
                 </button>
             </div>
