@@ -5,7 +5,7 @@ import useStore from '../store';
 function SigninPage() {
     const {setOpenSignInModal} = useStore();
     return (
-        <div className="h-full w-full p-4 flex flex-col justify-evenly items-center">
+        <div className="h-full w-full p-4 flex flex-col justify-evenly items-center z-10">
             <h1 className='text-black text-[24px] font-semibold'>Sign in</h1>
             
             <div className='flex w-full justify-center items-center px-2'>
