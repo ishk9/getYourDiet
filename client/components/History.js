@@ -8,25 +8,17 @@ import { MdOutlineDataset } from "react-icons/md";
 // Components
 import Chat from './Chat';
 import { DialogDemo } from './CreateFolder';
+import useStore from '@/app/store';
 
 const dummyDataPinned = [
     {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
 ]
 
 function History() {
-    const [dummyData, setDummyData] = React.useState([
-        {id: 1, name: "Ishaan", date: '24 April', description: 'abcsefwdcf'},
-        {id: 2, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 3, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 4, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 5, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 6, name: "xyz", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-        {id: 7, name: "Khullar", date: '24 April', description: 'abcscwdvnovnefwdcf'},
-
-    ])
+    const { list, addItem, updateItem, removeItem } = useStore();
     const [query, setQuery] = React.useState(""); 
 
-    const filteredData = dummyData.filter(item => {
+    const filteredData = list.filter(item => {
         return item.name.toLowerCase().includes(query.toLowerCase())
     }) 
 
