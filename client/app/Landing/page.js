@@ -4,9 +4,9 @@ import Link from 'next/link';
 import useStore from '../store';
 import OnboardingPage from '../Onboarding/page';
 
+
 export default function LandingPage() {
     const {openOnboardingModal} = useStore();
-    // const words = ["tasty", "healthy", "nutritious"];
     return (
         <div className="flex w-screen h-screen justify-center items-center px-10 py-2 bg-[#E7C25A]">
             {
@@ -16,7 +16,7 @@ export default function LandingPage() {
             <div className="flex lg:w-3/4 w-11/12 cursor-default">
                 <div className="flex flex-col w-full justify-center items-start">
                     <h1 className="font-extrabold text-black lg:text-[7em] text-[3em] leading-[1] tracking-[-2px] uppercase">
-                        Eat food that is Healthy
+                       Eat food that is Healthy
                     </h1>
 
                     <p className="mt-6 lg:w-1/2 w-full flex lg:text-base font-semibold text-[11px] text-black">
