@@ -14,17 +14,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FiEdit } from "react-icons/fi";
 import { useToast } from "@/components/ui/use-toast";
+import useStore from "@/app/store";
 
 export function DialogDemo() {
+  const { list, addItem, updateItem, removeItem } = useStore();
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const { toast } = useToast();
   const date = new Date();
 
+  const dayOptions = { weekday: 'long' };
+  const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
+
   const formatDateTime = (date) => {
-    const dayOptions = { weekday: 'long' };
-    const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-    const timeOptions = { hour: 'numeric', minute: 'numeric', hour12: true };
 
     const day = date.toLocaleDateString(undefined, dayOptions);
     const dateStr = date.toLocaleDateString(undefined, dateOptions);
@@ -44,7 +48,7 @@ export function DialogDemo() {
         <DialogHeader>
           <DialogTitle>Create new diet</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
+            Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
@@ -76,6 +80,7 @@ export function DialogDemo() {
         <DialogFooter>
           <DialogClose>
             <Button onClick={() => {
+              addItem({name: name, date: date.toLocaleDateString(undefined, { month: 'long', day: 'numeric' }), description: description});
               toast({
                 title: `Description: ${description}`,
                 description: `${formatDateTime(date)}`,
