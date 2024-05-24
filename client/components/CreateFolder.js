@@ -19,6 +19,15 @@ import useStore from "@/app/store";
 export function DialogDemo() {
   const { list, addItem, updateItem, removeItem } = useStore();
 
+  const validate = () => {
+    if(name.length > 2 && description.length > 5){
+      return true;
+    }
+    else{
+      return false;
+    }
+  };
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const { toast } = useToast();
@@ -80,12 +89,20 @@ export function DialogDemo() {
         <DialogFooter>
           <DialogClose>
             <Button onClick={() => {
-              addItem({name: name, date: date.toLocaleDateString(undefined, { month: 'long', day: 'numeric' }), description: description});
-              toast({
-                title: `Description: ${description}`,
-                description: `${formatDateTime(date)}`,
-              });
-              console.log('Created new diet');
+              if(validate()){
+                addItem({name: name, date: date.toLocaleDateString(undefined, { month: 'long', day: 'numeric' }), description: description});
+                toast({
+                  title: `Description: ${description}`,
+                  description: `${formatDateTime(date)}`,
+                });
+                console.log('Created new diet');
+              }
+              else{
+                toast({
+                  title: `Could not create your diet`,
+                  description: "Enter valid information",
+                });
+              }
             }} type="submit">
               Save
             </Button>
