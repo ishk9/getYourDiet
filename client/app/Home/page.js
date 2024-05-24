@@ -14,7 +14,7 @@ export default function Home() {
     return (
         <main className='flex flex-row h-screen w-screen bg-[#E7C25A]'>
             {/* History Section */}
-            <div className={`${historyOpen ? "w-3/5 md:w-1/5" : "w-0"} overflow-auto  bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30 transition-width duration-300`}>
+            <div className={`${historyOpen ? "w-3/5 md:w-4/12" : "w-0"} overflow-auto  bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30 transition-width duration-300`}>
                 <div className='flex justify-between px-5 items-center mt-4 sticky top-0 backdrop-filter backdrop-brightness-0 backdrop-opacity-100  bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30'>
                     <div className='flex'>
                         <h1 className='text-lg font-semibold mr-2 text-white'>Diets</h1>
@@ -27,6 +27,8 @@ export default function Home() {
                     </button>
                 </div>
                 <History />
+
+                {/* axiom sentry cloudfare for preventing attacks */}
             </div>
 
             {/* Show History Button */}
@@ -48,7 +50,7 @@ export default function Home() {
                 <h1 className='text-black'>Welcome Onboard!</h1>
             </div>
             
-            <div className={`md:w-1/5 flex flex-col justify-evenly items-center bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30 transition-width w-3/5 py-2 p-4`}>
+            <div className={`md:w-3/6 flex flex-col justify-evenly items-center bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30 transition-width w-3/5 py-2 p-4`}>
                 <h1 className='text-white font-bold text-[1.4em]'>Customize your diet</h1>
                 <UserInputSection />
             </div>
