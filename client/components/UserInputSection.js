@@ -3,6 +3,8 @@ import { Slider } from "./ui/slider";
 import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 
+import axios from "axios";
+
 function UserInputSection() {
     const [wght, setWght] = useState(75);
     const [hght, setHght] = useState(180);
@@ -14,6 +16,23 @@ function UserInputSection() {
     const [fatloss, setFatloss] = useState(false);
     const [maintain, setMaintain] = useState(false);
     const [gain, setGain] = useState(false);
+
+    const sendData = async() => {
+        try {
+            const response = await axios.post("http://localhost:8000/data", {
+                wght: wght,
+                hght: hght,
+                tags: tags,
+                meal: meal,
+                fatloss: fatloss,
+                maintain: maintain,
+                gain: gain
+            });
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error sending data:', error.response ? error.response.data : error.message);
+        }
+    };
 
     const handleWghtChange = (value) => {
         setWght(value);
@@ -142,7 +161,9 @@ function UserInputSection() {
             </div>
 
             <div className="w-full mt-4">
-                <button className="w-full rounded-md p-2 bg-transparent border border-zinc-700 hover:border-white duration-200">
+                <button 
+                    onClick={() => sendData()}
+                    className="w-full rounded-md p-2 bg-transparent border border-zinc-700 hover:border-white duration-200">
                     <p className="text-white">Generate</p>
                 </button>
             </div>
