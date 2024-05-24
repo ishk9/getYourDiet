@@ -74,7 +74,7 @@ function History() {
                 {/* All Diets */}
                 <div className='flex flex-col mt-2'>
                     {filteredData.map((data, id) => (
-                        <Chat key={id} props={data}/>
+                        <Chat key={id} props={data} index={id}/>
                     ))}
                 </div>
             </div>
