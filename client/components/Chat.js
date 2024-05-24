@@ -1,8 +1,10 @@
 import React from 'react'
 import { MdOutlineDelete } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
+import useStore from '@/app/store';
 
-function Chat({props}) {
+function Chat({props, index}) {
+    const { list, addItem, updateItem, removeItem } = useStore();
     return (
         <div className="flex flex-col justify-center items-start hover:bg-neutral-900  p-3 my-1 rounded-lg">
             <div className="flex w-full justify-between items-center">
@@ -17,7 +19,10 @@ function Chat({props}) {
                 <p className='text-[12px] mt-1 text-white'>{props.description}</p>
 
                 <div className='flex'>
-                    <button onClick={() => {}}>
+                    <button onClick={() => {
+                        console.log("Delete Chat");
+                        removeItem(index);
+                    }}>
                         <MdOutlineDelete className='hover:text-white text-zinc-600' size={18} />
                     </button>
                         
