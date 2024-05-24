@@ -4,6 +4,7 @@ import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 
 import axios from "axios";
+import Mealtag from "./Mealtag";
 
 function UserInputSection() {
     const [wght, setWght] = useState(75);
@@ -45,6 +46,10 @@ function UserInputSection() {
     const handleAddTag = () => {
         setValue(value);
         setTags([...tags, value]);
+    };
+
+    const handleDeleteTag = (tagToDelete) => {
+        setTags(tags.filter(tag => tag !== tagToDelete));
     };
 
     const handleInput = (e) => {
@@ -119,7 +124,7 @@ function UserInputSection() {
                 <div className='flex h-full flex-col w-full justify-center items-start'>
                     <div className="h-1/5 flex flex-wrap w-full border rounded-md p-2">
                         {tags.map((item, id) => (
-                            <p key={id} className="text-white">{item}</p>
+                            <Mealtag  key={id} item={item} tag={tags} func={handleDeleteTag}/>
                         ))}
                     </div>
                     <h1 className="text-white text-sm font-medium cursor-default mt-4 mb-1">Cuisines you would like to add</h1>
