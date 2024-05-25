@@ -1,8 +1,8 @@
 import express from 'express';
-import { getData } from '../controller/data';
+import { getData } from '../controller/data.js'
 
 const dataRouter = express.Router();
 
-dataRouter.get('/', getData);
+dataRouter.post('/', getData);
 
 export default dataRouter;
