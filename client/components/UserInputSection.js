@@ -135,10 +135,11 @@ function UserInputSection() {
                             <SelectValue placeholder="Select" />
                             </SelectTrigger>
                             <SelectContent position="popper">
-                            <SelectItem value="next">Next.js</SelectItem>
-                            <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                            <SelectItem value="astro">Astro</SelectItem>
-                            <SelectItem value="nuxt">Nuxt.js</SelectItem>
+                            <SelectItem value="indian">Indian</SelectItem>
+                            <SelectItem value="mexian">Mexian</SelectItem>
+                            <SelectItem value="spanish">Spanish</SelectItem>
+                            <SelectItem value="chinese">Chinese</SelectItem>
+                            <SelectItem value="dutch">Dutch</SelectItem>
                             </SelectContent>
                         </Select>
                         <button 
@@ -163,6 +164,13 @@ function UserInputSection() {
                         </Select>
                     </div>
                 </div>
+
+                <div className="file-upload-box">
+                <input type="file" id="file" />
+                <label htmlFor="file" className="file-label">
+                Choose files to upload
+                </label>
+      </div>
             </div>
 
             <div className="w-full mt-4">
