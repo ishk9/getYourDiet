@@ -135,11 +135,11 @@ function UserInputSection() {
                             <SelectValue placeholder="Select" />
                             </SelectTrigger>
                             <SelectContent position="popper">
-                            <SelectItem value="indian">Indian</SelectItem>
-                            <SelectItem value="mexian">Mexian</SelectItem>
-                            <SelectItem value="spanish">Spanish</SelectItem>
-                            <SelectItem value="chinese">Chinese</SelectItem>
-                            <SelectItem value="dutch">Dutch</SelectItem>
+                            <SelectItem value="Indian">Indian</SelectItem>
+                            <SelectItem value="Mexian">Mexian</SelectItem>
+                            <SelectItem value="Spanish">Spanish</SelectItem>
+                            <SelectItem value="Chinese">Chinese</SelectItem>
+                            <SelectItem value="Dutch">Dutch</SelectItem>
                             </SelectContent>
                         </Select>
                         <button 
@@ -166,9 +166,9 @@ function UserInputSection() {
                 </div>
 
                 <div className="file-upload-box">
-                <input type="file" id="file" />
+                <input type="file" id="file" className="bg-transparent border border-zinc-700"/>
                 <label htmlFor="file" className="file-label">
-                Choose files to upload
+                    Upload file
                 </label>
       </div>
             </div>
