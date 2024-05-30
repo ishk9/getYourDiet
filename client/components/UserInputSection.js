@@ -2,6 +2,8 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGr
 import { Slider } from "./ui/slider";
 import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
+import { IoMdCloudUpload } from "react-icons/io";
+
 
 import axios from "axios";
 import Mealtag from "./Mealtag";
@@ -165,12 +167,15 @@ function UserInputSection() {
                     </div>
                 </div>
 
-                <div className="file-upload-box">
-                <input type="file" id="file" className="bg-transparent border border-zinc-700"/>
-                <label htmlFor="file" className="file-label">
-                    Upload file
-                </label>
-      </div>
+                <div className="flex h-1/4 w-1/2 bg-transparent justify-center items-center rounded-lg border-white border-dashed border-2">
+                    <label htmlFor="file" className="flex flex-col h-full w-full  rounded-lg justify-center items-center cursor-pointer">
+                        <IoMdCloudUpload color="white" size={22}/>
+                            <p className="text-white text-sm">Click to upload</p>
+                    </label>
+                    <input type="file" id="file" className="hidden"/>
+                </div>
+
+                    
             </div>
 
             <div className="w-full mt-4">
