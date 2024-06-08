@@ -1,12 +1,10 @@
 "use client";
 import Link from 'next/link'
-import useStore from '@/app/store'
 import { FaXTwitter } from "react-icons/fa6";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
     const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
-    const {openOnboardingModal, setOpenOnboardingModal} = useStore();
     console.log(user);
     return (
         <navbar className="flex flex-row w-full justify-between items-center px-16 py-2 bg-[#E7C25A]">
@@ -47,7 +45,6 @@ function Navbar() {
                             <p className="text-black text-sm font-semibold">Login</p>
                         </button>
                 }
-
             </div>
         </navbar>
     )
