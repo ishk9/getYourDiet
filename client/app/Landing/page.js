@@ -1,18 +1,10 @@
 "use client";
-import { FaArrowRightLong } from "react-icons/fa6";
 import Link from 'next/link';
-import useStore from '../store';
-import OnboardingPage from '../Onboarding/page';
-
+import { FaArrowRightLong } from "react-icons/fa6";
 
 export default function LandingPage() {
-    const {openOnboardingModal} = useStore();
     return (
         <div className="flex w-screen h-screen justify-center items-center px-10 py-2 bg-[#E7C25A]">
-            {
-                openOnboardingModal && <OnboardingPage />
-            }
-
             <div className="flex lg:w-3/4 w-11/12 cursor-default">
                 <div className="flex flex-col w-full justify-center items-start">
                     <h1 className="font-extrabold text-black lg:text-[7em] text-[3em] leading-[1] tracking-[-2px] uppercase">
