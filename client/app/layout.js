@@ -8,18 +8,18 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
-    <Auth0Provider
-      domain="dev-0xfo4x238tufvez0.us.auth0.com"
-      clientId="naPBMxT4sR5YcCcsV5ECXFnGZ0gqHheG"
-      authorizationParams={{
-      }}
-    >
+    // <Auth0Provider
+    //   domain="dev-0xfo4x238tufvez0.us.auth0.com"
+    //   clientId="naPBMxT4sR5YcCcsV5ECXFnGZ0gqHheG"
+    //   authorizationParams={{
+    //   }}
+    // >
       <html lang="en">
         <body className="min-h-screen min-w-screen">
           {children}
           <Toaster />
         </body>
       </html>
-    </Auth0Provider>
+    // </Auth0Provider>
   );
 }
