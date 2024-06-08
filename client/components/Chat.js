@@ -4,9 +4,11 @@ import { MdOutlineEdit } from "react-icons/md";
 import useStore from '@/app/store';
 
 function Chat({props, index}) {
-    const { list, addItem, updateItem, removeItem } = useStore();
+    const { removeItem, setActiveChat } = useStore();
     return (
-        <div className="flex flex-col justify-center items-start hover:bg-neutral-900  p-3 my-1 rounded-lg">
+        <button 
+            onClick={() => setActiveChat(index)}
+            className="flex flex-col justify-center items-start hover:bg-neutral-900  p-3 my-1 rounded-lg">
             <div className="flex w-full justify-between items-center">
                 {/* Name */}
                 <p className='text-[15px] font-medium text-white'>{props.name}</p>
@@ -32,7 +34,7 @@ function Chat({props, index}) {
 
                 </div>
             </div>
-        </div>
+        </button>
     )
 }
 
