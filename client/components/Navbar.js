@@ -2,11 +2,12 @@
 import Link from 'next/link'
 import useStore from '@/app/store'
 import { FaXTwitter } from "react-icons/fa6";
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
-    
+    const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
     const {openOnboardingModal, setOpenOnboardingModal} = useStore();
+    console.log(user);
     return (
         <navbar className="flex flex-row w-full justify-between items-center px-16 py-2 bg-[#E7C25A]">
             <div className="flex w-1/2 items-center">
@@ -32,14 +33,21 @@ function Navbar() {
                     />
                 </Link>
 
-                <button 
-                    onClick={() => {
-                        console.log(openOnboardingModal);
-                        setOpenOnboardingModal();
-                    }}
-                    className='flex ml-4 justify-center items-center border-2 border-black p-2 px-3 rounded-lg hover:-translate-y-0.5'>
-                    <p className="text-black text-sm font-semibold">Sign Up</p>
-                </button>
+                {
+                    isAuthenticated ? 
+                        <button 
+                            onClick={() => logout()}
+                            className='flex ml-4 justify-center items-center border-2 border-black p-2 px-3 rounded-lg hover:-translate-y-0.5'>
+                            <p className="text-black text-sm font-semibold">Logout</p>
+                        </button>
+                        :
+                        <button 
+                            onClick={() => loginWithRedirect()}
+                            className='flex ml-4 justify-center items-center border-2 border-black p-2 px-3 rounded-lg hover:-translate-y-0.5'>
+                            <p className="text-black text-sm font-semibold">Login</p>
+                        </button>
+                }
+
             </div>
         </navbar>
     )
