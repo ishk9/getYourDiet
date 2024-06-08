@@ -4,8 +4,11 @@ import History from '@/components/History';
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import UserInputSection from '@/components/UserInputSection';
 import { useAuth0 } from "@auth0/auth0-react";
+import useStore from '../store';
 
 export default function Home() {
+    
+    const { activeChat, list } = useStore();
     const [historyOpen, setHistoryOpen] = useState(true);
     const { user } = useAuth0();
     const toggleHistory = () => {
@@ -49,6 +52,7 @@ export default function Home() {
             {/* Diet Formation Section */}
             <div className={`${historyOpen ? "md:w-3/5" : "w-full"} flex justify-center items-center`}>
                 <h1 className='text-black'>Welcome Onboard!</h1>
+                <p>{list[activeChat].about}</p>
             </div>
             
             <div className={`md:w-3/6 flex flex-col justify-evenly items-center bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30 transition-width w-3/5 py-2 p-4`}>
