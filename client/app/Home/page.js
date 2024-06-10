@@ -50,7 +50,7 @@ export default function Home() {
             </div>
 
             {/* Diet Formation Section */}
-            <div className={`${historyOpen ? "md:w-3/5" : "w-full"} flex justify-center items-center`}>
+            <div className={`${historyOpen ? "md:w-3/5" : "w-full"} flex flex-col justify-center items-center`}>
                 <h1 className='text-black'>Welcome Onboard!</h1>
                 <p>{list[activeChat].about}</p>
             </div>
