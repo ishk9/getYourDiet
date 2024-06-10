@@ -12,7 +12,7 @@ function Navbar() {
         });
     };
     return (
-        <navbar className="flex flex-row w-full justify-between items-center px-16 py-2 bg-[#E7C25A]">
+        <nav className="flex flex-row w-full justify-between items-center px-16 py-2 bg-transparent fixed  top-0 z-50">
             <div className="flex w-1/2 items-center">
                 <Link href="/">
                     <p className="text-black text-2xl font-extrabold uppercase">GetYourDiet</p>
@@ -55,7 +55,7 @@ function Navbar() {
                         </button>
                 }
             </div>
-        </navbar>
+        </nav>
     )
 }
 
