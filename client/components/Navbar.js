@@ -6,6 +6,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 function Navbar() {
     const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
     console.log(user);
+    const scrollToSection = (sectionId) => {
+        document.getElementById(sectionId).scrollIntoView({
+            behavior: 'smooth'
+        });
+    };
     return (
         <navbar className="flex flex-row w-full justify-between items-center px-16 py-2 bg-[#E7C25A]">
             <div className="flex w-1/2 items-center">
@@ -14,10 +19,14 @@ function Navbar() {
                 </Link>
 
                 <div className="flex flex-row w-1/4 justify-evenly items-center ml-16">
-                    <button className="hover:-translate-y-0.5" >
+                    <button 
+                        onClick={() => scrollToSection('pricing')}
+                        className="hover:-translate-y-0.5" >
                         <p className="text-black text-sm font-bold uppercase">Pricing</p>
                     </button>
-                    <button  className="hover:-translate-y-0.5">
+                    <button  
+                        onClick={() => scrollToSection('reviews')}
+                        className="hover:-translate-y-0.5">
                         <p className="text-black text-sm font-bold hidden sm:block uppercase">Reviews</p>
                     </button>
                 </div>
