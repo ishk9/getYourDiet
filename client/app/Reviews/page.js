@@ -10,7 +10,7 @@ export default function Reviews() {
     })
     };
     return (
-        <div className="h-screen w-screen flex flex-col justify-evenly items-center px-10 py-2 bg-red-500">
+        <div id="reviews" className="h-screen w-screen flex flex-col justify-evenly items-center px-10 py-2 bg-red-500">
             <div className="flex flex-col">
                 <h1 className="text-5xl font-semibold">Would love to hear from you.</h1>
                 <p className="text-5xl font-semibold">Get in touch!</p>
