@@ -24,8 +24,8 @@ function PriceCard({props}) {
             </div>
 
 
-            <button className={`px-4 border-2 mt-8 py-2 w-full ${props.popular ? "bg-black": "bg-white"} hover:bg-black rounded-lg`}>
-                <p className={` ${props.popular ? "hover:text-white text-white": "hover:text-white"} font-semibold md:text-base text-[12px]`}>Get Started</p>
+            <button className={`border-2 mt-8 w-full ${props.popular ? "bg-black": "bg-white"} hover:bg-black rounded-lg`}>
+                <p className={` ${props.popular ? "hover:text-white text-white": "hover:text-white"} h-full w-full py-2 px-4 font-semibold md:text-base text-[12px]`}>Get Started</p>
             </button>
         </div>
     )
