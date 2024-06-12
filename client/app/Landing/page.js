@@ -1,3 +1,4 @@
+"use client";
 import Navbar from "../../components/Navbar"
 import StarterPage from "../Starter/page";
 import PricingPage from "../Pricing/page";
