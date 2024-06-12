@@ -7,6 +7,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
+ 
   return (
     <Auth0Provider
       domain="dev-0xfo4x238tufvez0.us.auth0.com"
