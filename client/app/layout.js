@@ -10,9 +10,8 @@ export default function RootLayout({ children }) {
   return (
     <Auth0Provider
       domain="dev-0xfo4x238tufvez0.us.auth0.com"
-      clientId="naPBMxT4sR5YcCcsV5ECXFnGZ0gqHheG"
-      authorizationParams={{
-      }}
+      clientId="zBSnnTSMRoROMP3a8tU7V2CA0KUopuSK"
+      redirectUri={window.location.origin}
     >
       <html lang="en">
         <body className="min-h-screen min-w-screen">

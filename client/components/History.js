@@ -23,11 +23,11 @@ function History() {
     }) 
 
     return (
-        <div className="px-5 mr-3 bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30">
+        <div className="px-5 bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30">
             {/* Search Bar */}
-            <div className='backdrop-filter backdrop-brightness-0 backdrop-opacity-100 sticky top-8 z-10 py-5  bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30'>
-                <div className='flex justify-center items-center backdrop-filter backdrop-brightness-0'>
-                    <div className='flex  bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30'>
+            <div className='backdrop-filter backdrop-brightness-0 backdrop-opacity-100 sticky top-8 z-10 py-5 bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30'>
+                <div className='flex justify-center items-center backdrop-filter backdrop-brightness-0 bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30'>
+                    <div className='flex bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30 mr-2'>
                         <input 
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
