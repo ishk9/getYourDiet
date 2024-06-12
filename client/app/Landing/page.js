@@ -6,12 +6,12 @@ import Reviews from "../Reviews/page";
 
 const LandingPage = () => {
     return (
-        <>
+        <main>
             <Navbar />
             <StarterPage />
             <PricingPage/>
             <Reviews />
-        </>
+        </main>
     )
 }
 
