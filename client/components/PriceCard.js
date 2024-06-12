@@ -1,7 +1,9 @@
 import React from 'react'
 import { FaCircleCheck } from "react-icons/fa6";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function PriceCard({props}) {
+    const { isAuthenticated, loginWithRedirect } = useAuth0();
     return (
         <div className={`flex flex-col ${props.popular ? "h-5/6" : "h-4/6"} w-1/5 shadow-lg shadow-slate-600 bg-slate-50 rounded-xl mx-3 p-5 transition-transform duration-300  hover:scale-105`}>
             <div className="h-3/4">
@@ -24,7 +26,13 @@ function PriceCard({props}) {
             </div>
 
 
-            <button className={`border-2 mt-8 w-full ${props.popular ? "bg-black": "bg-white"} hover:bg-black rounded-lg`}>
+            <button 
+                onClick={() => {
+                    if(!isAuthenticated){
+                        loginWithRedirect();
+                    }
+                }}
+                className={`border-2 mt-8 w-full ${props.popular ? "bg-black": "bg-white"} hover:bg-black rounded-lg`}>
                 <p className={` ${props.popular ? "hover:text-white text-white": "hover:text-white"} h-full w-full py-2 px-4 font-semibold md:text-base text-[12px]`}>Get Started</p>
             </button>
         </div>
