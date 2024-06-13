@@ -1,7 +1,4 @@
-import React from 'react'
 import { FaCircleCheck } from "react-icons/fa6";
-import { useAuth0 } from "@auth0/auth0-react";
-
 function PriceCard({props}) {
     const { isAuthenticated, loginWithRedirect } = useAuth0();
     return (
@@ -28,9 +25,7 @@ function PriceCard({props}) {
 
             <button 
                 onClick={() => {
-                    if(!isAuthenticated){
-                        loginWithRedirect();
-                    }
+                    
                 }}
                 className={`border-2 mt-8 w-full ${props.popular ? "bg-black": "bg-white"} hover:bg-black rounded-lg`}>
                 <p className={` ${props.popular ? "hover:text-white text-white": "hover:text-white"} h-full w-full py-2 px-4 font-semibold md:text-base text-[12px]`}>Get Started</p>

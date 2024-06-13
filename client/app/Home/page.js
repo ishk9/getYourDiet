@@ -3,18 +3,15 @@ import { useState } from 'react';
 import History from '@/components/History';
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import UserInputSection from '@/components/UserInputSection';
-import { useAuth0 } from "@auth0/auth0-react";
 import useStore from '../store';
 
 export default function Home() {
     
     const { activeChat, list } = useStore();
     const [historyOpen, setHistoryOpen] = useState(true);
-    const { user } = useAuth0();
     const toggleHistory = () => {
         setHistoryOpen(!historyOpen);
     };
-    console.log(user);
     return (
         <main className='flex flex-row h-screen w-screen bg-[#E7C25A]'>
             {/* History Section */}
