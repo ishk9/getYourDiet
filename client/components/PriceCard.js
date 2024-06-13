@@ -1,8 +1,7 @@
 import { FaCircleCheck } from "react-icons/fa6";
 function PriceCard({props}) {
-    const { isAuthenticated, loginWithRedirect } = useAuth0();
     return (
-        <div className={`flex flex-col ${props.popular ? "h-5/6" : "h-4/6"} w-1/5 shadow-lg shadow-slate-600 bg-slate-50 rounded-xl mx-3 p-5 transition-transform duration-300  hover:scale-105`}>
+        <div className={`flex flex-col ${props.popular ? "h-5/6" : "h-4/6"} w-1/5 shadow-lg shadow-slate-600 bg-slate-50 rounded-xl mx-3 p-5 transition-transform duration-300 hover:scale-105`}>
             <div className="h-3/4">
                 <h1 className="text-md text-black font-semibold uppercase">{props.title}</h1>
                 <p className="text-black font-bold md:text-[28px] text-[11px]">${props.price}</p>
