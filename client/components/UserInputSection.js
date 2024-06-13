@@ -4,7 +4,6 @@ import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import { IoMdCloudUpload } from "react-icons/io";
 
-
 import axios from "axios";
 import Mealtag from "./Mealtag";
 
@@ -96,7 +95,10 @@ function UserInputSection() {
             <div className='flex w-full justify-center items-center mt-6'>
                 <div className='flex flex-col w-1/2 justify-center items-center px-1'>
                     <div className='flex w-full justify-between mb-1'>
-                        <label className='text-white text-sm font-medium cursor-default'>Weight</label>
+                        <label className='text-white text-sm font-medium cursor-default'>
+                            Weight 
+                            <span className='text-[12px] ml-1'>(in kg)</span>
+                        </label>
                         <p className="text-white">{wght}</p>
                     </div>
                     <Slider 
@@ -109,7 +111,10 @@ function UserInputSection() {
                 </div>
                 <div className='flex flex-col w-1/2 justify-center items-center px-1 ml-6'>
                     <div className='flex w-full justify-between mb-1'>
-                        <label className='text-white text-sm font-medium cursor-default'>Height</label>
+                    <label className='text-white text-sm font-medium cursor-default'>
+                            Height 
+                            <span className='text-[12px] ml-1'>(in cm)</span>
+                        </label>
                         <p className="text-white">{hght}</p>
                     </div>
                     <Slider 
