@@ -14,9 +14,9 @@ function Navbar() {
     return (
         <nav className="flex flex-row w-full justify-between items-center px-16 py-2 bg-transparent fixed  top-0 z-50">
             <div className="flex w-1/2 items-center">
-                <Link href="/">
+                <button>
                     <p className="text-black text-2xl font-extrabold uppercase">GetYourDiet</p>
-                </Link>
+                </button>
 
                 <div className="flex flex-row w-1/4 justify-evenly items-center ml-16">
                     <button 
