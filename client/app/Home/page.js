@@ -23,7 +23,7 @@ export default function Home() {
                     <div className='flex justify-center items-center'>
                         <h1 className='text-lg font-semibold mr-2 text-white'>Diets</h1>
                         <div className='flex justify-center items-center h-8 w-8 rounded-full bg-[#CBBCA5]'>
-                            <p className='text-[13px] font-semibold'>10</p>
+                            <p className='text-[13px] font-semibold'>{list.length}</p>
                         </div>
                     </div>
                     
