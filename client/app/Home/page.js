@@ -4,6 +4,7 @@ import History from '@/components/History';
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import UserInputSection from '@/components/UserInputSection';
 import useStore from '../store';
+import Dietbox from '@/components/Dietbox';
 
 export default function Home() {
     
@@ -46,8 +47,8 @@ export default function Home() {
 
             {/* Diet Formation Section */}
             <div className={`${historyOpen ? "w-6/12" : "w-full"} flex flex-col justify-center items-center`}>
-                <h1 className='text-black'>Welcome Onboard!</h1>
-                <p>{list[activeChat].about}</p>
+                <Dietbox title={list[activeChat].about}/>
+              
             </div>
             
             <div className={`w-3/12 flex flex-col justify-evenly items-center bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30 transition-width py-2 p-4`}>
