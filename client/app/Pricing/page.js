@@ -3,7 +3,7 @@ import PriceCard from '@/components/PriceCard'
 import React, { useEffect } from 'react'
 
 const prices = [
-    {id: 1, title: 'Single', price: '3', description: 'Best for single users', popular: 0, points: [
+    {id: 1, title: 'Single', price: 'free', description: 'Best for single users', popular: 0, points: [
         { id: 1, point: 'Single diet plan' },
         { id: 2, point: 'Custom diet generation' },
         { id: 3, point: 'Shareable diet plans' },
