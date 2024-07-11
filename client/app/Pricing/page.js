@@ -25,9 +25,13 @@ const prices = [
 export default function PricingPage() {
 
     return (
-        <div id="pricing" className="flex flex-col w-screen h-screen items-center px-10 py-2 overflow-x-hidden bg-[#E17888]">        
+        <div id="pricing" className="flex flex-col w-full h-screen items-center px-10 py-2 overflow-x-hidden bg-[#F7B0F2] rounded-lg mb-3">        
             <h1 className="text-[3em] font-semibold mt-20 text-black">Pricing</h1>
-            <p className='mt-3 text-black'>Choose the plan that&apos;s right for you. Whether you want a plan for yourself or your family, We got your back.</p>
+            <div className="w-[44%] flex flex-col justify-center items-center">
+                <p className='mt-3 text-black font-mono'>Choose the plan that&apos;s right for you. Whether you want a plan</p>
+                <p className='text-black font-mono'>for yourself or your family, We got your back.</p>
+            </div>
+
             
             <div className='flex h-full w-full justify-center items-center'>
                 {

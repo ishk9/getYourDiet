@@ -9,7 +9,7 @@ function Navbar() {
         });
     };
     return (
-        <nav className="flex flex-row w-full justify-between items-center px-16 py-2 bg-transparent fixed  top-0 z-50">
+        <nav className="flex flex-row w-full justify-between items-center px-16 py-2">
             <div className='p-2 bg-black rounded-md w-[15%] flex justify-center items-center'>
                 <Link href="/">
                     <p className="text-white text-2xl font-extrabold uppercase">GetYourDiet</p>
