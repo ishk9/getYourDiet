@@ -8,28 +8,28 @@ function Chat({props, index}) {
     return (
         <button 
             onClick={() => setActiveChat(index)}
-            className="flex flex-col justify-center items-start hover:bg-neutral-900  p-3 my-1 rounded-lg">
+            className="flex flex-col justify-center items-start hover:bg-white border p-3 my-1 rounded-lg">
             <div className="flex w-full justify-between items-center">
                 {/* Name */}
-                <p className='text-[15px] font-medium text-white'>{props.name}</p>
+                <p className='text-[15px] font-medium text-black'>{props.name}</p>
                 {/* Date */}
-                <p className='text-[12px] font-medium text-white'>{props.date}</p>
+                <p className='text-[12px] font-medium text-black'>{props.date}</p>
             </div>
 
             <div className='flex w-full justify-between items-center'>
                 {/* Description */}
-                <p className='text-[12px] mt-1 text-white'>{props.description}</p>
+                <p className='text-[12px] mt-1 text-black'>{props.description}</p>
 
                 <div className='flex'>
                     <button onClick={() => {
                         console.log("Delete Chat");
                         removeItem(index);
                     }}>
-                        <MdOutlineDelete className='hover:text-white text-zinc-600' size={18} />
+                        <MdOutlineDelete className='text-zinc-600' size={18} />
                     </button>
                         
                     <button onClick={() => {}}>
-                        <MdOutlineEdit className='hover:text-white text-zinc-600' size={18} />
+                        <MdOutlineEdit className='text-zinc-600' size={18} />
                     </button>
 
                 </div>

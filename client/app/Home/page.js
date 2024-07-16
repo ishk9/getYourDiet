@@ -14,12 +14,12 @@ export default function Home() {
         setHistoryOpen(!historyOpen);
     };
     return (
-        <main className='flex flex-row h-screen w-screen bg-[#E7C25A]'>
+        <main className='flex flex-row h-screen w-screen bg-white'>
             {/* History Section */}
-            <div className={`${historyOpen ? "w-3/12" : "w-0"} overflow-auto  bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30 transition-width duration-300`}>
-                <div className='flex justify-between px-5 items-center mt-4 sticky top-0 backdrop-filter backdrop-brightness-0 backdrop-opacity-100  bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30'>
+            <div className={`${historyOpen ? "w-3/12" : "w-0"} overflow-auto  bg-[#F5F5F5] transition-width duration-300`}>
+                <div className='flex justify-between px-5 items-center mt-4 sticky top-0 backdrop-filter backdrop-brightness-0 backdrop-opacity-100  bg-[#F5F5F5]'>
                     <div className='flex justify-center items-center'>
-                        <h1 className='text-lg font-semibold mr-2 text-white'>Diets</h1>
+                        <h1 className='text-lg font-semibold mr-2 text-black'>Diets</h1>
                         <div className='flex justify-center items-center h-8 w-8 rounded-full bg-[#CBBCA5]'>
                             <p className='text-[13px] font-semibold'>{list.length}</p>
                         </div>
@@ -51,7 +51,7 @@ export default function Home() {
               
             </div>
             
-            <div className={`w-3/12 flex flex-col justify-evenly items-center bg-black bg-gradient-to-tr from-zinc-900/50 to-zinc-700/30 transition-width py-2 p-4`}>
+            <div className={`w-3/12 flex flex-col justify-evenly items-center bg-[#F5F5F5] transition-width py-2 p-4`}>
                 <h1 className='text-white font-bold text-[1.4em]'>Customize your diet</h1>
                 <UserInputSection />
             </div>
