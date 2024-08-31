@@ -4,7 +4,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 export default function StarterPage() {
     return (
-        <div className="flex w-full h-screen justify-center items-center px-10 bg-[#E7C25A] rounded-lg mb-3">
+        <div className="flex w-full h-screen justify-center items-center px-10 bg-[#E7C25A] mb-3">
             <div className="flex lg:w-3/4 w-11/12 cursor-default">
                 <div className="flex flex-col w-full justify-center items-start">
                     <h1 className="font-extrabold text-black lg:text-[7em] text-[3em] leading-[1] tracking-[-2px] uppercase">
