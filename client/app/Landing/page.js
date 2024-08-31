@@ -8,7 +8,7 @@ const LandingPage = () => {
     return (
         <div className="bg-white">
             <Navbar />
-            <div className="p-4 px-12 bg-white">
+            <div className="bg-white">
                 <StarterPage />
                 <PricingPage/>
                 <Reviews />

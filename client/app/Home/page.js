@@ -1,60 +1,35 @@
 "use client";
-import { useState } from 'react';
-import History from '@/components/History';
-import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from "react-icons/md";
-import UserInputSection from '@/components/UserInputSection';
-import useStore from '../store';
-import Dietbox from '@/components/Dietbox';
+import React  from 'react'
+import { IoMdArrowRoundUp } from "react-icons/io";
 
-export default function Home() {
-    
-    const { activeChat, list } = useStore();
-    const [historyOpen, setHistoryOpen] = useState(true);
-    const toggleHistory = () => {
-        setHistoryOpen(!historyOpen);
-    };
+const HomePage = () => {
     return (
-        <main className='flex flex-row h-screen w-screen bg-white'>
-            {/* History Section */}
-            <div className={`${historyOpen ? "w-3/12" : "w-0"} overflow-auto  bg-[#F5F5F5] transition-width duration-300`}>
-                <div className='flex justify-between px-5 items-center mt-4 sticky top-0 backdrop-filter backdrop-brightness-0 backdrop-opacity-100  bg-[#F5F5F5]'>
-                    <div className='flex justify-center items-center'>
-                        <h1 className='text-lg font-semibold mr-2 text-black'>Diets</h1>
-                        <div className='flex justify-center items-center h-8 w-8 rounded-full bg-[#CBBCA5]'>
-                            <p className='text-[13px] font-semibold'>{list.length}</p>
+        <div className='h-screen w-screen flex flex-col justify-center items-center'>
+            <div className='h-full w-full justify-center items-center flex flex-col'>
+                <div className='h-full flex flex-col justify-between items-center'>
+                    <div className='flex flex-col w-[75%] h-[85%]  justify-center items-center'>
+                        <h1 className='text-[45px] font-normal leading-[1]'>Lets get started.Type in either your <span className='text-[#6EC0FF]'>health goals, issues,</span>  or <span className='text-[#6EC0FF]'>both</span>.</h1>
+                        <div className='flex  w-full justify-start items-center mt-6'>
+                            <button className='w-[25%] h-12 bg-[#6EC0FF] hover:bg-[#4e9ad4] rounded-2xl mr-3 flex justify-center items-center'>
+                                <p className='text-white font-medium'>Choose my own cuisines</p>
+                            </button>
+
+                            <button className='w-1/3 h-12 bg-black hover:bg-[#292929] rounded-2xl mx-3 flex justify-center items-center'>
+                                <p className='text-white font-medium'>Not sure where to start?</p>
+                            </button>
                         </div>
                     </div>
-                    
+                    {/* Chat box */}
+                    <div className='h-20 w-[85%] border flex justify-between items-center border-black rounded-2xl mb-4'>
+                        <input className='h-full w-full rounded-2xl p-2 text-3xl outline-none' placeholder='Enter questions or answers here'/>
+                        <div className='flex justify-center items-center h-12 w-12 bg-black rounded-full p-1 mr-2 hover:bg-[#292929]'>
+                            <IoMdArrowRoundUp color='white' size={22}/>
+                        </div>
+                    </div>
                 </div>
-                <History />
-
-                {/* axiom sentry cloudfare for preventing attacks */}
             </div>
-
-            {/* Show History Button */}
-            <div className='flex flex-col justify-center items-center'>
-                <button 
-                    className='flex flex-col justify-center items-center p-2'
-                    onClick={toggleHistory}
-                >   
-                    {historyOpen ? 
-                        <MdOutlineKeyboardArrowLeft size={32} color='black' />
-                        : 
-                        <MdOutlineKeyboardArrowRight size={32} color='black'/>
-                    }
-                </button>
-            </div>
-
-            {/* Diet Formation Section */}
-            <div className={`${historyOpen ? "w-6/12" : "w-full"} flex flex-col justify-center items-center`}>
-                <Dietbox title={list[activeChat].about}/>
-              
-            </div>
-            
-            <div className={`w-3/12 flex flex-col justify-evenly items-center bg-[#F5F5F5] transition-width py-2 p-4`}>
-                <h1 className='text-white font-bold text-[1.4em]'>Customize your diet</h1>
-                <UserInputSection />
-            </div>
-        </main>
-    );
+        </div>
+    )
 }
+
+export default HomePage
