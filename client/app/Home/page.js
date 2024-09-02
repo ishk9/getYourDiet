@@ -21,7 +21,7 @@ const HomePage = () => {
                     </div>
                     {/* Chat box */}
                     <div className='h-20 w-[85%] border flex justify-between items-center border-black rounded-2xl mb-4'>
-                        <input className='h-full w-full rounded-2xl p-2 text-3xl outline-none' placeholder='Enter questions or answers here'/>
+                        <input className='h-full w-full rounded-2xl p-2 text-3xl outline-none capitalize' placeholder='Enter questions or answers here'/>
                         <div className='flex justify-center items-center h-12 w-12 bg-black rounded-full p-1 mr-2 hover:bg-[#292929]'>
                             <IoMdArrowRoundUp color='white' size={22}/>
                         </div>

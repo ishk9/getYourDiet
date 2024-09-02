@@ -2,9 +2,9 @@ import React from 'react'
 
 const ReviewBox = ({name, review, rating}) => {
     return (
-        <div className='w-fit py-5 h-fit p-2 bg-white rounded-lg border border-gray-200 flex flex-col justify-center items-center'>
+        <div className='w-2/3 py-5 h-fit p-2 bg-white rounded-lg border border-gray-200 flex flex-col justify-center items-center'>
             <div className='p-2 w-[90%] bg-gray-100 py-4 rounded-lg'>
-                <p>{review}</p>
+                <p>"{review}"</p>
             </div>
 
             <div className='flex w-[90%] justify-between items-center'>

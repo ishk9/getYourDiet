@@ -28,7 +28,7 @@ const ReviewPage = () => {
     return (
         <div className='h-[70%] w-screen bg-white py-20 flex justify-center items-center'>
             <div className='w-1/2 h-full flex justify-center items-center'>
-                <h1 className='text-xl font-bold'>
+                <h1 className='text-4xl font-bold font-sans w-2/3'>
                     Making your fitness journey easier
                 </h1>
             </div>
