@@ -1,7 +1,8 @@
 "use client";
 import Navbar from "../../components/Navbar"
 import StarterPage from "../Starter/page";
-import PricingPage from "../Pricing/page";
+import Contact from "../Contact/page";
+import FaqPage from "../Faq/page";
 import Reviews from "../Reviews/page";
 
 const LandingPage = () => {
@@ -10,8 +11,9 @@ const LandingPage = () => {
             <Navbar />
             <div className="bg-white">
                 <StarterPage />
-                <PricingPage/>
                 <Reviews />
+                <FaqPage />
+                <Contact />
             </div>
 
         </div>

@@ -1,51 +1,47 @@
-"use client";
-import React from 'react'
-import { IoIosArrowUp } from "react-icons/io";
+import React, { useState, useEffect } from 'react'
+import ReviewBox from '@/components/ReviewBox'
 
-export default function Reviews() {
-    const scrollToTop = () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-    })
-    };
+const ReviewPage = () => {
+    const [dummyReviews, setDummyReviews] = useState([
+        { review: "The service was excellent and the food was delicious. Highly recommended!", name: "Alice Smith", rating: 5 },
+        { review: "A decent experience, but the food could have been better. Service was slow.", name: "Bob Johnson", rating: 3 },
+        { review: "Amazing atmosphere and the dishes were full of flavor. Will visit again.", name: "Catherine Brown", rating: 4 },
+        { review: "Not satisfied. The food was cold and the staff were not attentive.", name: "David Wilson", rating: 2 },
+        { review: "Loved the desserts! They were the highlight of the meal. A sweet surprise!", name: "Ella Davis", rating: 5 },
+        { review: "The menu is a bit overpriced, but the quality justifies it. Great experience overall.", name: "Franklin Thomas", rating: 4 },
+        { review: "Average experience. Nothing stood out, but nothing was particularly bad either.", name: "Grace Lee", rating: 3 },
+    ]);
+    
+
+    const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentReviewIndex((prevIndex) => 
+                (prevIndex + 1) % dummyReviews.length
+            );
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, [dummyReviews.length]);
+
     return (
-        <div id="reviews" className="h-screen w-screen flex justify-evenly items-center px-10 py-2 bg-black mb-3">
-            <div className='w-1/2 h-full'>
-
+        <div className='h-[70%] w-screen bg-white py-20 flex justify-center items-center'>
+            <div className='w-1/2 h-full flex justify-center items-center'>
+                <h1 className='text-xl font-bold'>
+                    Making your fitness journey easier
+                </h1>
             </div>
 
-            <div className='w-1/2 h-full flex flex-col justify-center items-center'>
-                <div className='flex flex-col w-[65%]  justify-start items-start'>
-                    <h1 className="text-xl font-semibold text-white">Would love to hear from you.</h1>
-                    <p className="text-xl font-semibold text-white">Get in touch!</p>
-                </div>
-
-                <div className="flex flex-col h-80 w-[65%] justify-start items-center">
-                    <div className='w-full mt-2'>
-                        <p className='text-sm text-white'>Name</p>
-                        <input className='h-12 rounded-sm w-[80%] border-white border mt-1 p-1 outline-none'/>
-                    </div>
-
-                    <div className='w-full mt-2'>
-                        <p className='text-sm text-white'>Email Address</p>
-                        <input className='h-12 rounded-sm w-[80%] border-white border mt-1 p-1 outline-none'/>
-                    </div>
-
-                    <div className='w-full mt-2'>
-                        <p className='text-sm text-white'>Feedback</p>
-                        <input className='h-12 rounded-sm w-[80%] border-white border mt-1 p-1 outline-none'/>
-                    </div>
-
-                    <div className='w-full mt-6'>
-                        <button className='p-3 border w-[80%] border-white rounded-md hover:scale-105'>
-                            <p className='text-white'>Submit</p>
-                        </button>
-                    </div>
-                        
-                    
-                </div>
+            <div className='w-1/2 h-full flex justify-center items-center'>
+                <ReviewBox 
+                    review={dummyReviews[currentReviewIndex].review} 
+                    name={dummyReviews[currentReviewIndex].name} 
+                    rating={dummyReviews[currentReviewIndex].rating} 
+                />
             </div>
         </div>
     )
 }
+
+export default ReviewPage
