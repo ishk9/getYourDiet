@@ -1,5 +1,4 @@
 "use client";
-import React from 'react'
 import {
     Accordion,
     AccordionContent,
@@ -9,7 +8,7 @@ import {
   
 const FaqPage = () => {
     return (
-        <div className='h-[70%] w-screen bg-[#6EC0FF] flex py-20'>
+        <div id="faq" className='h-[70%] w-screen bg-[#6EC0FF] flex py-20'>
             <div className='w-1/2 h-full flex flex-col justify-center items-center'>
                 <div className='flex justify-start items-start w-1/2'>
                     <h1 className='text-white text-[45px] font-bold uppercase'>Faq.</h1>

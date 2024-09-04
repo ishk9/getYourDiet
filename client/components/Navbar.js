@@ -1,6 +1,5 @@
 "use client";
 import Link from 'next/link'
-import { FaXTwitter } from "react-icons/fa6";
 
 function Navbar() {
     const scrollToSection = (sectionId) => {
@@ -27,17 +26,17 @@ function Navbar() {
                     <button  
                         onClick={() => scrollToSection('reviews')}
                         className="ml-4">
-                        <p className="text-white text-base font-bold uppercase hidden sm:block  hover:bg-white hover:text-black px-3 py-1 rounded-md font-mono">Features</p>
-                    </button>
-                    <button  
-                        onClick={() => scrollToSection('reviews')}
-                        className="ml-4">
                         <p className="text-white text-base font-bold  hidden sm:block uppercase hover:bg-white hover:text-black px-3 py-1 rounded-md font-mono">Reviews</p>
                     </button>
                     <button  
-                        onClick={() => scrollToSection('reviews')}
+                        onClick={() => scrollToSection('contact')}
                         className="ml-4">
-                        <p className="text-white text-base font-bold hidden sm:block uppercase hover:bg-white hover:text-black px-3 py-1 rounded-md font-mono">Blogs</p>
+                        <p className="text-white text-base font-bold hidden sm:block uppercase hover:bg-white hover:text-black px-3 py-1 rounded-md font-mono">Contact</p>
+                    </button>
+                    <button  
+                        onClick={() => scrollToSection('faq')}
+                        className="ml-4">
+                        <p className="text-white text-base font-bold uppercase hidden sm:block  hover:bg-white hover:text-black px-3 py-1 rounded-md font-mono">Faq</p>
                     </button>
                 </div>
             </div>
