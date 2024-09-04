@@ -12,7 +12,7 @@ const LandingPage = () => {
             <Navbar />
             <div className="bg-white">
                 <StarterPage />
-                <QuotesPage />
+                {/* <QuotesPage /> */}
                 <Reviews />
                 <FaqPage />
                 <Contact />

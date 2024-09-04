@@ -1,0 +1,4 @@
+.AccordionChevron {
+    transition: transform 300ms ease-out;
+    color: white; /* Make the arrow white */
+  }
