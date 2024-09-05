@@ -7,10 +7,10 @@ const feedbackValidationSchema = Joi.object({
 });
 
 const validateFeedback = (req, res, next) => {
-    const error  = feedbackValidationSchema.validate(req.body);
+    const {error}  = feedbackValidationSchema.validate(req.body);
     if (error) {
-        console.log(error.error);
-        return res.status(400).json({ error: error.error });
+        console.log("Validation errors: ", error.details[0].message);
+        return res.status(400).json({ error: error.details[0].message });
     }
     next();
 };
