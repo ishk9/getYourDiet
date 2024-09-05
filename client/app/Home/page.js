@@ -1,11 +1,13 @@
 "use client";
 import React, { useState }  from 'react'
 import { IoMdArrowRoundUp } from "react-icons/io";
+import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
 
 const HomePage = () => {
     const [userInp, setUserInp] = useState('');
     const [showCuisines, setShowCuisines] = useState(false);
     const [selectedCuisines, setSelectedCuisines] = useState([]);
+    const [startQues, setStartQues] = useState(false);
 
     const handleCuisineSelect = (index) => {
         if (selectedCuisines.includes(index)) {
@@ -39,13 +41,43 @@ const HomePage = () => {
         'Turkish',
         'Ethiopian'
     ]);
+    const words = [
+        {
+          text: "Enter",
+        },
+        {
+          text: "your",
+        },
+        {
+          text: "gender",
+        },
+        // {
+        //   text: "Aceternity.",
+        // //   className: "text-blue-500 dark:text-blue-500",
+        // },
+      ];
+    const words2 = [
+        {
+          text: "Enter",
+        },
+        {
+          text: "your",
+        },
+        {
+          text: "age",
+        },
+        // {
+        //   text: "Aceternity.",
+        // //   className: "text-blue-500 dark:text-blue-500",
+        // },
+      ];
     return (
         <div className='h-screen w-screen flex flex-col justify-center items-center overflow-y-auto'>
             <div className='h-full w-full justify-center items-center flex flex-col'>
                 <div className='h-full flex flex-col justify-center items-center w-[75%]'>
 
                     {
-                        showCuisines ? 
+                        showCuisines && !startQues &&
                         
                         
                         <div className='flex flex-col w-[75%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center '>
@@ -72,23 +104,34 @@ const HomePage = () => {
                                 </button>
                             </div>
                         </div>
-                        :
-                        <div className='flex flex-col w-[75%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center '>
-                            <h1 className='text-[45px] font-normal leading-[1]'>Lets get started.Type in either your <span className='text-[#6EC0FF]'>health goals, issues,</span>  or <span className='text-[#6EC0FF]'>both</span>.</h1>
-                            <div className='flex  w-full justify-start items-center mt-6'>
-                                <button 
-                                    onClick={() => setShowCuisines(true)}
-                                    className='w-[25%] h-12 bg-[#6EC0FF] hover:bg-[#4e9ad4] rounded-2xl mr-3 flex justify-center items-center'>
-                                    <p className='text-white font-medium'>Choose my own cuisines</p>
-                                </button>
+                    }
+                    {
+                        !showCuisines && !startQues &&
+                            <div className='flex flex-col w-[75%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center '>
+                                <h1 className='text-[45px] font-normal leading-[1]'>Lets get started.Type in either your <span className='text-[#6EC0FF]'>health goals, issues,</span>  or <span className='text-[#6EC0FF]'>both</span>.</h1>
+                                <div className='flex  w-full justify-start items-center mt-6'>
+                                    <button 
+                                        onClick={() => setShowCuisines(true)}
+                                        className='w-[25%] h-12 bg-[#6EC0FF] hover:bg-[#4e9ad4] rounded-2xl mr-3 flex justify-center items-center'>
+                                        <p className='text-white font-medium'>Choose my own cuisines</p>
+                                    </button>
 
-                                <button className='w-1/3 h-12 bg-black hover:bg-[#292929] rounded-2xl mx-3 flex justify-center items-center'>
-                                    <p className='text-white font-medium'>Not sure where to start?</p>
-                                </button>
+                                    <button 
+                                        onClick={() => setStartQues(true)}
+                                        className='w-1/3 h-12 bg-black hover:bg-[#292929] rounded-2xl mx-3 flex justify-center items-center'
+                                    >
+                                        <p className='text-white font-medium'>Not sure where to start?</p>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
                     }
 
+                    {
+                        startQues && 
+                        <div className='flex flex-col w-[75%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center '>
+                            <TypewriterEffectSmooth words={words}/>
+                        </div>
+                    }
 
                     {/* Chat box */}
                     {
