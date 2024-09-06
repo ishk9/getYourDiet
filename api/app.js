@@ -4,7 +4,9 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import swaggerDocs from './swagger.js';
+
 import feedbackRoutes from './routes/feedback.js';
+import userRoutes from './routes/auth.js';
 
 const PORT = process.env.PORT || 5000;
 
@@ -13,7 +15,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/feedback', feedbackRoutes); 
-
+app.use('/user', userRoutes);
 
 app.listen(PORT, () => {
     swaggerDocs(app, PORT);
