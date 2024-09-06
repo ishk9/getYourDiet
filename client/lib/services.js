@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const sendRequest = (url, data) => {
+const sendRequest = async(url, data) => {
     try{
-        const resp = axios.post(url, data);
+        const resp = await axios.post(url, data);
+        console.log("Response: ", resp.data);
         return resp.data;
     }
     catch(err){
@@ -12,14 +13,14 @@ const sendRequest = (url, data) => {
 
 // Feedback services
 export const sendUserFeedback = async(data) => {
-    sendRequest(`${process.env.NEXT_PUBLIC_API_URL}/feedback`, data);
+    return await sendRequest(`${process.env.NEXT_PUBLIC_API_URL}/feedback`, data);
 } 
 
 // User services
 export const signup = async(data) => {
-    sendRequest(`${process.env.NEXT_PUBLIC_API_URL}/user/signup`, data);
+    return await sendRequest(`${process.env.NEXT_PUBLIC_API_URL}/user/signup`, data);
 }
 
 export const login = async(data) => {
-    sendRequest(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, data);
+    return await sendRequest(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, data);
 }

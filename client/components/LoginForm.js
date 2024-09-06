@@ -1,6 +1,6 @@
 "use client";
 import { login } from '@/lib/services';
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import useStore from '@/app/store';
 
@@ -20,7 +20,7 @@ const LoginForm = () => {
         };
         try{
             const resp = await login(data);
-            console.log("Resp: ", resp);
+            console.log("Token: ", resp.token);
             setSignedIn(true);
             router.push('/');
 
@@ -34,7 +34,7 @@ const LoginForm = () => {
     };
 
     return (
-        <div className='w-full max-w-sm mx-auto bg-white shadow-md rounded-lg p-6'>
+        <div className='w-full max-w-sm mx-auto bg-white shadow-md border rounded-lg p-6'>
             <h2 className='text-2xl font-bold mb-6 text-center'>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className='mb-4'>

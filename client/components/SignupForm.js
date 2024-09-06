@@ -37,9 +37,9 @@ const SignupForm = () => {
         };
         try{
             const resp = await signup(data);
-            console.log("Resp: ", resp);
-            setSignedIn(true);
-            router.push('/');
+            console.log("Token: ", resp.token);
+            // setSignedIn(true);
+            // router.push('/');
         } catch(err){
             console.log("Error signing up!");
         }
