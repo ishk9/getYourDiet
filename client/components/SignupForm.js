@@ -38,8 +38,8 @@ const SignupForm = () => {
         try{
             const resp = await signup(data);
             console.log("Token: ", resp.token);
-            // setSignedIn(true);
-            // router.push('/');
+            setSignedIn(true);
+            router.push('/Pricing');
         } catch(err){
             console.log("Error signing up!");
         }
@@ -55,9 +55,9 @@ const SignupForm = () => {
             <h2 className='text-2xl font-bold mb-6 text-center'>Sign Up</h2>
             {error && <p className='text-red-500 text-sm mb-4'>{error}</p>}
             <form onSubmit={handleSubmit}>
-                <div className='mb-4'>
+                <div className='mb-2'>
                     <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='name'>
-                        Full Name
+                        Name
                     </label>
                     <input
                         type='text'
@@ -68,7 +68,7 @@ const SignupForm = () => {
                         required
                     />
                 </div>
-                <div className='mb-4'>
+                <div className='mb-2'>
                     <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='email'>
                         Email
                     </label>
@@ -81,7 +81,7 @@ const SignupForm = () => {
                         required
                     />
                 </div>
-                <div className='mb-4'>
+                <div className='mb-2'>
                     <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='phoneNumber'>
                         Phone Number
                     </label>
@@ -94,7 +94,7 @@ const SignupForm = () => {
                         required
                     />
                 </div>
-                <div className='mb-4'>
+                <div className='mb-2'>
                     <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='password'>
                         Password
                     </label>

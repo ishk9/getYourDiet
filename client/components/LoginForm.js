@@ -22,7 +22,7 @@ const LoginForm = () => {
             const resp = await login(data);
             console.log("Token: ", resp.token);
             setSignedIn(true);
-            router.push('/');
+            router.push('/Pricing');
 
         } catch(err){
             console.log("Error signing up!");
