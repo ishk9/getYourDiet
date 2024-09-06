@@ -44,11 +44,11 @@ function Navbar() {
 
             <div className='p-2 rounded-md flex justify-center items-center'>
 
-                <button 
-                    onClick={() => {}}
+                <Link 
+                    href={"/Login"}
                     className='ml-4 h-full'>
                     <p className="text-white bg-black text-base font-bold hidden sm:block uppercase hover:bg-black/80 hover:text-white px-7 py-[10px] rounded-md font-mono">Login</p>
-                </button>
+                </Link>
                 
             </div>
         </nav>
