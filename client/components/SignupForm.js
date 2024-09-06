@@ -1,7 +1,12 @@
 "use client";
+import { signup } from '@/lib/services';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import useStore from '@/app/store';
 
 const SignupForm = () => {
+    const { setSignedIn } = useStore();
+    const router = useRouter();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -9,7 +14,7 @@ const SignupForm = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         if (password !== confirmPassword) {
             setError('Passwords do not match');
@@ -23,11 +28,26 @@ const SignupForm = () => {
         console.log('Email:', email);
         console.log('Phone Number:', phoneNumber);
         console.log('Password:', password);
-        // Add your signup logic here
+        
+        const data = {
+            name,
+            email,
+            phoneNumber,
+            password
+        };
+        try{
+            const resp = await signup(data);
+            console.log("Resp: ", resp);
+            setSignedIn(true);
+            router.push('/');
+        } catch(err){
+            console.log("Error signing up!");
+        }
+
     };
 
     const handleLoginRedirect = () => {
-        window.location.href = '/Login';
+        router.push('/Login');
     };
 
     return (

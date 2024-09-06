@@ -1,18 +1,36 @@
 "use client";
+import { login } from '@/lib/services';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import useStore from '@/app/store';
 
 const LoginForm = () => {
+    const { setSignedIn } = useStore();
+    const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         console.log('Email:', email);
         console.log('Password:', password);
+        const data = {
+            email,
+            password
+        };
+        try{
+            const resp = await login(data);
+            console.log("Resp: ", resp);
+            setSignedIn(true);
+            router.push('/');
+
+        } catch(err){
+            console.log("Error signing up!");
+        }
     };
 
     const handleSignupRedirect = () => {
-        window.location.href = '/Signup';
+        router.push('/Signup');
     };
 
     return (
