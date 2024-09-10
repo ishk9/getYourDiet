@@ -31,7 +31,12 @@ const HomePage = () => {
         setUserInp('');
         setCurrentWordIndex(prevIndex => prevIndex + 1);
     };
-
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleAnswerSubmit();
+        }
+    };
+    
     useEffect(() => {
         // Refresh or update component when `currentWordIndex` changes
         if (currentWordIndex >= words.length) {
@@ -134,6 +139,7 @@ const HomePage = () => {
                                 placeholder='Enter questions or answers here'
                                 value={userInp}
                                 onChange={(e) => setUserInp(e.target.value)}
+                                onKeyDown={handleKeyDown}
                             />
                             <button 
                                 onClick={() => handleAnswerSubmit()}
