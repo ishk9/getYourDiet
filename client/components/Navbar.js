@@ -49,6 +49,7 @@ function Navbar() {
                     signedIn ? 
                     <button 
                         onClick={() => {
+                            localStorage.removeItem('token');
                             setSignedIn(false);
                         }}
                         className='ml-4 h-full'>

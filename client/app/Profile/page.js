@@ -76,7 +76,7 @@ const ProfilePage = () => {
                                     placeholder='Current password'
                                     value={currPass}
                                     onChange={(e) => setCurrPass(e.target.value)}
-                                    className='w-full border rounded-md p-2 border-gray-400 focus:border-black outline-none'
+                                    className='w-full border rounded-md p-2 border-gray-400 focus:border-black outline-none hover:border-black'
 
                                 />
                             </div>
@@ -86,7 +86,7 @@ const ProfilePage = () => {
                                     placeholder='New password'
                                     value={newPass}
                                     onChange={(e) => setNewPass(e.target.value)}
-                                    className='w-full border rounded-md p-2 border-gray-400 focus:border-black outline-none'
+                                    className='w-full border rounded-md p-2 border-gray-400 focus:border-black outline-none hover:border-black'
                                 />
                             </div>
                             <div className='w-1/4'>
@@ -95,7 +95,7 @@ const ProfilePage = () => {
                                     placeholder='Confirm password'
                                     value={confmPass}
                                     onChange={(e) => setConfmPass(e.target.value)}
-                                    className='w-full border rounded-md p-2 border-gray-400 focus:border-black outline-none'
+                                    className='w-full border rounded-md p-2 border-gray-400 focus:border-black outline-none hover:border-black'
                                 />
                             </div>
                             {
