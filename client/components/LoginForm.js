@@ -23,6 +23,7 @@ const LoginForm = () => {
         try{
             const resp = await login(data);
             console.log("Token: ", resp.token);
+            localStorage.setItem('token', resp.token);
             setSignedIn(true);
             router.push('/Pricing');
 

@@ -28,6 +28,7 @@ const SignupForm = () => {
         try{
             const resp = await signup(data);
             console.log("Token: ", resp.token);
+            localStorage.setItem('token', resp.token);
             setSignedIn(true);
             router.push('/Pricing');
         } catch(err){

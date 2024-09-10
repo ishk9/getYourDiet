@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const sendRequest = async(url, data) => {
+const sendRequest = async(type, url, data, config = {}) => {
     try{
-        const resp = await axios.post(url, data);
+        const resp = await axios[type](url, data, config);
         console.log("Response: ", resp.data);
         return resp.data;
     }
@@ -13,14 +13,24 @@ const sendRequest = async(url, data) => {
 
 // Feedback services
 export const sendUserFeedback = async(data) => {
-    return await sendRequest(`${process.env.NEXT_PUBLIC_API_URL}/feedback`, data);
+    return await sendRequest(type='post',`${process.env.NEXT_PUBLIC_API_URL}/feedback`, data);
 } 
 
 // User services
 export const signup = async(data) => {
-    return await sendRequest(`${process.env.NEXT_PUBLIC_API_URL}/user/signup`, data);
+    return await sendRequest(type='post', `${process.env.NEXT_PUBLIC_API_URL}/user/signup`, data);
 }
 
 export const login = async(data) => {
-    return await sendRequest(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, data);
+    return await sendRequest(type='post', `${process.env.NEXT_PUBLIC_API_URL}/user/login`, data);
+}
+
+export const changePassword = async(data) => {
+    const token = localStorage.getItem('token');
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    return await sendRequest('patch', `${process.env.NEXT_PUBLIC_API_URL}/user/change-password`, data, config);
 }
