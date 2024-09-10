@@ -5,6 +5,7 @@ import Contact from "../Contact/page";
 import FaqPage from "../Faq/page";
 import Reviews from "../Reviews/page";
 import QuotesPage from "../Quotes/page";
+import PricingPage from "../Pricing/page";
 
 const LandingPage = () => {
     return (
@@ -12,8 +13,8 @@ const LandingPage = () => {
             <Navbar />
             <div className="bg-white">
                 <StarterPage />
-                {/* <QuotesPage /> */}
                 <Reviews />
+                <PricingPage />
                 <FaqPage />
                 <Contact />
             </div>

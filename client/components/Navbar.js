@@ -20,15 +20,15 @@ function Navbar() {
 
             <div className="flex w-[60%] items-center justify-start bg-black rounded-md p-2">
                 <div className="flex flex-row w-full  items-center">
-                    <Link 
-                        href={"/Pricing"}
-                        className="ml-4" >
-                        <p className="text-white text-base font-bold uppercase hover:bg-white hover:text-black px-3 py-1 rounded-md font-mono">Pricing</p>
-                    </Link>
                     <button  
                         onClick={() => scrollToSection('reviews')}
                         className="ml-4">
                         <p className="text-white text-base font-bold  hidden sm:block uppercase hover:bg-white hover:text-black px-3 py-1 rounded-md font-mono">Reviews</p>
+                    </button>
+                    <button 
+                        onClick={() => scrollToSection('pricing')}
+                        className="ml-4" >
+                        <p className="text-white text-base font-bold uppercase hover:bg-white hover:text-black px-3 py-1 rounded-md font-mono">Pricing</p>
                     </button>
                     <button  
                         onClick={() => scrollToSection('faq')}
