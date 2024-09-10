@@ -3,6 +3,8 @@ import { login } from '@/lib/services';
 import  { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import useStore from '@/app/store';
+import { MdOutlineMailOutline } from "react-icons/md";
+import { RiLockPasswordLine } from "react-icons/ri";
 
 const LoginForm = () => {
     const { setSignedIn } = useStore();
@@ -37,29 +39,31 @@ const LoginForm = () => {
         <div className='w-full max-w-sm mx-auto bg-white shadow-md border rounded-lg p-6'>
             <h2 className='text-2xl font-bold mb-6 text-center'>Login</h2>
             <form onSubmit={handleSubmit}>
-                <div className='mb-4'>
-                    <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='email'>
-                        Email
-                    </label>
+                <div className='mb-4 flex'>
+                    <div className='p-1 border border-r-0 rounded-md rounded-r-none focus:outline-none flex justify-center items-center'>
+                        <MdOutlineMailOutline />
+                    </div>
                     <input
                         type='email'
                         id='email'
+                        placeholder='Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className='w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+                        className='w-full pr-3 py-2 border border-l-0 rounded-md rounded-l-none focus:outline-none'
                         required
                     />
                 </div>
-                <div className='mb-6'>
-                    <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor='password'>
-                        Password
-                    </label>
+                <div className='mb-6 flex'>
+                    <div className='p-1 border border-r-0 rounded-md rounded-r-none focus:outline-none flex justify-center items-center'>
+                        <RiLockPasswordLine />
+                    </div>
                     <input
                         type='password'
                         id='password'
+                        placeholder='Password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className='w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+                        className='w-full pr-3 py-2 border border-l-0 rounded-md rounded-l-none focus:outline-none'
                         required
                     />
                 </div>
