@@ -3,7 +3,6 @@ import Joi from "joi";
 const userValidationSchema = Joi.object({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
-    phoneNumber: Joi.number().required(),
     password: Joi.string().required()
 });
 
@@ -30,4 +29,20 @@ const validateLoginUser = (req, res, next) => {
     next();
 }
 
-export { validateUser, validateLoginUser };
+const passwordValidationSchema = Joi.object({
+    currentPassword: Joi.string().required(),
+    newPassword: Joi.string().required()
+});
+
+const validatePassword = (req, res, next) => {
+    const {error} = passwordValidationSchema.validate(req.body);
+    if(error){
+        console.log("Validation error while changing password: ", error);
+        return res.status(400).json({ error: error.details[0].message });
+    }
+    next();
+}
+
+
+
+export { validateUser, validateLoginUser, validatePassword };

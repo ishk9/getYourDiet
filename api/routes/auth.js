@@ -1,12 +1,12 @@
 import express from "express";
-import { validateUser, validateLoginUser } from "../validations/auth.js";
-import { signupUser, loginUser } from "../controllers/auth.js";
+import { validateUser, validateLoginUser, validatePassword } from "../validations/auth.js";
+import { signupUser, loginUser, updatePassword } from "../controllers/auth.js";
 
 const router = express.Router();
 
 router.post('/signup', validateUser, signupUser);
 router.post('/login', validateLoginUser, loginUser);
-
+router.patch('/change-password', validatePassword, updatePassword);
 /**
  * @openapi
  * '/user/signup':
@@ -141,4 +141,81 @@ router.post('/login', validateLoginUser, loginUser);
  *                       type: string
  *                       example: "1234567890"
  */
+
+/**
+ * @openapi
+ * '/user/change-password':
+ *  patch:
+ *     tags:
+ *     - User
+ *     summary: Update user password
+ *     description: Allows users to update their password after verifying their current password. The token is passed in the Authorization header.
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               currentPassword:
+ *                 type: string
+ *                 description: The current password of the user
+ *                 example: "oldPassword123"
+ *               newPassword:
+ *                 type: string
+ *                 description: The new password the user wants to set
+ *                 example: "newPassword456"
+ *     responses:
+ *       200:
+ *         description: Password updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Password updated successfully"
+ *       400:
+ *         description: Invalid current password or user not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Invalid current password"
+ *       401:
+ *         description: Authorization token missing or invalid
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Authorization token required"
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Internal server error"
+ * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ */
+
+
+
 export default router;

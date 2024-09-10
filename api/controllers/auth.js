@@ -6,11 +6,11 @@ import jwt from 'jsonwebtoken';
 
 
 const signupUser = async (req, res) => {
-    const { name, email, phoneNumber, password } = req.body;
+    const { name, email, password } = req.body;
     console.log("Signup details: ", req.body);
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new User({ name, email, phoneNumber, password: hashedPassword });
+        const user = new User({ name, email, password: hashedPassword });
         await user.save();
         console.log("User: ", user);
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
@@ -40,5 +40,40 @@ const loginUser = async(req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 }
+const updatePassword = async (req, res) => {
+    const { currentPassword, newPassword } = req.body;
+    const token = req.headers.authorization?.split(' ')[1];
+    
+    if (!token) {
+        return res.status(401).json({ error: 'Authorization token required' });
+    }
+    console.log("Update password details: ", req.body);
+    try {
+        // Verify the token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const userId = decoded.id;
 
-export { signupUser, loginUser };
+        // Find the user by ID
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(400).json({ error: 'User not found' });
+        }
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ error: 'Invalid current password' });
+        }
+
+        const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+        user.password = hashedNewPassword;
+        await user.save();
+
+        console.log("Password updated for user: ", user);
+        res.status(200).json({ message: 'Password updated successfully' });
+    } catch (err) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+
+
+export { signupUser, loginUser, updatePassword };
