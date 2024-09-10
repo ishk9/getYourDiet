@@ -6,6 +6,7 @@ import useStore from '@/app/store';
 import { LuUser } from "react-icons/lu";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+import StrengthMeter from './StrengthMeter';
 
 const SignupForm = () => {
     const { setSignedIn } = useStore();
@@ -95,6 +96,7 @@ const SignupForm = () => {
                         Sign Up
                     </button>
                 </div>
+                <StrengthMeter password={password}/>
             </form>
             <div className='mt-4 text-center'>
                 <p className='text-gray-700 text-sm'>
