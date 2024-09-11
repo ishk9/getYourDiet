@@ -1,8 +1,8 @@
 import Joi from "joi";
 
 const llmValidationSchema = Joi.object({
-    response: Joi.string().required(),
-    instruction: Joi.string().required()
+    question: Joi.string().required(),
+    answer: Joi.string().required()
 });
 
 const validatellmResponse = (req, res, next) => {
