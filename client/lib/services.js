@@ -34,3 +34,7 @@ export const changePassword = async(data) => {
     };
     return await sendRequest('patch', `${process.env.NEXT_PUBLIC_API_URL}/user/change-password`, data, config);
 }
+
+export const verifyResponse = async(data) => {
+    return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/llm-response`, data);
+}

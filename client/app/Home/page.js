@@ -1,7 +1,8 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { IoMdArrowRoundUp } from "react-icons/io";
 import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
+import { verifyResponse } from '@/lib/services';
 
 const HomePage = () => {
     const [userInp, setUserInp] = useState('');
@@ -10,7 +11,7 @@ const HomePage = () => {
     const [startQues, setStartQues] = useState(false);
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
     const [answers, setAnswers] = useState({}); // To store answers for each question
-
+    
     const handleCuisineSelect = (index) => {
         if (selectedCuisines.includes(index)) {
             setSelectedCuisines(selectedCuisines.filter(id => id !== index));
@@ -23,13 +24,30 @@ const HomePage = () => {
         setShowCuisines(false);
     };
 
-    const handleAnswerSubmit = () => {
+    const handleAnswerSubmit = async() => {
         setAnswers(prevAnswers => ({
             ...prevAnswers,
             [currentWordIndex]: userInp
         }));
-        setUserInp('');
-        setCurrentWordIndex(prevIndex => prevIndex + 1);
+        console.log(words[currentWordIndex].text, userInp);
+        try{
+            const data = {
+                question: words[currentWordIndex].text,
+                answer: userInp
+            };
+            const resp = await verifyResponse(data);
+            console.log("Response: ", resp.data);
+            const response = resp.data.trim();
+            if(response === "YES"){
+                console.log("Yes entered");
+                setCurrentWordIndex(prevIndex => prevIndex + 1);
+            } else {
+                setCurrentWordIndex(prevIndex => prevIndex);
+            }
+            setUserInp('');
+        } catch(err){
+            console.log("Error validating response");
+        }
     };
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -38,11 +56,13 @@ const HomePage = () => {
     };
     
     useEffect(() => {
-        // Refresh or update component when `currentWordIndex` changes
         if (currentWordIndex >= words.length) {
-            // Logic when all questions are answered (optional)
-            console.log("All questions answered:", answers);
-            // You might want to handle this case, e.g., showing a thank you message
+            const data = words.map((wordObj, index) => ({
+                question: wordObj.text,
+                answer: answers[index] || "No answer provided"
+            }));
+    
+            console.log("All questions answered:", data);
         }
     }, [currentWordIndex]);
 
@@ -65,8 +85,14 @@ const HomePage = () => {
     ];
 
     const words = [
-        { text: "Enter your gender" },
+        { text: "Enter your biological sex" },
         { text: "Enter your age" },
+        { text: "What are your fitness goals?" },
+        { text: "Do you have any allergies or intolerances?" },
+        { text: "Any health conditions you suffer from?" },
+        { text: "Do you have any specific meal frequency?" },
+        { text: "Do you follow intermittent fasting?" },
+        { text: "What is your activity level?" },
     ];
 
     return (
