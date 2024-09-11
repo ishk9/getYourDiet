@@ -28,7 +28,7 @@ const LoginForm = () => {
             router.push('/Pricing');
 
         } catch(err){
-            console.log("Error signing up!");
+            console.log("Error logging up!");
         }
     };
 

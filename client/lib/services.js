@@ -13,16 +13,16 @@ const sendRequest = async(type, url, data, config = {}) => {
 
 // Feedback services
 export const sendUserFeedback = async(data) => {
-    return await sendRequest(type='post',`${process.env.NEXT_PUBLIC_API_URL}/feedback`, data);
+    return await sendRequest('post',`${process.env.NEXT_PUBLIC_API_URL}/feedback`, data);
 } 
 
 // User services
 export const signup = async(data) => {
-    return await sendRequest(type='post', `${process.env.NEXT_PUBLIC_API_URL}/user/signup`, data);
+    return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/user/signup`, data);
 }
 
 export const login = async(data) => {
-    return await sendRequest(type='post', `${process.env.NEXT_PUBLIC_API_URL}/user/login`, data);
+    return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/user/login`, data);
 }
 
 export const changePassword = async(data) => {

@@ -14,7 +14,7 @@ const HomePage = () => {
     const handleCuisineSelect = (index) => {
         if (selectedCuisines.includes(index)) {
             setSelectedCuisines(selectedCuisines.filter(id => id !== index));
-        } else {
+        } else if(selectedCuisines.length < 7) {
             setSelectedCuisines([...selectedCuisines, index]);
         }
     };
@@ -76,7 +76,7 @@ const HomePage = () => {
 
                     {showCuisines && !startQues &&
                         <div className='flex flex-col w-[75%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center '>
-                            <h1 className='text-[45px] font-normal leading-[1]'>Choose your cuisines</h1>
+                            <h1 className='text-[45px] font-normal leading-[1]'>Choose your cuisines<span className='text-base font-semibold ml-2'>({selectedCuisines.length}/7)</span></h1>
                             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full mt-6'>
                                 {cuisines.map((cuisine, index) => (
                                     <button 
