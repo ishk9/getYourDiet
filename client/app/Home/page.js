@@ -109,7 +109,7 @@ const HomePage = () => {
         { text: "Do you follow intermittent fasting?" },
         { text: "What is your activity level?" },
     ];
-
+    
     return (
         <div className='h-screen w-screen flex flex-col justify-center items-center overflow-y-auto'>
             <div className='h-full w-full justify-center items-center flex flex-col'>
@@ -167,7 +167,10 @@ const HomePage = () => {
                                     key={currentWordIndex} // Add key prop to force re-render
                                 />
                             ) : (
-                                <h1 className='text-[45px] font-normal leading-[1]'>Thank you for your responses!</h1>
+                                <div className='flex flex-col justify-center items-end'>
+                                    <h1 className='text-[45px] font-normal leading-[1]'>Thank you for your responses!</h1>
+                                    
+                                </div>
                             )}
                         </div>
                     }
