@@ -14,4 +14,17 @@ const validatellmResponse = (req, res, next) => {
     next();
 };
 
-export { validatellmResponse };
+const llmRequirementSchema = Joi.object({
+    requirements: Joi.string().required(),
+});
+
+const validatellmDiet = (req, res, next) => {
+    const {error}  = llmRequirementSchema.validate(req.body);
+    if (error) {
+        console.log("Validation errors: ", error.details[0].message);
+        return res.status(400).json({ error: error.details[0].message });
+    }
+    next();
+};
+
+export { validatellmResponse, validatellmDiet };
