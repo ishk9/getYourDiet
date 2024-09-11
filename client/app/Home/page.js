@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { IoMdArrowRoundUp } from "react-icons/io";
 import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
-import { verifyResponse } from '@/lib/services';
+import { generateDiet, verifyResponse } from '@/lib/services';
 
 const HomePage = () => {
     const [userInp, setUserInp] = useState('');
@@ -56,15 +56,30 @@ const HomePage = () => {
     };
     
     useEffect(() => {
-        if (currentWordIndex >= words.length) {
-            const data = words.map((wordObj, index) => ({
-                question: wordObj.text,
-                answer: answers[index] || "No answer provided"
-            }));
+        const fetchData = async () => {
+            if (currentWordIndex >= words.length) {
+                const mappedData = words.map((wordObj, index) => ({
+                    question: wordObj.text,
+                    answer: answers[index] || "No answer provided"
+                }));
     
-            console.log("All questions answered:", data);
-        }
+                const stringData = mappedData.map(word => 
+                    `<${word.question} -> ${word.answer}>`
+                ).join(' ');
+    
+                const data = { requirements: stringData }
+                try {
+                    const resp = await generateDiet(data);
+                    console.log("Response:", resp);
+                } catch (err) {
+                    console.log("Error:", err);
+                }
+            }
+        };
+    
+        fetchData();
     }, [currentWordIndex]);
+    
 
     const cuisines = [
         'Italian',

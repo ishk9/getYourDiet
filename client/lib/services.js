@@ -38,3 +38,7 @@ export const changePassword = async(data) => {
 export const verifyResponse = async(data) => {
     return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/llm-response`, data);
 }
+
+export const generateDiet = async(data) => {
+    return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/llm-response/diet`, data);
+}
