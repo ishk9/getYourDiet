@@ -8,6 +8,7 @@ import swaggerDocs from './swagger.js';
 import feedbackRoutes from './routes/feedback.js';
 import userRoutes from './routes/auth.js';
 import subscribeRoutes from './routes/subscription.js';
+import llmRoutes from './routes/llm.js';
 
 const PORT = process.env.PORT || 5000;
 
@@ -18,6 +19,7 @@ app.use(cors());
 app.use('/feedback', feedbackRoutes); 
 app.use('/user', userRoutes);
 app.use('/subscribe', subscribeRoutes);
+app.use('/llm-response', llmRoutes);
 
 app.listen(PORT, () => {
     swaggerDocs(app, PORT);
