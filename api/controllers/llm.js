@@ -24,31 +24,81 @@ const generateDiet = async (req, res) => {
     const { requirements } = req.body;
     console.log("Body is", req.body);
     try {
-        const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        // const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+        // const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-        const prompt = `
-            These are all the requirements. They are in a <question -> answer> format. 
-            Consider them and generate a diet plan. 
-            Return the diet plan in valid JSON format with keys for title, goal, frequency, activity level, allergies, meals, explanation, importantConsiderations. 
-            Here are the requirements-> ${requirements}
-        `;
+        // const prompt = `
+        //     These are all the requirements. They are in a <question -> answer> format. 
+        //     Consider them and generate a diet plan. 
+        //     Return the diet plan in valid JSON format with keys for title, goal, frequency, activity level, allergies, meals, explanation, importantConsiderations. 
+        //     Here are the requirements-> ${requirements}
+        // `;
 
-        const result = await model.generateContent(prompt);
+        // const result = await model.generateContent(prompt);
 
-        // Get the response text
-        const responseText = await result.response.text();
+        // const responseText = await result.response.text();
 
-        // Log the raw response to inspect it
-        console.log("Raw AI Response: ", responseText);
+        // console.log("Raw AI Response: ", responseText);
 
-        // Clean up the response (remove backticks and spaces)
-        const cleanedResponse = responseText.replace(/```json|```/g, '').trim(); // Remove the backticks and clean the string
-
-        // Try parsing the cleaned response as JSON
-        const jsonResponse = JSON.parse(cleanedResponse); 
-
-        // Return the JSON-formatted response to the frontend
+        // const cleanedResponse = responseText.replace(/```json|```/g, '').trim();
+        // const jsonResponse = JSON.parse(cleanedResponse); 
+        const jsonResponse = {
+            "title": "Ironman Prep Diet Plan",
+            "goal": "Fueling for Ironman Training",
+            "frequency": "5 meals per day",
+            "activity level": "Moderate",
+            "allergies": "None",
+            "meals": [
+              {
+                "meal_time": "Breakfast (7:00 AM)",
+                "options": [
+                  "2 cups oatmeal with 1/4 cup berries and 1/8 cup nuts",
+                  "3 eggs with 1 slice whole wheat toast and 1/2 avocado",
+                  "Smoothie with 1 scoop protein powder, 1/2 cup fruit, and 1/4 cup spinach"
+                ]
+              },
+              {
+                "meal_time": "Mid-Morning Snack (10:00 AM)",
+                "options": [
+                  "Fruit and yogurt",
+                  "Trail mix",
+                  "Energy bar"
+                ]
+              },
+              {
+                "meal_time": "Lunch (1:00 PM)",
+                "options": [
+                  "Salad with grilled chicken or fish and quinoa",
+                  "Whole wheat sandwich with lean protein and vegetables",
+                  "Lentil soup with a side of whole grain bread"
+                ]
+              },
+              {
+                "meal_time": "Afternoon Snack (4:00 PM)",
+                "options": [
+                  "Fruit and nuts",
+                  "Rice cakes with peanut butter",
+                  "Protein shake"
+                ]
+              },
+              {
+                "meal_time": "Dinner (7:00 PM)",
+                "options": [
+                  "Grilled salmon with roasted vegetables",
+                  "Chicken stir-fry with brown rice",
+                  "Lentil curry with cauliflower rice"
+                ]
+              }
+            ],
+            "explanation": "This diet plan focuses on providing you with the necessary nutrients to support your Ironman training. It emphasizes complex carbohydrates for energy, lean protein for muscle recovery, and healthy fats for hormone production. Five meals per day ensure consistent energy levels throughout the day.",
+            "importantConsiderations": [
+              "Hydration is crucial during Ironman training. Aim to drink water throughout the day.",
+              "Adjust portion sizes based on your individual needs and training intensity.",
+              "Listen to your body and adjust your diet as needed.",
+              "Consult with a registered dietitian for personalized advice."
+            ]
+          }
+          
         res.status(201).json({ message: 'Response generated successfully', data: jsonResponse });
 
     } catch (err) {
