@@ -6,10 +6,10 @@ COPY package*.json ./
 
 RUN npm install
 
-# If you are building your code for production, use:
-# RUN npm ci --only=production
-
 COPY . .
 
-EXPOSE 3000
-CMD ["npm", "start"]
+RUN npm run build
+
+EXPOSE 5000
+
+CMD ["node", "dist/app.js"]
