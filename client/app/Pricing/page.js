@@ -25,7 +25,7 @@ const prices = [
 export default function PricingPage() {
 
     return (
-        <div id="pricing" className="flex flex-col w-screen h-screen items-center px-10 py-2 overflow-hidden bg-[#F7B0F2]">        
+        <div id="pricing" className="flex flex-col w-screen h-screen items-center px-10 py-2 overflow-hidden bg-[#6EC0FF]">        
             <h1 className="text-[3em] font-semibold mt-20 text-black">Pricing</h1>
             <div className="w-[44%] flex flex-col justify-center items-center">
                 <p className='mt-3 text-black font-semibold'>Choose the plan that&apos;s right for you. Whether you want a plan</p>

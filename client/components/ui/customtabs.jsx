@@ -2,6 +2,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { PiLockSimpleBold } from "react-icons/pi";
+import { useRouter } from "next/navigation";
 
 export const Tabs = ({
   tabs: propTabs,
@@ -10,6 +12,10 @@ export const Tabs = ({
   tabClassName,
   contentClassName
 }) => {
+  
+  const isSubscribed = false;   
+  const router = useRouter();
+
   const [active, setActive] = useState(propTabs[0]);
   const [tabs, setTabs] = useState(propTabs);
 
@@ -23,6 +29,7 @@ export const Tabs = ({
 
   const [hovering, setHovering] = useState(false);
 
+  
   return (<div className='flex justify-center items-start'>
     <div
       className={cn(
@@ -33,7 +40,12 @@ export const Tabs = ({
         <button
           key={tab.title}
           onClick={() => {
-            moveSelectedTabToTop(idx);
+            if(isSubscribed){
+              moveSelectedTabToTop(idx);
+            }
+            else {
+              router.push("/Pricing");
+            }
           }}
           onMouseEnter={() => setHovering(true)}
           onMouseLeave={() => setHovering(false)}
@@ -51,8 +63,11 @@ export const Tabs = ({
               )} />
           )}
 
-          <span className="relative block text-white dark:text-white">
+          <span className="relative  text-white dark:text-white flex justify-between items-center">
             {tab.title}
+            {
+              !isSubscribed && idx != 0 && <PiLockSimpleBold />
+            }
           </span>
         </button>
       ))}

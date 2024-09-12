@@ -21,7 +21,7 @@ const ReviewPage = () => {
             setCurrentReviewIndex((prevIndex) => 
                 (prevIndex + 1) % dummyReviews.length
             );
-        }, 3000);
+        }, 2000);
 
         return () => clearInterval(interval);
     }, [dummyReviews.length]);

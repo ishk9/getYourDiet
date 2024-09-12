@@ -33,7 +33,7 @@ const ProfilePage = () => {
     return (
         <div className="h-screen w-screen flex flex-col p-4 overflow-hidden items-center">
             {/* Photo section */}
-            <div className="w-[95%] border border-black h-[20%] rounded-[12px] mt-12">
+            <div className="w-[95%] border border-gray-400 h-[20%] rounded-[12px] mt-12">
                 {/* Photo */}
                 <div>
 
