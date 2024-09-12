@@ -7,6 +7,7 @@ const router = express.Router();
 router.post('/signup', validateUser, signupUser);
 router.post('/login', validateLoginUser, loginUser);
 router.patch('/change-password', validatePassword, updatePassword);
+
 /**
  * @openapi
  * '/user/signup':
