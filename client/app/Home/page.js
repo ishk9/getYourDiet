@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react';
 import { IoMdArrowRoundUp } from "react-icons/io";
 import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
 import { generateDiet, verifyResponse } from '@/lib/services';
+import { useRouter } from 'next/navigation';
 
 const HomePage = () => {
+    const router = useRouter();
     const [userInp, setUserInp] = useState('');
     const [showCuisines, setShowCuisines] = useState(false);
     const [selectedCuisines, setSelectedCuisines] = useState([]);
@@ -35,9 +37,10 @@ const HomePage = () => {
                 question: words[currentWordIndex].text,
                 answer: userInp
             };
-            const resp = await verifyResponse(data);
-            console.log("Response: ", resp.data);
-            const response = resp.data.trim();
+            // const resp = await verifyResponse(data);
+            // console.log("Response: ", resp.data);
+            // const response = resp.data.trim();
+            const response = "YES";
             if(response === "YES"){
                 console.log("Yes entered");
                 setCurrentWordIndex(prevIndex => prevIndex + 1);
@@ -71,6 +74,13 @@ const HomePage = () => {
                 try {
                     const resp = await generateDiet(data);
                     console.log("Response:", resp);
+                    const dietPlan = resp;
+                    console.log("Meals: ", dietPlan.data.meals, typeof(dietPlan.data.meals));
+                    
+                    setTimeout(() => {
+                        router.push('/Diet');
+                    }, 2000);
+
                 } catch (err) {
                     console.log("Error:", err);
                 }
@@ -164,7 +174,7 @@ const HomePage = () => {
                             {currentWordIndex < words.length ? (
                                 <TypewriterEffectSmooth 
                                     words={[words[currentWordIndex]]}
-                                    key={currentWordIndex} // Add key prop to force re-render
+                                    key={currentWordIndex}
                                 />
                             ) : (
                                 <div className='flex flex-col justify-center items-end'>
@@ -179,10 +189,14 @@ const HomePage = () => {
                     {!showCuisines &&
                         <div className='h-20 w-[85%] border flex justify-between items-center border-black rounded-2xl mb-4'>
                             <input 
-                                className='h-full w-full rounded-2xl p-2 text-3xl outline-none capitalize' 
+                                className='h-full w-full rounded-2xl p-2 text-3xl outline-none' 
                                 placeholder='Enter questions or answers here'
                                 value={userInp}
-                                onChange={(e) => setUserInp(e.target.value)}
+                                onChange={(e) => {
+                                    const input = e.target.value;
+                                    const capitalizedInput = input.charAt(0).toUpperCase() + input.slice(1);
+                                    setUserInp(capitalizedInput);
+                                }}
                                 onKeyDown={handleKeyDown}
                             />
                             <button 
