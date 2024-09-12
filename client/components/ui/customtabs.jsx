@@ -23,10 +23,10 @@ export const Tabs = ({
 
   const [hovering, setHovering] = useState(false);
 
-  return (<>
+  return (<div className='flex justify-center items-start'>
     <div
       className={cn(
-        "flex flex-row items-center justify-start [perspective:1000px] relative overflow-auto sm:overflow-visible no-visible-scrollbar max-w-full w-full",
+        "flex flex-col items-center justify-start [perspective:1000px] relative overflow-auto sm:overflow-visible no-visible-scrollbar max-w-full w-[20%]",
         containerClassName
       )}>
       {propTabs.map((tab, idx) => (
@@ -37,7 +37,7 @@ export const Tabs = ({
           }}
           onMouseEnter={() => setHovering(true)}
           onMouseLeave={() => setHovering(false)}
-          className={cn("relative px-4 py-2 rounded-xl bg-blue-200 mx-3  border-black h-10 w-40", tabClassName)}
+          className={cn("relative px-4 py-2 rounded-xl bg-[#6EC0FF] my-1  border-black h-20 w-60", tabClassName)}
           style={{
             transformStyle: "preserve-3d",
           }}>
@@ -46,12 +46,12 @@ export const Tabs = ({
               layoutId="clickedbutton"
               transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
               className={cn(
-                "absolute inset-0 bg-blue-400 dark:bg-zinc-800 rounded-xl ",
+                "absolute inset-0 bg-[#4e9ad4] rounded-xl ",
                 activeTabClassName
               )} />
           )}
 
-          <span className="relative block text-black dark:text-white">
+          <span className="relative block text-white dark:text-white">
             {tab.title}
           </span>
         </button>
@@ -62,8 +62,8 @@ export const Tabs = ({
       active={active}
       key={active.value}
       hovering={hovering}
-      className={cn("mt-32", contentClassName)} />
-  </>);
+      className={cn(contentClassName)} />
+  </div>);
 };
 
 export const FadeInDiv = ({
@@ -75,7 +75,7 @@ export const FadeInDiv = ({
     return tab.value === tabs[0].value;
   };
   return (
-    (<div className="relative w-full h-full">
+    (<div className="relative w-1/2 h-full flex justify-start items-start">
       {tabs.map((tab, idx) => (
         <motion.div
           key={tab.value}
@@ -90,12 +90,13 @@ export const FadeInDiv = ({
             y: isActive(tab) ? [0, 40, 0] : 0,
           }}
           className={cn("w-full h-full absolute top-0 left-0", className)}>
-          <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-400 to-blue-400">
-            <p>{tab.title}</p>
+          <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-blue-300 to-blue-800">
+            <p className='mb-4 text-[50px] font-medium'>{tab.title}</p>
+            <hr className='mb-4'/>
             {
               tab.options.map((opt, ind) => (
                 <div key={ind}>
-                  <p className='text-sm'>{opt}</p>
+                  <li className='text-[25px] my-2 font-normal'>{opt}</li>
                 </div>
               ))
             }

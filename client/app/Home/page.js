@@ -4,7 +4,7 @@ import { IoMdArrowRoundUp } from "react-icons/io";
 import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
 import { generateDiet, verifyResponse } from '@/lib/services';
 import { useRouter } from 'next/navigation';
-import DietPage from '../Diet/page';
+import { Tabs } from "../../components/ui/customtabs";
 
 const HomePage = () => {
     const router = useRouter();
@@ -134,7 +134,11 @@ const HomePage = () => {
         <>
             {
                 showDiet ?
-                    <DietPage tabs={tabs}/>
+                    <div className='flex flex-col h-screen w-screen overflow-x-hidden'>
+                        <h1 className='text-3xl leading-[0.9] flex justify-center items-center my-5 mb-24 font-semibold'>Your personalized supplement program. <i className='text-sm ml-2'> | Click to view diet</i></h1>
+                        {/* <DietPage tabs={tabs}/> */}
+                        <Tabs tabs={tabs} />
+                    </div>
                     :
                     <div className='h-screen w-screen flex flex-col justify-center items-center overflow-y-auto'>
                         <div className='h-full w-full justify-center items-center flex flex-col'>
