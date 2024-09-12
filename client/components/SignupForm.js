@@ -16,26 +16,39 @@ const SignupForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [strength, setStrength] = useState(0);
+
+    const getStrength = (pass) => {
+		let strength = 0;
+		if (pass.length >= 6) strength++;
+		if (pass.match(/[a-z]/) && pass.match(/[A-Z]/)) strength++;
+		if (pass.match(/\d/)) strength++;
+		if (pass.match(/[^a-zA-Z\d]/)) strength++;
+		return strength;
+	};
     
     const handleSubmit = async(e) => {
         e.preventDefault();
-    
-        const data = {
-            name,
-            email,
-            password
-        };
-        console.log("Data: ", data);
-        try{
-            const resp = await signup(data);
-            console.log("Token: ", resp.token);
-            localStorage.setItem('token', resp.token);
-            setSignedIn(true);
-            router.push('/Pricing');
-        } catch(err){
-            console.log("Error signing up!");
+        if(strength == 3){
+            const data = {
+                name,
+                email,
+                password
+            };
+            console.log("Data: ", data);
+            try{
+                const resp = await signup(data);
+                console.log("Token: ", resp.token);
+                localStorage.setItem('token', resp.token);
+                setSignedIn(true);
+                router.push('/Pricing');
+            } catch(err){
+                console.log("Error signing up!");
+            }
         }
     };
+
+    
 
     const handleLoginRedirect = () => {
         router.push('/Login');
@@ -83,7 +96,12 @@ const SignupForm = () => {
                         id='password'
                         placeholder='Password'
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => {
+                            setPassword(e.target.value)
+                            const currStrength = getStrength(password);
+                            console.log(currStrength);
+                            setStrength(currStrength);
+                        }}
                         className='w-full pr-3 py-2 border border-l-0 rounded-md rounded-l-none focus:outline-none'
                         required
                     />
@@ -96,7 +114,10 @@ const SignupForm = () => {
                         Sign Up
                     </button>
                 </div>
-                <StrengthMeter password={password}/>
+                {
+                    password &&
+                    <StrengthMeter password={password}/>
+                }
             </form>
             <div className='mt-4 text-center'>
                 <p className='text-gray-700 text-sm'>
