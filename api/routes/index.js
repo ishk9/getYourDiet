@@ -1,5 +1,4 @@
 import express from 'express'
-import heroRoutes from './hero.routes.js'
 const router = express.Router()
 
 /**
@@ -15,6 +14,4 @@ const router = express.Router()
  */
 router.get('/healthcheck', (req, res) => res.sendStatus(200))
 
-router.use(heroRoutes)
-
-export default route
+export default router
