@@ -1,7 +1,7 @@
 import { FaCircleCheck } from "react-icons/fa6";
 function PriceCard({props}) {
     return (
-        <button className={`flex flex-col ${props.popular ? "h-5/6" : "h-4/6"} w-1/5 shadow-lg shadow-slate-600 bg-slate-50 rounded-xl mx-3 p-5 transition-transform duration-300 hover:scale-105`}>
+        <button className={`flex flex-col ${props.popular ? "h-[30%] md:h-5/6" : "h-[30%] md:h-4/6"} md:w-1/5 w-full sm:w-full shadow-lg shadow-slate-600 bg-slate-50 rounded-xl mx-3 p-5 transition-transform duration-300 hover:scale-105`}>
             <div className="h-3/4 flex flex-col justify-center items-start">
                 <h1 className="text-base text-black font-semibold uppercase">{props.title}</h1>
                 {

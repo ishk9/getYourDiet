@@ -142,7 +142,7 @@ const HomePage = () => {
                     :
                     <div className='h-screen w-screen flex flex-col justify-center items-center overflow-y-auto'>
                         <div className='h-full w-full justify-center items-center flex flex-col'>
-                            <div className='h-full flex flex-col justify-center items-center w-[75%]'>
+                            <div className='h-full flex flex-col justify-center items-center w-full md:w-[75%]'>
 
                                 {showCuisines && !startQues &&
                                     <div className='flex flex-col w-[75%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center '>
@@ -169,18 +169,18 @@ const HomePage = () => {
                                     </div>
                                 }
                                 {!showCuisines && !startQues &&
-                                    <div className='flex flex-col w-[75%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center '>
-                                        <h1 className='text-[45px] font-normal leading-[1]'>Lets get started. Type in either your <span className='text-[#6EC0FF]'>health goals, issues,</span> or <span className='text-[#6EC0FF]'>both</span>.</h1>
-                                        <div className='flex  w-full justify-start items-center mt-6'>
+                                    <div className='flex flex-col w-full md:w-[75%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center'>
+                                        <h1 className='md:text-[45px] font-normal leading-[1] text-[24px] ml-2'>Lets get started. Type in either your <span className='text-[#6EC0FF]'>health goals, issues,</span> or <span className='text-[#6EC0FF]'>both</span>.</h1>
+                                        <div className='flex md:flex-row flex-col w-full justify-start items-center mt-6'>
                                             <button 
                                                 onClick={() => setShowCuisines(true)}
-                                                className='w-[25%] h-12 bg-[#6EC0FF] hover:bg-[#4e9ad4] rounded-2xl mr-3 flex justify-center items-center'>
+                                                className='w-[90%] md:w-[25%] h-12 bg-[#6EC0FF] hover:bg-[#4e9ad4] rounded-2xl md:mr-3 flex justify-center items-center'>
                                                 <p className='text-white font-medium'>Choose my own cuisines</p>
                                             </button>
 
                                             <button 
                                                 onClick={() => setStartQues(true)}
-                                                className='w-1/3 h-12 bg-black hover:bg-[#292929] rounded-2xl mx-3 flex justify-center items-center'
+                                                className='w-[90%] md:mt-0 mt-2 md:w-1/3 h-12 bg-black hover:bg-[#292929] rounded-2xl mx-3 flex justify-center items-center'
                                             >
                                                 <p className='text-white font-medium'>Not sure where to start?</p>
                                             </button>
@@ -206,9 +206,9 @@ const HomePage = () => {
 
                                 {/* Chat box */}
                                 {!showCuisines &&
-                                    <div className='h-20 w-[85%] border flex justify-between items-center border-black rounded-2xl mb-4'>
+                                    <div className='h-14 md:h-20 md:w-[85%] w-[95%] border flex justify-between items-center border-black rounded-2xl mb-4'>
                                         <input 
-                                            className='h-full w-full rounded-2xl p-2 text-3xl outline-none' 
+                                            className='h-full w-full rounded-2xl p-2 text-base md:text-3xl outline-none' 
                                             placeholder='Enter questions or answers here'
                                             value={userInp}
                                             onChange={(e) => {

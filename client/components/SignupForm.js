@@ -55,7 +55,7 @@ const SignupForm = () => {
     };
 
     return (
-        <div className='w-full max-w-sm mx-auto bg-white shadow-md rounded-lg p-6'>
+        <div className='w-full max-w-sm mx-auto bg-white border shadow-md rounded-lg p-6'>
             <h2 className='text-2xl font-bold mb-6 text-center'>Sign Up</h2>
             {error && <p className='text-red-500 text-sm mb-4'>{error}</p>}
             <form onSubmit={handleSubmit}>

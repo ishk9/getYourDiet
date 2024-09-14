@@ -27,14 +27,14 @@ const ReviewPage = () => {
     }, [dummyReviews.length]);
 
     return (
-        <div id="reviews" className='h-[70%] w-screen bg-white py-20 flex justify-center items-center'>
-            <div className='w-1/2 h-full flex justify-center items-center'>
-                <h1 className='text-4xl font-bold font-sans w-2/3 uppercase'>
+        <div id="reviews" className='h-[70%] w-screen bg-white py-20 flex flex-col md:flex-row justify-center items-center'>
+            <div className='w-full md:w-1/2 h-full flex justify-center items-center'>
+                <h1 className='text-xl md:text-4xl font-bold font-sans w-2/3 uppercase'>
                     Making your fitness journey easier
                 </h1>
             </div>
 
-            <div className='w-1/2 h-full flex justify-center items-center'>
+            <div className='md:w-1/2 w-full md:mt-0 mt-6 h-full flex justify-center items-center'>
                 <ReviewBox 
                     review={dummyReviews[currentReviewIndex].review} 
                     name={dummyReviews[currentReviewIndex].name} 

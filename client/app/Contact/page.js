@@ -49,18 +49,18 @@ export default function Contact() {
     }
 
     return (
-        <div id="contact" className="h-screen w-screen flex justify-evenly items-center px-10 py-2 bg-black">
+        <div id="contact" className="h-screen w-screen flex md:flex-row flex-col justify-evenly items-center px-10 py-2 bg-black">
             <div className='w-1/2 h-full'>
 
             </div>
 
-            <div className='w-1/2 h-full flex flex-col justify-center items-center'>
-                <div className='flex flex-col w-[65%]  justify-start items-start'>
+            <div className='w-full h-full flex flex-col justify-center items-center'>
+                <div className='flex flex-col md:w-[65%] w-full justify-start items-start'>
                     <h1 className="text-xl font-semibold text-white">Would love to hear from you.</h1>
                     <p className="text-xl font-semibold text-white">Get in touch!</p>
                 </div>
 
-                <div className="flex flex-col h-80 w-[65%] justify-start items-center">
+                <div className="flex flex-col h-80 md:w-[65%] w-full justify-start items-center">
                     <div className='w-full mt-2'>
                         <p className='text-sm text-white'>Name</p>
                         <input
@@ -95,9 +95,7 @@ export default function Contact() {
                         >
                             <p className='text-white'>Submit</p>
                         </button>
-                    </div>
-                        
-                    
+                    </div>            
                 </div>
             </div>
         </div>
