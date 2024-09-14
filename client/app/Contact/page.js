@@ -66,7 +66,7 @@ export default function Contact() {
                         <input
                             value={name}
                             onChange={(e) => setName(e.target.value)} 
-                            className='h-12 rounded-sm w-[80%] border-white border mt-1 p-1 outline-none'
+                            className='h-12 rounded-sm w-[100%] border-white border mt-1 p-1 outline-none'
                         />
                     </div>
 
@@ -75,7 +75,7 @@ export default function Contact() {
                         <input
                             value={email}
                             onChange={(e) => setEmail(e.target.value)} 
-                            className='h-12 rounded-sm w-[80%] border-white border mt-1 p-1 outline-none'
+                            className='h-12 rounded-sm w-[100%] border-white border mt-1 p-1 outline-none'
                         />
                     </div>
 
@@ -84,13 +84,13 @@ export default function Contact() {
                         <input
                             value={feedback}
                             onChange={(e) => setFeedback(e.target.value)} 
-                            className='h-12 rounded-sm w-[80%] border-white border mt-1 p-1 outline-none'
+                            className='h-12 rounded-sm w-[100%] border-white border mt-1 p-1 outline-none'
                         />
                     </div>
 
                     <div className='w-full mt-6'>
                         <button 
-                            className='p-3 border w-[80%] border-white rounded-md hover:scale-105'
+                            className='p-3 border w-[100%] border-white rounded-md hover:scale-105'
                             onClick={() => handleSubmitDetails()}
                         >
                             <p className='text-white'>Submit</p>
