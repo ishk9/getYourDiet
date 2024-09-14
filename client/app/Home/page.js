@@ -140,13 +140,13 @@ const HomePage = () => {
                         <Tabs tabs={tabs} />
                     </div>
                     :
-                    <div className='h-auto md:h-screen w-screen flex flex-col justify-center items-center overflow-y-auto'>
+                    <div className={`${showCuisines ? 'h-auto' : 'h-screen'} md:h-screen w-screen flex flex-col justify-center items-center overflow-y-auto`}>
                         <div className='h-full w-full justify-center items-center flex flex-col'>
                             <div className='h-full flex flex-col justify-center items-center w-full md:w-[75%]'>
 
                                 {
                                     showCuisines && !startQues &&
-                                    <div className='flex flex-col w-[90%] sm:w-[75%] md:h-full h-auto justify-center items-center'>
+                                    <div className='flex flex-col w-[90%] sm:w-[75%] h-auto justify-center items-center'>
                                         <h1 className='text-[30px] sm:text-[45px] font-normal leading-[1] text-center mt-4 md:mt-0'>Choose your cuisines<span className='text-base font-semibold ml-2'>({selectedCuisines.length}/7)</span></h1>
                                         <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full mt-4'>
                                             {cuisines.map((cuisine, index) => (
