@@ -140,26 +140,26 @@ const HomePage = () => {
                         <Tabs tabs={tabs} />
                     </div>
                     :
-                    <div className='h-screen w-screen flex flex-col justify-center items-center overflow-y-auto'>
+                    <div className='h-auto md:h-screen w-screen flex flex-col justify-center items-center overflow-y-auto'>
                         <div className='h-full w-full justify-center items-center flex flex-col'>
                             <div className='h-full flex flex-col justify-center items-center w-full md:w-[75%]'>
 
                                 {
                                     showCuisines && !startQues &&
-                                    <div className='flex flex-col w-[90%] sm:w-[75%] h-full justify-center items-center'>
-                                        <h1 className='text-[30px] sm:text-[45px] font-normal leading-[1] text-center mt-12 md:mt-0'>Choose your cuisines<span className='text-base font-semibold ml-2'>({selectedCuisines.length}/7)</span></h1>
+                                    <div className='flex flex-col w-[90%] sm:w-[75%] md:h-full h-auto justify-center items-center'>
+                                        <h1 className='text-[30px] sm:text-[45px] font-normal leading-[1] text-center mt-4 md:mt-0'>Choose your cuisines<span className='text-base font-semibold ml-2'>({selectedCuisines.length}/7)</span></h1>
                                         <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full mt-4'>
-                                        {cuisines.map((cuisine, index) => (
-                                            <button 
-                                            key={index} 
-                                            onClick={() => handleCuisineSelect(index)}
-                                            className={`h-24 hover:scale-105 rounded-2xl flex justify-center items-center border border-[#CCCCCC] ${selectedCuisines.includes(index) ? 'bg-[#81C784]' : 'bg-[#F5F5F5]'} ${!selectedCuisines.includes(index) && 'hover:bg-[#E0E0E0]'}`}
-                                            >
-                                            <p className={`${selectedCuisines.includes(index) ? 'text-white' : 'text-[#333333]'} font-medium`}>{cuisine}</p>
-                                            </button>
-                                        ))}
+                                            {cuisines.map((cuisine, index) => (
+                                                <button 
+                                                    key={index} 
+                                                    onClick={() => handleCuisineSelect(index)}
+                                                    className={`h-24 hover:scale-105 rounded-2xl flex justify-center items-center border border-[#CCCCCC] ${selectedCuisines.includes(index) ? 'bg-[#81C784]' : 'bg-[#F5F5F5]'} ${!selectedCuisines.includes(index) && 'hover:bg-[#E0E0E0]'}`}
+                                                >
+                                                    <p className={`${selectedCuisines.includes(index) ? 'text-white' : 'text-[#333333]'} font-medium`}>{cuisine}</p>
+                                                </button>
+                                            ))}
                                         </div>
-                                        <div className='w-full mt-4 flex justify-end items-end'>
+                                        <div className='w-full my-4 flex justify-end items-end'>
                                             <button 
                                                 className='bg-[#6EC0FF] hover:bg-[#4e9ad4] h-10 w-20 rounded-full'
                                                 onClick={() => handleSubmitCusines()}
