@@ -144,19 +144,20 @@ const HomePage = () => {
                         <div className='h-full w-full justify-center items-center flex flex-col'>
                             <div className='h-full flex flex-col justify-center items-center w-full md:w-[75%]'>
 
-                                {showCuisines && !startQues &&
-                                    <div className='flex flex-col w-[75%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center '>
-                                        <h1 className='text-[45px] font-normal leading-[1]'>Choose your cuisines<span className='text-base font-semibold ml-2'>({selectedCuisines.length}/7)</span></h1>
-                                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full mt-6'>
-                                            {cuisines.map((cuisine, index) => (
-                                                <button 
-                                                    key={index} 
-                                                    onClick={() => handleCuisineSelect(index)}
-                                                    className={`h-24 hover:scale-105 rounded-2xl flex justify-center items-center border border-[#CCCCCC] ${selectedCuisines.includes(index) ? 'bg-[#81C784]' : 'bg-[#F5F5F5]'} ${!selectedCuisines.includes(index) && 'hover:bg-[#E0E0E0]'}`}
-                                                >
-                                                    <p className={`${selectedCuisines.includes(index) ? 'text-white' : 'text-[#333333]'} font-medium`}>{cuisine}</p>
-                                                </button>
-                                            ))}
+                                {
+                                    showCuisines && !startQues &&
+                                    <div className='flex flex-col w-[90%] sm:w-[75%] h-full justify-center items-center'>
+                                        <h1 className='text-[30px] sm:text-[45px] font-normal leading-[1] text-center mt-12 md:mt-0'>Choose your cuisines<span className='text-base font-semibold ml-2'>({selectedCuisines.length}/7)</span></h1>
+                                        <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full mt-4'>
+                                        {cuisines.map((cuisine, index) => (
+                                            <button 
+                                            key={index} 
+                                            onClick={() => handleCuisineSelect(index)}
+                                            className={`h-24 hover:scale-105 rounded-2xl flex justify-center items-center border border-[#CCCCCC] ${selectedCuisines.includes(index) ? 'bg-[#81C784]' : 'bg-[#F5F5F5]'} ${!selectedCuisines.includes(index) && 'hover:bg-[#E0E0E0]'}`}
+                                            >
+                                            <p className={`${selectedCuisines.includes(index) ? 'text-white' : 'text-[#333333]'} font-medium`}>{cuisine}</p>
+                                            </button>
+                                        ))}
                                         </div>
                                         <div className='w-full mt-4 flex justify-end items-end'>
                                             <button 
@@ -170,7 +171,7 @@ const HomePage = () => {
                                 }
                                 {!showCuisines && !startQues &&
                                     <div className='flex flex-col w-full md:w-[75%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center'>
-                                        <h1 className='md:text-[45px] font-normal leading-[1] text-[24px] ml-2'>Lets get started. Type in either your <span className='text-[#6EC0FF]'>health goals, issues,</span> or <span className='text-[#6EC0FF]'>both</span>.</h1>
+                                        <h1 className='md:text-[45px] font-normal leading-[1] text-[24px] ml-5 md:ml-0'>Lets get started. Type in either your <span className='text-[#6EC0FF]'>health goals, issues,</span> or <span className='text-[#6EC0FF]'>both</span>.</h1>
                                         <div className='flex md:flex-row flex-col w-full justify-start items-center mt-6'>
                                             <button 
                                                 onClick={() => setShowCuisines(true)}
@@ -220,7 +221,7 @@ const HomePage = () => {
                                         />
                                         <button 
                                             onClick={() => handleAnswerSubmit()}
-                                            className='flex justify-center items-center h-12 w-12 bg-black rounded-full p-1 mr-2 hover:bg-[#292929]'
+                                            className='flex justify-center items-center h-12 md:w-12 w-14 bg-black rounded-full p-0 md:p-1 mr-2 hover:bg-[#292929]'
                                         >
                                             <IoMdArrowRoundUp color='white' size={22}/>
                                         </button>
