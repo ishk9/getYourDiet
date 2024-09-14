@@ -19,7 +19,7 @@ app.use(cors({
     origin: 'http://localhost:3000',
     methods: 'GET,POST,PUT,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type, Authorization'
-  }));
+}));
 
 app.use('/feedback', feedbackRoutes); 
 app.use('/user', userRoutes);
