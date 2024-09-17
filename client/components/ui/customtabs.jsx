@@ -30,7 +30,7 @@ export const Tabs = ({
   const [hovering, setHovering] = useState(false);
 
   
-  return (<div className='flex justify-center items-start'>
+  return (<div className='flex flex-col lg:flex-row justify-center items-start'>
     <div
       className={cn(
         "flex flex-col items-center justify-start [perspective:1000px] relative overflow-auto sm:overflow-visible no-visible-scrollbar max-w-full w-[20%]",
