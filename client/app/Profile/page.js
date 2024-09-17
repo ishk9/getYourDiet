@@ -1,5 +1,5 @@
 "use client";
-import react, { useState } from "react";
+import react, { useState, useEffect } from "react";
 import { HiOutlineMail } from "react-icons/hi";
 import { FiPhoneCall } from "react-icons/fi";
 import {
@@ -8,13 +8,29 @@ import {
     TabsList,
     TabsTrigger,
   } from "@/components/ui/tabs"
-import { changePassword } from "@/lib/services";
+import { changePassword, getUserDetails } from "@/lib/services";
 
 const ProfilePage = () => {
     const [currPass, setCurrPass] = useState('');
     const [newPass, setNewPass] = useState('');
     const [confmPass, setConfmPass] = useState('');
     const [err, setErr] = useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+
+    useEffect(() => {
+        const fetchData = async() => {
+            try{
+                const resp = await getUserDetails();
+                console.log("Resp: ", resp);
+                setName(resp.data.name);
+                setEmail(resp.data.email);
+            } catch(err){
+                console.log("Error fetching user data: ", err);
+            }
+        }
+        fetchData();
+    }, []);
 
     const handleSubmitChange = async() => {
         if(newPass != confmPass){
@@ -40,11 +56,11 @@ const ProfilePage = () => {
                 </div>
                 {/* Details */}
                 <div className="flex flex-col justify-start items-start p-3">
-                    <h1 className="text-xl font-semibold">Ishaan Khullar</h1>
+                    <h1 className="text-xl font-semibold">{name}</h1>
 
                     <div className="flex justify-center items-center">
                         <HiOutlineMail size={24} className="text-black/80"/>
-                        <p className="ml-1 text-black/80 text-sm font-semibold">test@eg.com</p>
+                        <p className="ml-1 text-black/80 text-sm font-semibold">{email}</p>
                     </div>
                 </div>
             </div>

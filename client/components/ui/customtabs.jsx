@@ -13,7 +13,7 @@ export const Tabs = ({
   contentClassName
 }) => {
   
-  const isSubscribed = false;   
+  const isSubscribed = true;   
   const router = useRouter();
 
   const [active, setActive] = useState(propTabs[0]);
@@ -30,55 +30,57 @@ export const Tabs = ({
   const [hovering, setHovering] = useState(false);
 
   
-  return (<div className='flex flex-col lg:flex-row justify-center items-start'>
-    <div
-      className={cn(
-        "flex flex-col items-center justify-start [perspective:1000px] relative overflow-auto sm:overflow-visible no-visible-scrollbar max-w-full w-[20%]",
-        containerClassName
-      )}>
-      {propTabs.map((tab, idx) => (
-        <button
-          key={tab.title}
-          onClick={() => {
-            if(isSubscribed){
-              moveSelectedTabToTop(idx);
-            }
-            else {
-              router.push("/Pricing");
-            }
-          }}
-          onMouseEnter={() => setHovering(true)}
-          onMouseLeave={() => setHovering(false)}
-          className={cn("relative px-4 py-2 rounded-xl bg-[#6EC0FF] my-1  border-black h-20 w-60", tabClassName)}
-          style={{
-            transformStyle: "preserve-3d",
-          }}>
-          {active.value === tab.value && (
-            <motion.div
-              layoutId="clickedbutton"
-              transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
-              className={cn(
-                "absolute inset-0 bg-[#4e9ad4] rounded-xl ",
-                activeTabClassName
-              )} />
-          )}
+  return (
+    <div className='flex flex-col lg:flex-row justify-center items-start'>
+      <div
+        className={cn(
+          "flex flex-col items-center justify-start [perspective:1000px] relative overflow-auto sm:overflow-visible no-visible-scrollbar max-w-full w-[20%]",
+          containerClassName
+        )}>
+        {propTabs.map((tab, idx) => (
+          <button
+            key={tab.title}
+            onClick={() => {
+              if(isSubscribed){
+                moveSelectedTabToTop(idx);
+              }
+              else {
+                router.push("/Pricing");
+              }
+            }}
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+            className={cn("relative px-4 py-2 rounded-xl bg-[#6EC0FF] my-1  border-black h-20 w-60", tabClassName)}
+            style={{
+              transformStyle: "preserve-3d",
+            }}>
+            {active.value === tab.value && (
+              <motion.div
+                layoutId="clickedbutton"
+                transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
+                className={cn(
+                  "absolute inset-0 bg-[#4e9ad4] rounded-xl ",
+                  activeTabClassName
+                )} />
+            )}
 
-          <span className="relative  text-white dark:text-white flex justify-between items-center">
-            {tab.title}
-            {
-              !isSubscribed && idx != 0 && <PiLockSimpleBold />
-            }
-          </span>
-        </button>
-      ))}
+            <span className="relative  text-white dark:text-white flex justify-between items-center">
+              {tab.title}
+              {
+                !isSubscribed && idx != 0 && <PiLockSimpleBold />
+              }
+            </span>
+          </button>
+        ))}
+      </div>
+      <FadeInDiv
+        tabs={tabs}
+        active={active}
+        key={active.value}
+        hovering={hovering}
+        className={cn(contentClassName)} />
     </div>
-    <FadeInDiv
-      tabs={tabs}
-      active={active}
-      key={active.value}
-      hovering={hovering}
-      className={cn(contentClassName)} />
-  </div>);
+  );
 };
 
 export const FadeInDiv = ({
@@ -90,7 +92,7 @@ export const FadeInDiv = ({
     return tab.value === tabs[0].value;
   };
   return (
-    (<div className="relative w-1/2 h-full flex justify-start items-start">
+    (<div className="relative w-full lg:w-1/2 h-full flex justify-start items-start">
       {tabs.map((tab, idx) => (
         <motion.div
           key={tab.value}

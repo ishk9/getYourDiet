@@ -135,9 +135,12 @@ const HomePage = () => {
             {
                 showDiet ?
                     <div className='flex flex-col h-screen w-screen overflow-x-hidden'>
-                        <h1 className='text-3xl leading-[0.9] flex justify-center items-center my-5 mb-24 font-semibold'>Your personalized supplement program. <i className='text-sm ml-2'> | Click to view diet</i></h1>
-                        {/* <DietPage tabs={tabs}/> */}
-                        <Tabs tabs={tabs} />
+                        <div className='flex lg:flex-row flex-col mb-24 p-5  lg:justify-start lg:items-end'>
+                            <h1 className='text-3xl leading-[0.9] flex justify-center items-center font-semibold'>Your personalized supplement program.</h1>
+                            <i className='text-sm lg:ml-2 mt-4 lg:mt-0'> | Click to view diet</i>
+                        </div>
+
+                        {/* <Tabs tabs={tabs} /> */}
                     </div>
                     :
                     <div className={`${showCuisines ? 'h-auto' : 'h-screen'} md:h-screen w-screen flex flex-col justify-center items-center overflow-y-auto`}>

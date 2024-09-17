@@ -1,15 +1,20 @@
 import axios from "axios";
 
-const sendRequest = async(type, url, data, config = {}) => {
-    try{
-        const resp = await axios[type](url, data, config);
+const sendRequest = async (type, url, data = {}, config = {}) => {
+    try {
+        let resp;
+        if (type === 'get') {
+            resp = await axios.get(url, config);
+        } else {
+            resp = await axios[type](url, data, config);
+        }
         console.log("Response: ", resp.data);
         return resp.data;
+    } catch (err) {
+        console.log("Error sending request to backend!", err.response?.data || err.message);
     }
-    catch(err){
-        console.log("Error sending req to backend!");
-    }
-}
+};
+
 
 // Feedback services
 export const sendUserFeedback = async(data) => {
@@ -41,4 +46,15 @@ export const verifyResponse = async(data) => {
 
 export const generateDiet = async(data) => {
     return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/llm-response/diet`, data);
+}
+
+export const getUserDetails = async () => {
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    return await sendRequest('get', `${process.env.NEXT_PUBLIC_API_URL}/user/${userId}`, null, config);
 }
