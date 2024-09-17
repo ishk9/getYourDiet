@@ -33,7 +33,7 @@ const ProfilePage = () => {
     return (
         <div className="h-screen w-screen flex flex-col p-4 overflow-hidden items-center">
             {/* Photo section */}
-            <div className="w-[95%] border border-gray-400 h-[20%] rounded-[12px] mt-12">
+            <div className="w-[100%] border border-gray-400 h-[15%] rounded-[12px] mt-12">
                 {/* Photo */}
                 <div>
 
@@ -41,27 +41,20 @@ const ProfilePage = () => {
                 {/* Details */}
                 <div className="flex flex-col justify-start items-start p-3">
                     <h1 className="text-xl font-semibold">Ishaan Khullar</h1>
-                    <div className="flex mt-2">
-                        <div className="flex justify-center items-center">
-                            <HiOutlineMail size={24} className="text-black/80"/>
-                            <p className="ml-1 text-black/80 text-sm font-semibold">test@eg.com</p>
-                        </div>
-                        <div className="flex justify-center items-center ml-6">
-                            <FiPhoneCall size={20} className="text-black/80"/>
-                            <p className="ml-1 text-black/80 text-sm font-semibold">0000000000</p>
-                        </div>
+
+                    <div className="flex justify-center items-center">
+                        <HiOutlineMail size={24} className="text-black/80"/>
+                        <p className="ml-1 text-black/80 text-sm font-semibold">test@eg.com</p>
                     </div>
                 </div>
             </div>
 
-            <div className="w-[95%] mt-6 h-[80%]"> 
+            <div className="w-[100%] mt-6 h-[80%]"> 
                 <Tabs defaultValue="account" className="w-full h-full">
-                    <TabsList className="grid w-full grid-cols-5">
+                    <TabsList className="grid w-full grid-cols-3 justify-around">
                         <TabsTrigger value="account">Diet Plans</TabsTrigger>
                         <TabsTrigger value="password">Manage Password</TabsTrigger>
-                        <TabsTrigger value="orderhistory">Order History</TabsTrigger>
                         <TabsTrigger value="paymentmethod">Payment methods</TabsTrigger>
-                        {/* <TabsTrigger value="notifications">Notification</TabsTrigger> */}
                     </TabsList>
                     <TabsContent value="account">
                         <div className="w-screen bg-red-500">
@@ -70,7 +63,7 @@ const ProfilePage = () => {
                     </TabsContent>
                     <TabsContent value="password">
                         <div className="w-screen flex flex-col mt-12">
-                            <div className='w-1/4 mb-3'>
+                            <div className='w-[90%] md:w-1/4 mb-3'>
                                 <input
                                     type='password' 
                                     placeholder='Current password'
@@ -80,7 +73,7 @@ const ProfilePage = () => {
 
                                 />
                             </div>
-                            <div className='w-1/4 mb-3'>
+                            <div className='w-[90%] md:w-1/4 mb-3'>
                                 <input
                                     type='password' 
                                     placeholder='New password'
@@ -89,7 +82,7 @@ const ProfilePage = () => {
                                     className='w-full border rounded-md p-2 border-gray-400 focus:border-black outline-none hover:border-black'
                                 />
                             </div>
-                            <div className='w-1/4'>
+                            <div className='w-[90%] md:w-1/4'>
                                 <input
                                     type='password' 
                                     placeholder='Confirm password'
@@ -102,7 +95,7 @@ const ProfilePage = () => {
                                 err &&
                                 <p className='text-sm text-red-600'>{err}</p>
                             }
-                            <div className='w-1/4 mt-4'>
+                            <div className='w-[90%] md:w-1/4 mt-4'>
                                 <button 
                                     onClick={() => handleSubmitChange()}
                                     className='border rounded-md p-2 bg-[#6EC0FF] hover:bg-[#4ca4e8] w-[25%]'
