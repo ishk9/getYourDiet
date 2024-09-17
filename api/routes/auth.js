@@ -1,12 +1,13 @@
 import express from "express";
-import { validateUser, validateLoginUser, validatePassword } from "../validations/auth.js";
-import { signupUser, loginUser, updatePassword } from "../controllers/auth.js";
+import { validateUser, validateLoginUser, validatePassword, validateGetUser } from "../validations/auth.js";
+import { signupUser, loginUser, updatePassword, getUserDetails } from "../controllers/auth.js";
 
 const router = express.Router();
 
 router.post('/signup', validateUser, signupUser);
 router.post('/login', validateLoginUser, loginUser);
 router.patch('/change-password', validatePassword, updatePassword);
+router.get('/:userId', validateGetUser, getUserDetails);
 
 /**
  * @openapi

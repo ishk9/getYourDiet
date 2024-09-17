@@ -74,6 +74,35 @@ const updatePassword = async (req, res) => {
     }
 };
 
+const getUserDetails = async (req, res) => {
+    const userId = req.params.userId;
+    const token = req.headers.authorization?.split(' ')[1];
+    
+    if (!token) {
+        return res.status(401).json({ error: 'Authorization token required' });
+    }
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        
+        if (decoded.id !== userId) {
+            return res.status(403).json({ error: 'Unauthorized access' });
+        }
+
+        const user = await User.findById(userId).select('-password');
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.status(200).json({ message: 'User details retrieved successfully', data: user });
+    } catch (err) {
+        if (err.name === 'JsonWebTokenError') {
+            return res.status(401).json({ error: 'Invalid token' });
+        }
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
 
 
-export { signupUser, loginUser, updatePassword };
+
+export { signupUser, loginUser, updatePassword, getUserDetails };

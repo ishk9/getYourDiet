@@ -42,7 +42,23 @@ const validatePassword = (req, res, next) => {
     }
     next();
 }
+const getUserValidationSchema = Joi.object({
+    userId: Joi.string().required()
+});
 
+const validateGetUser = (req, res, next) => {
+    const { error } = getUserValidationSchema.validate({ userId: req.params.userId });
+    if (error) {
+        console.log("Validation error while getting user details: ", error.details[0].message);
+        return res.status(400).json({ error: error.details[0].message });
+    }
 
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+        return res.status(401).json({ error: 'Authorization token is required' });
+    }
 
-export { validateUser, validateLoginUser, validatePassword };
+    next();
+};
+
+export { validateUser, validateLoginUser, validatePassword, validateGetUser };
