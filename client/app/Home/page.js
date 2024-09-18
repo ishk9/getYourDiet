@@ -4,7 +4,7 @@ import { IoMdArrowRoundUp } from "react-icons/io";
 import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
 import { generateDiet, verifyResponse } from '@/lib/services';
 import { useRouter } from 'next/navigation';
-import { Tabs } from "../../components/ui/customtabs";
+import  DietPage  from '../Diet/page.js';
 
 const HomePage = () => {
     const router = useRouter();
@@ -14,7 +14,7 @@ const HomePage = () => {
     const [selectedCuisines, setSelectedCuisines] = useState([]);
     const [startQues, setStartQues] = useState(false);
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
-    const [answers, setAnswers] = useState({}); // To store answers for each question
+    const [answers, setAnswers] = useState({});
     
     const handleCuisineSelect = (index) => {
         if (selectedCuisines.includes(index)) {
@@ -88,7 +88,7 @@ const HomePage = () => {
             
                     setTabs(transformedTabs);
                     setTimeout(() => {
-                        setShowDiet(true);
+                        router.push('/Diet');
                     }, 2000);
 
                 } catch (err) {
@@ -135,11 +135,11 @@ const HomePage = () => {
             {
                 showDiet ?
                     <div className='flex flex-col h-screen w-screen overflow-x-hidden'>
-                        <div className='flex lg:flex-row flex-col mb-24 p-5  lg:justify-start lg:items-end'>
+                        <div className='flex lg:flex-row flex-col mb-24 p-5  lg:justify-center lg:items-center'>
                             <h1 className='text-3xl leading-[0.9] flex justify-center items-center font-semibold'>Your personalized supplement program.</h1>
                             <i className='text-sm lg:ml-2 mt-4 lg:mt-0'> | Click to view diet</i>
                         </div>
-
+                        <DietPage />
                         {/* <Tabs tabs={tabs} /> */}
                     </div>
                     :
