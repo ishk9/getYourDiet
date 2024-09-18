@@ -15,6 +15,7 @@ const validatellmResponse = (req, res, next) => {
 };
 
 const llmRequirementSchema = Joi.object({
+    userId: Joi.string().required(),
     requirements: Joi.string().required(),
 });
 

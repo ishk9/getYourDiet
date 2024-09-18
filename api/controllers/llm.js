@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import Diet from "../models/diet.js";
 
 const formulateResponse = async (req, res) => {
     const { question, answer } = req.body;
@@ -21,7 +22,7 @@ const formulateResponse = async (req, res) => {
 };
 
 const generateDiet = async (req, res) => {
-    const { requirements } = req.body;
+    const { userId, requirements } = req.body;
     console.log("Body is", req.body);
     try {
         // const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
@@ -45,9 +46,6 @@ const generateDiet = async (req, res) => {
         const jsonResponse = {
             "title": "Ironman Prep Diet Plan",
             "goal": "Fueling for Ironman Training",
-            "frequency": "5 meals per day",
-            "activity level": "Moderate",
-            "allergies": "None",
             "meals": [
               {
                 "meal_time": "Breakfast (7:00 AM)",
@@ -91,14 +89,16 @@ const generateDiet = async (req, res) => {
               }
             ],
             "explanation": "This diet plan focuses on providing you with the necessary nutrients to support your Ironman training. It emphasizes complex carbohydrates for energy, lean protein for muscle recovery, and healthy fats for hormone production. Five meals per day ensure consistent energy levels throughout the day.",
-            "importantConsiderations": [
+            "importanConsiderations": [
               "Hydration is crucial during Ironman training. Aim to drink water throughout the day.",
               "Adjust portion sizes based on your individual needs and training intensity.",
               "Listen to your body and adjust your diet as needed.",
               "Consult with a registered dietitian for personalized advice."
             ]
-          }
-          
+        }
+        jsonResponse.userId = userId;
+        const currDiet = new Diet(jsonResponse);
+        await currDiet.save();
         res.status(201).json({ message: 'Response generated successfully', data: jsonResponse });
 
     } catch (err) {
@@ -107,7 +107,21 @@ const generateDiet = async (req, res) => {
     }
 };
 
+const getDiet = async (req, res) => {
+  const userId = req.params.userId;
+  console.log("UserId: ", userId);
+  try {
+      const diet = await Diet.findOne({userId});
+      console.log("Diet", diet);
+      if (!diet) {
+          return res.status(404).json({ error: 'Diet not found' });
+      }
+
+      res.status(200).json({ message: 'Diet details retrieved successfully', data: diet });
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
 
 
-
-export { formulateResponse, generateDiet };
+export { formulateResponse, generateDiet, getDiet };
