@@ -20,11 +20,11 @@ export default function ExpandableCardDemo() {
           ctaText: "show",
           ctaLink: "https://ui.aceternity.com/templates",
           content: () => (
-            <ul>
+            <div>
               {meal.options.map((option, idx) => (
-                <li key={idx}>{option}</li>
+                <li className='my-[2px]' key={idx}>{option}</li>
               ))}
-            </ul>
+            </div>
           ),
         }));
 
@@ -145,7 +145,7 @@ export default function ExpandableCardDemo() {
         </div>
       ) : null}
     </AnimatePresence>
-    <ul className="max-w-2xl mx-auto w-full gap-4">
+    <ul className="max-w-2xl mx-auto w-full gap-4 flex flex-col">
       {cards.map((card, index) => (
         <motion.div
           layoutId={`card-${card.title}-${id}`}
@@ -153,7 +153,7 @@ export default function ExpandableCardDemo() {
           onClick={() => setActive(card)}
           className="p-4 flex flex-col md:flex-row justify-between items-center hover:bg-neutral-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer">
           <div className="flex gap-4 flex-col md:flex-row ">
-            <motion.div layoutId={`image-${card.title}-${id}`}>
+            <motion.div layoutId={`image-${card.title}-${id}`} className='flex justify-center items-center'>
               <Image
                 width={100}
                 height={100}
