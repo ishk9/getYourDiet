@@ -2,7 +2,7 @@
 
 const nextConfig = {
     images: {
-      domains: ['placehold.co'],
+      domains: ['assets.aceternity.com'],
       remotePatterns: [
         {
           protocol: 'https',
