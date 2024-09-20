@@ -30,26 +30,6 @@ export const login = async(data) => {
     return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/user/login`, data);
 }
 
-export const changePassword = async(data) => {
-    const token = localStorage.getItem('token');
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    };
-    return await sendRequest('patch', `${process.env.NEXT_PUBLIC_API_URL}/user/change-password`, data, config);
-}
-
-export const verifyResponse = async(data) => {
-    return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/llm-response`, data);
-}
-
-export const generateDiet = async(data) => {
-    const userId = localStorage.getItem('userId');
-    data.userId = userId;
-    return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/llm-response/diet`, data);
-}
-
 export const getUserDetails = async () => {
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
@@ -61,13 +41,39 @@ export const getUserDetails = async () => {
     return await sendRequest('get', `${process.env.NEXT_PUBLIC_API_URL}/user/${userId}`, null, config);
 }
 
+
+export const changePassword = async(data) => {
+    const token = localStorage.getItem('token');
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    return await sendRequest('patch', `${process.env.NEXT_PUBLIC_API_URL}/user/change-password`, data, config);
+}
+
+// LLM services
+export const verifyResponse = async(data) => {
+    return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/llm-response`, data);
+}
+
+export const generateDiet = async(data) => {
+    const userId = localStorage.getItem('userId');
+    data.userId = userId;
+    return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/llm-response/diet`, data);
+}
+
 export const getDiet = async () => {
     const userId = localStorage.getItem('userId');
     console.log("Fetching diet for userId:", userId);
     return await sendRequest('get', `${process.env.NEXT_PUBLIC_API_URL}/llm-response/diet/${userId}`, null);
 };
 
+// Subscription services
 export const getPriceInfo = async () => {
     return await sendRequest('get', `${process.env.NEXT_PUBLIC_API_URL}/subscribe/plans`, null);
 };
 
+export const makePayment = async(data) => {
+    return await sendRequest('post',`${process.env.NEXT_PUBLIC_API_URL}/subscribe/checkout`, data);
+} 

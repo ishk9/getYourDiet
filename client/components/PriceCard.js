@@ -1,8 +1,21 @@
+"use client";
+import { makePayment } from "@/lib/services";
 import { FaCircleCheck } from "react-icons/fa6";
 
 function PriceCard({ props }) {
+    const handleCheckout = async(name) => {
+        const resp = await makePayment({plan: name});
+        const url = resp.url;
+        
+        if(url){
+            window.location.href = url;
+        } else{
+            console.log("No url found");
+        }
+        
+    }
     return (
-        <button className={`flex flex-col ${props.price ? "h-[40%] md:h-5/6" : "h-[40%] md:h-4/6"} w-full md:w-[25%] mb-8 md:mb-0 shadow-lg shadow-slate-600 bg-slate-50 rounded-xl mx-3 p-5 transition-transform duration-300 hover:scale-105`}>
+        <button onClick={() => handleCheckout(props.name)} className={`flex flex-col ${props.price ? "h-[40%] md:h-5/6" : "h-[40%] md:h-4/6"} w-full md:w-[25%] mb-8 md:mb-0 shadow-lg shadow-slate-600 bg-slate-50 rounded-xl mx-3 p-5 transition-transform duration-300 hover:scale-105`}>
             <div className="h-full flex flex-col justify-center items-start">
                 <h1 className="text-base md:text-lg text-black font-semibold uppercase">{props.name}</h1>
                 {
