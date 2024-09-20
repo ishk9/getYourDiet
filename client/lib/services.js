@@ -66,3 +66,8 @@ export const getDiet = async () => {
     console.log("Fetching diet for userId:", userId);
     return await sendRequest('get', `${process.env.NEXT_PUBLIC_API_URL}/llm-response/diet/${userId}`, null);
 };
+
+export const getPriceInfo = async () => {
+    return await sendRequest('get', `${process.env.NEXT_PUBLIC_API_URL}/subscribe/plans`, null);
+};
+
