@@ -85,7 +85,7 @@ router.post('/checkout', async (req, res) => {
         }
       ],
       success_url: `${process.env.BASE_URL}/Home?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.BASE_URL}/cancel`
+      cancel_url: `${process.env.BASE_URL}`
     });
     console.log("Session is", session);
     res.status(200).send({url: session.url });
