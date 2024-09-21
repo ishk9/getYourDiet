@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { IoMdArrowRoundUp } from "react-icons/io";
 import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
-import { generateDiet, verifyResponse } from '@/lib/services';
+import { generateDiet, verifyResponse, verifyUser } from '@/lib/services';
 import { useRouter } from 'next/navigation';
 import  DietPage  from '../Diet/page.js';
 
@@ -16,6 +16,16 @@ const HomePage = () => {
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
     const [answers, setAnswers] = useState({});
     
+    const [isUserPresent, setIsUserPresent] = useState(false);
+    useEffect(() => {
+        const fetchData = async() => {
+            const resp = await verifyUser();
+            console.log("Resp: ", resp);
+            setIsUserPresent(resp);
+        };
+        fetchData();
+    }, []);
+
     const handleCuisineSelect = (index) => {
         if (selectedCuisines.includes(index)) {
             setSelectedCuisines(selectedCuisines.filter(id => id !== index));
@@ -74,22 +84,15 @@ const HomePage = () => {
     
                 const data = { requirements: stringData }
                 console.log("String data: ", data);
+
                 try {
                     const resp = await generateDiet(data);
                     console.log("Response:", resp);
                     const dietPlan = resp;
                     console.log("Meals: ", dietPlan.data.meals, typeof(dietPlan.data.meals));
-
-                    const transformedTabs = dietPlan.data.meals.map(meal => ({
-                        title: meal.meal_time.split(" ")[0],
-                        value: meal.meal_time.toLowerCase().replace(/\s+/g, '-'), 
-                        options: meal.options
-                    }));
-            
-                    setTabs(transformedTabs);
                     setTimeout(() => {
                         router.push('/Diet');
-                    }, 2000);
+                    }, 1000);
 
                 } catch (err) {
                     console.log("Error:", err);
@@ -177,13 +180,25 @@ const HomePage = () => {
                                         <h1 className='md:text-[45px] font-normal leading-[1] text-[24px] ml-5 md:ml-0'>Lets get started. Type in either your <span className='text-[#6EC0FF]'>health goals, issues,</span> or <span className='text-[#6EC0FF]'>both</span>.</h1>
                                         <div className='flex md:flex-row flex-col w-full justify-start items-center mt-6'>
                                             <button 
-                                                onClick={() => setShowCuisines(true)}
+                                                onClick={() => {
+                                                    if(isUserPresent){
+                                                        setShowCuisines(true)
+                                                    } else {
+                                                        router.push('/Login');
+                                                    }
+                                                }}
                                                 className='w-[90%] md:w-[25%] h-12 bg-[#6EC0FF] hover:bg-[#4e9ad4] rounded-2xl md:mr-3 flex justify-center items-center'>
                                                 <p className='text-white font-medium'>Choose my own cuisines</p>
                                             </button>
 
                                             <button 
-                                                onClick={() => setStartQues(true)}
+                                                onClick={() => {
+                                                    if(isUserPresent){
+                                                        setStartQues(true)
+                                                    } else {
+                                                        router.push('/Login');
+                                                    }
+                                                }}
                                                 className='w-[90%] md:mt-0 mt-2 md:w-1/3 h-12 bg-black hover:bg-[#292929] rounded-2xl mx-3 flex justify-center items-center'
                                             >
                                                 <p className='text-white font-medium'>Not sure where to start?</p>

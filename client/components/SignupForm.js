@@ -41,7 +41,7 @@ const SignupForm = () => {
                 console.log("Token: ", resp.token);
                 localStorage.setItem('token', resp.token);
                 setSignedIn(true);
-                router.push('/Pricing');
+                router.push('/');
             } catch(err){
                 console.log("Error signing up!");
             }

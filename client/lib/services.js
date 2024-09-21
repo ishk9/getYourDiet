@@ -29,6 +29,12 @@ export const signup = async(data) => {
 export const login = async(data) => {
     return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/user/login`, data);
 }
+export const verifyUser = async(data) => {
+    const userId = localStorage.getItem('userId') || '';
+    if(!userId) return false;
+
+    return await sendRequest('get', `${process.env.NEXT_PUBLIC_API_URL}/user/verifyUser/${userId}`, null);
+}
 
 export const getUserDetails = async () => {
     const token = localStorage.getItem('token');
