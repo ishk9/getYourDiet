@@ -1,15 +1,25 @@
 "use client";
 import useStore from '@/app/store';
 import Link from 'next/link';
+import { verifyUser } from '@/lib/services';
+import { useState, useEffect } from "react";
 
 function Navbar() {
-    const { signedIn, setSignedIn } = useStore();
+    // const { signedIn, setSignedIn } = useStore();
     const scrollToSection = (sectionId) => {
         document.getElementById(sectionId).scrollIntoView({
             behavior: 'smooth'
         });
     };
-
+    const [isUserPresent, setIsUserPresent] = useState(false);
+    useEffect(() => {
+        const fetchData = async() => {
+            const resp = await verifyUser();
+            console.log("Resp: ", resp);
+            setIsUserPresent(resp);
+        };
+        fetchData();
+    }, []);
     return (
         <nav className="flex flex-row w-full justify-between items-center px-4 py-2 md:px-16">
             {/* GetYourDiet Logo */}
@@ -38,7 +48,7 @@ function Navbar() {
                         <p className="text-white text-base font-bold hidden sm:block uppercase hover:bg-white hover:text-black px-3 py-1 rounded-md font-mono">Faq</p>
                     </button>
                     <Link  
-                        href={"/Profile"}
+                        href={isUserPresent ? "/Profile" : "/Login"}
                         className="ml-4">
                         <p className="text-white text-base font-bold hidden sm:block uppercase hover:bg-white hover:text-black px-3 py-1 rounded-md font-mono">Profile</p>
                     </Link>
@@ -48,11 +58,13 @@ function Navbar() {
             {/* Login/Logout Button */}
             <div className='p-2 rounded-md flex justify-center items-center'>
                 {
-                    signedIn ? 
+                    isUserPresent ? 
                     <button 
                         onClick={() => {
                             localStorage.removeItem('token');
-                            setSignedIn(false);
+                            localStorage.removeItem('userId');
+                            // setSignedIn(false);
+                            setIsUserPresent(false);
                         }}
                         className='h-full'>
                         <p className="text-white bg-black text-base font-bold uppercase hover:bg-black/80 hover:text-white px-7 py-[10px] rounded-md font-mono">Logout</p>

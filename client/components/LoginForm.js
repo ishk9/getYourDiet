@@ -28,7 +28,7 @@ const LoginForm = () => {
             localStorage.setItem('userId', resp.data._id);
 
             setSignedIn(true);
-            router.push('/Home');
+            router.push('/');
 
         } catch(err){
             console.log("Error logging up!");
