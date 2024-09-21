@@ -103,6 +103,23 @@ const getUserDetails = async (req, res) => {
     }
 };
 
+const verifyUserId = async (req, res) => {
+    const userId = req.params.userId;
+    
+    try {
+        const user = await User.findById(userId)
+        if (!user) {
+            console.log(false);
+            return res.status(200).json({ data: false });
+        }
+        console.log(true);
+        res.status(200).json({ data: true });
+
+    } catch (err) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
 
 
-export { signupUser, loginUser, updatePassword, getUserDetails };
+
+export { signupUser, loginUser, updatePassword, getUserDetails, verifyUserId };

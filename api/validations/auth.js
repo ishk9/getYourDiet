@@ -61,4 +61,17 @@ const validateGetUser = (req, res, next) => {
     next();
 };
 
-export { validateUser, validateLoginUser, validatePassword, validateGetUser };
+const userIdValidationSchema = Joi.object({
+    userId: Joi.string().required()
+});
+
+const validateUserId = (req, res, next) => {
+    const { error } = userIdValidationSchema.validate({ userId: req.params.userId });
+    if (error) {
+        console.log("Validation error while getting user details: ", error.details[0].message);
+        return res.status(400).json({ error: error.details[0].message });
+    }
+    next();
+};
+
+export { validateUser, validateLoginUser, validatePassword, validateGetUser, validateUserId };
