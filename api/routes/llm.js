@@ -1,6 +1,7 @@
 import express from 'express';
 import { validatellmResponse, validatellmDiet } from '../validations/llm.js';
 import { formulateResponse, generateDiet, getDiet } from '../controllers/llm.js';
+import { validateUserId } from "../validations/auth.js";
 
 const router = express.Router();
 
@@ -138,7 +139,7 @@ router.post('/diet', validatellmDiet, generateDiet);
  */
 
 
-router.get('/diet/:userId', getDiet);
+router.get('/diet/:userId', validateUserId, getDiet);
 /**
  * @openapi
  * /diet/{userId}:
