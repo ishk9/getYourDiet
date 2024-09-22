@@ -3,6 +3,7 @@ import useStore from '@/app/store';
 import Link from 'next/link';
 import { verifyUser } from '@/lib/services';
 import { useState, useEffect } from "react";
+import Image from 'next/image';
 
 function Navbar() {
     // const { signedIn, setSignedIn } = useStore();
@@ -23,7 +24,15 @@ function Navbar() {
     return (
         <nav className="flex flex-row w-full justify-between items-center px-4 py-2 md:px-16">
             {/* GetYourDiet Logo */}
-            <div className='p-2 bg-black rounded-md w-auto flex justify-center items-center'>
+            <div className="md:hidden">
+                <Image 
+                    src="/logo.png"
+                    alt="GetYourDiet Logo"
+                    height={60}
+                    width={60}
+                />
+            </div>
+            <div className='hidden md:flex p-2 bg-black rounded-md w-auto justify-center items-center'>
                 <Link href="/">
                     <p className="text-white text-2xl font-extrabold uppercase">GetYourDiet</p>
                 </Link>

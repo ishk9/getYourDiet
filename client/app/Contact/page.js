@@ -50,9 +50,9 @@ export default function Contact() {
 
     return (
         <div id="contact" className="h-screen w-screen flex md:flex-row flex-col justify-evenly items-center px-10 py-2 bg-black">
-            <div className='w-1/2 h-full'>
+            {/* <div className='w-1/2 h-full'>
 
-            </div>
+            </div> */}
 
             <div className='w-full h-full flex flex-col justify-center items-center'>
                 <div className='flex flex-col md:w-[65%] w-full justify-start items-start'>
