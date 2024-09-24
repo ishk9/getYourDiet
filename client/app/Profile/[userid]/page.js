@@ -9,7 +9,9 @@ import {
   } from "@/components/ui/tabs"
 import { changePassword, getDietDetails, getUserDetails } from "@/lib/services";
 
-const ProfilePage = () => {
+const ProfilePage = ({ params }) => {
+    const { userid } = params;
+
     const [currPass, setCurrPass] = useState('');
     const [newPass, setNewPass] = useState('');
     const [confmPass, setConfmPass] = useState('');
@@ -21,7 +23,7 @@ const ProfilePage = () => {
     useEffect(() => {
         const fetchData = async() => {
             try{
-                const resp = await getDietDetails();
+                const resp = await getDietDetails({userId:userid});
                 console.log("Resp: ", resp);
                 setDiets(resp.data);
             } catch(err){
@@ -34,7 +36,7 @@ const ProfilePage = () => {
     useEffect(() => {
         const fetchData = async() => {
             try{
-                const resp = await getUserDetails();
+                const resp = await getUserDetails({userId:userid});
                 console.log("Resp: ", resp);
                 setName(resp.data.name);
                 setEmail(resp.data.email);

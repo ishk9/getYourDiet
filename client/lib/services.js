@@ -36,9 +36,8 @@ export const verifyUser = async(data) => {
     return await sendRequest('get', `${process.env.NEXT_PUBLIC_API_URL}/user/verifyUser/${userId}`, null);
 }
 
-export const getUserDetails = async () => {
+export const getUserDetails = async ({userId}) => {
     const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userId');
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
@@ -85,9 +84,8 @@ export const makePayment = async(data) => {
 } 
 
 // Diet services
-export const getDietDetails = async () => {
+export const getDietDetails = async ({userId}) => {
     const token = localStorage.getItem('token');
-    const userId = localStorage.getItem('userId');
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,

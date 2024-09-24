@@ -21,6 +21,14 @@ function Navbar() {
         };
         fetchData();
     }, []);
+    const [userId, setUserId] = useState('');
+    useEffect(() => {
+        const fetchData = async() => {
+            const id = localStorage.getItem('userId');
+            setUserId(id);
+        };
+        fetchData();
+    }, []);
     return (
         <nav className="flex flex-row w-full justify-between items-center px-4 py-2 md:px-16">
             {/* GetYourDiet Logo */}
@@ -57,7 +65,7 @@ function Navbar() {
                         <p className="text-white text-base font-bold hidden sm:block uppercase hover:bg-white hover:text-black px-3 py-1 rounded-md font-mono">Faq</p>
                     </button>
                     <Link  
-                        href={isUserPresent ? "/Profile" : "/Login"}
+                        href={isUserPresent ? `/Profile/${userId}` : "/Login"}
                         className="ml-4">
                         <p className="text-white text-base font-bold hidden sm:block uppercase hover:bg-white hover:text-black px-3 py-1 rounded-md font-mono">Profile</p>
                     </Link>
