@@ -1,14 +1,13 @@
 "use client";
 import react, { useState, useEffect } from "react";
 import { HiOutlineMail } from "react-icons/hi";
-import { FiPhoneCall } from "react-icons/fi";
 import {
     Tabs,
     TabsContent,
     TabsList,
     TabsTrigger,
   } from "@/components/ui/tabs"
-import { changePassword, getUserDetails } from "@/lib/services";
+import { changePassword, getDietDetails, getUserDetails } from "@/lib/services";
 
 const ProfilePage = () => {
     const [currPass, setCurrPass] = useState('');
@@ -17,6 +16,20 @@ const ProfilePage = () => {
     const [err, setErr] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [diets, setDiets] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async() => {
+            try{
+                const resp = await getDietDetails();
+                console.log("Resp: ", resp);
+                setDiets(resp.data);
+            } catch(err){
+                console.log("Error fetching diet data: ", err);
+            }
+        }
+        fetchData();
+    }, []);
 
     useEffect(() => {
         const fetchData = async() => {
@@ -73,8 +86,17 @@ const ProfilePage = () => {
                         <TabsTrigger value="paymentmethod">Payment methods</TabsTrigger>
                     </TabsList>
                     <TabsContent value="account">
-                        <div className="w-screen bg-red-500">
-                            <p>infoinmfies</p>
+                        <div className="w-screen flex flex-col overflow-y-scroll">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mr-6">
+                                {diets.map((diet, index) => (
+                                    <button key={index} className='border rounded-[12px] border-black/80 p-4 my-2 hover:bg-black/10'>
+                                        <div className='flex flex-col'>
+                                            <p className='text-xl'>{diet.title}</p>
+                                            <p className='text-sm mt-1'>{diet.goal}</p>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </TabsContent>
                     <TabsContent value="password">

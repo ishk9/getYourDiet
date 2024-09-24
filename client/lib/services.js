@@ -83,3 +83,15 @@ export const getPriceInfo = async () => {
 export const makePayment = async(data) => {
     return await sendRequest('post',`${process.env.NEXT_PUBLIC_API_URL}/subscribe/checkout`, data);
 } 
+
+// Diet services
+export const getDietDetails = async () => {
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    return await sendRequest('get', `${process.env.NEXT_PUBLIC_API_URL}/diet/${userId}`, null, config);
+}
