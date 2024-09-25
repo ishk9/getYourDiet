@@ -5,11 +5,11 @@ import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
 import { generateDiet, verifyResponse, verifyUser } from '@/lib/services';
 import { useRouter } from 'next/navigation';
 import  DietPage  from '../Diet/[userid]/page.js';
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/hooks/use-toast";
 
 const HomePage = () => {
     const router = useRouter();
-    const { toast } = useToast()
+    const { toast } = useToast();
     const [userInp, setUserInp] = useState('');
     const [showDiet, setShowDiet] = useState(false);
     const [showCuisines, setShowCuisines] = useState(false);
@@ -63,7 +63,7 @@ const HomePage = () => {
                     title: "Uh oh! Invalid response ",
                     description: "Please enter a valid response to the question and submit again",
                     
-                  })
+                })
                 setCurrentWordIndex(prevIndex => prevIndex);
             }
             setUserInp('');

@@ -5,13 +5,14 @@ import { useRouter } from 'next/navigation';
 import useStore from '@/app/store';
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { useToast } from "@/hooks/use-toast";
 
 const LoginForm = () => {
+    const { toast } = useToast();
     const { setSignedIn } = useStore();
     const router = useRouter();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const handleSubmit = async(e) => {
         e.preventDefault();
         console.log('Email:', email);
@@ -31,6 +32,11 @@ const LoginForm = () => {
             router.push('/');
 
         } catch(err){
+            toast({
+                title: "Uh oh! Error logging in",
+                description: "Invalid email or password",
+                
+              })
             console.log("Error logging up!");
         }
     };
