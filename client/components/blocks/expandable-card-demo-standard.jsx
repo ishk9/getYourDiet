@@ -7,7 +7,7 @@ import { getDiet } from "@/lib/services.js";
 import { MdLockOutline } from "react-icons/md";
 import { useRouter } from "next/navigation";
 
-export default function ExpandableCardDemo() {
+export default function ExpandableCardDemo({userId}) {
   const router = useRouter();
   const [cards, setCards] = useState([]);
 
@@ -16,7 +16,8 @@ export default function ExpandableCardDemo() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await getDiet();
+        console.log("userid in exp card is this:", userId);
+        const resp = await getDiet({userId:userId});
         console.log("Resp diet: ", resp);
 
         const fetchedCards = resp.data.meals.map((meal, index) => ({

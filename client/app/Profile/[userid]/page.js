@@ -8,10 +8,12 @@ import {
     TabsTrigger,
   } from "@/components/ui/tabs"
 import { changePassword, getDietDetails, getUserDetails } from "@/lib/services";
+import { useRouter } from "next/navigation";
 
 const ProfilePage = ({ params }) => {
     const { userid } = params;
 
+    const router = useRouter();
     const [currPass, setCurrPass] = useState('');
     const [newPass, setNewPass] = useState('');
     const [confmPass, setConfmPass] = useState('');
@@ -91,7 +93,11 @@ const ProfilePage = ({ params }) => {
                         <div className="w-screen flex flex-col overflow-y-scroll">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mr-6">
                                 {diets.map((diet, index) => (
-                                    <button key={index} className='border rounded-[12px] border-black/80 p-4 my-2 hover:bg-black/10'>
+                                    <button 
+                                        key={index} 
+                                        className='border rounded-[12px] border-black/80 p-4 my-2 hover:bg-black/10'
+                                        onClick={() => router.push(`/Diet/${diet._id}`)}
+                                    >
                                         <div className='flex flex-col'>
                                             <p className='text-xl'>{diet.title}</p>
                                             <p className='text-sm mt-1'>{diet.goal}</p>

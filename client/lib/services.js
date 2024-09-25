@@ -68,8 +68,7 @@ export const generateDiet = async(data) => {
     return await sendRequest('post', `${process.env.NEXT_PUBLIC_API_URL}/llm-response/diet`, data);
 }
 
-export const getDiet = async () => {
-    const userId = localStorage.getItem('userId');
+export const getDiet = async ({userId}) => {
     console.log("Fetching diet for userId:", userId);
     return await sendRequest('get', `${process.env.NEXT_PUBLIC_API_URL}/llm-response/diet/${userId}`, null);
 };

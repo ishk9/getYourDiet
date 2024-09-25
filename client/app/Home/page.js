@@ -4,7 +4,7 @@ import { IoMdArrowRoundUp } from "react-icons/io";
 import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
 import { generateDiet, verifyResponse, verifyUser } from '@/lib/services';
 import { useRouter } from 'next/navigation';
-import  DietPage  from '../Diet/page.js';
+import  DietPage  from '../Diet/[userid]/page.js';
 
 const HomePage = () => {
     const router = useRouter();
@@ -87,11 +87,12 @@ const HomePage = () => {
 
                 try {
                     const resp = await generateDiet(data);
-                    console.log("Response:", resp);
+                    console.log("Response of diet:", resp);
                     const dietPlan = resp;
-                    console.log("Meals: ", dietPlan.data.meals, typeof(dietPlan.data.meals));
+                    // console.log("Meals: ", dietPlan.data.meals, typeof(dietPlan.data.meals));
+                    console.log("Id is: ", dietPlan.data._id);
                     setTimeout(() => {
-                        router.push('/Diet');
+                        router.push(`/Diet/${dietPlan.data._id}`);
                     }, 1000);
 
                 } catch (err) {
