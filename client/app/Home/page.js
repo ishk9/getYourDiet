@@ -51,10 +51,10 @@ const HomePage = () => {
                 question: words[currentWordIndex].text,
                 answer: userInp
             };
-            // const resp = await verifyResponse(data);
-            // console.log("Response: ", resp.data);
-            // const response = resp.data.trim();
-            const response = "YES";
+            const resp = await verifyResponse(data);
+            console.log("Response: ", resp.data);
+            const response = resp.data.trim();
+            // const response = "YES";
             if(response === "YES"){
                 console.log("Yes entered");
                 setCurrentWordIndex(prevIndex => prevIndex + 1);
