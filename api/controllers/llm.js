@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import Diet from "../models/diet.js";
+import mongoose from "mongoose";
 
 const formulateResponse = async (req, res) => {
     const { question, answer } = req.body;
@@ -99,6 +100,7 @@ const generateDiet = async (req, res) => {
         jsonResponse.userId = userId;
         const currDiet = new Diet(jsonResponse);
         await currDiet.save();
+        jsonResponse._id = currDiet._id;
         res.status(201).json({ message: 'Response generated successfully', data: jsonResponse });
 
     } catch (err) {
@@ -111,7 +113,7 @@ const getDiet = async (req, res) => {
   const userId = req.params.userId;
   console.log("UserId: ", userId);
   try {
-      const diet = await Diet.findOne({userId});
+      const diet = await Diet.findById(new mongoose.Types.ObjectId(userId));
       console.log("Diet", diet);
       if (!diet) {
           return res.status(404).json({ error: 'Diet not found' });
