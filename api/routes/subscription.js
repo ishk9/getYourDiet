@@ -210,6 +210,163 @@ router.get('/plans', async (req, res) => {
 
 
 
+/**
+ * @swagger
+ * /subscribe/payment-methods:
+ *   get:
+ *     summary: Fetch payment methods for a customer
+ *     description: Fetches all payment methods associated with a specific customer.
+ *     parameters:
+ *       - in: query
+ *         name: customerId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The customer ID.
+ *     responses:
+ *       200:
+ *         description: Successfully fetched payment methods.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 paymentMethods:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                         description: The ID of the payment method.
+ *                       brand:
+ *                         type: string
+ *                         description: The brand of the card.
+ *                       last4:
+ *                         type: string
+ *                         description: The last four digits of the card.
+ *                       exp_month:
+ *                         type: integer
+ *                         description: The expiration month of the card.
+ *                       exp_year:
+ *                         type: integer
+ *                         description: The expiration year of the card.
+ *       500:
+ *         description: Error in fetching payment methods.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error fetching payment methods.
+ */
+
+router.get('/payment-methods', async (req, res) => {
+  try {
+    const { customerId } = req.query;
+
+    if (!customerId) {
+      return res.status(400).json({ message: 'Customer ID is required' });
+    }
+
+    const paymentMethods = await stripe.paymentMethods.list({
+      customer: customerId,
+      type: 'card',
+    });
+
+    const formattedMethods = paymentMethods.data.map(method => ({
+      id: method.id,
+      brand: method.card.brand,
+      last4: method.card.last4,
+      exp_month: method.card.exp_month,
+      exp_year: method.card.exp_year,
+    }));
+
+    res.status(200).json({ paymentMethods: formattedMethods });
+  } catch (error) {
+    console.error('Error fetching payment methods:', error);
+    res.status(500).json({ message: 'Error fetching payment methods.' });
+  }
+});
+
+/**
+ * @swagger
+ * /subscribe/invoices:
+ *   get:
+ *     summary: Fetch invoices for a customer
+ *     description: Fetches all invoices associated with a specific customer.
+ *     parameters:
+ *       - in: query
+ *         name: customerId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The customer ID.
+ *     responses:
+ *       200:
+ *         description: Successfully fetched invoices.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 invoices:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                         description: The invoice ID.
+ *                       amount_due:
+ *                         type: number
+ *                         description: The amount due on the invoice.
+ *                       status:
+ *                         type: string
+ *                         description: The status of the invoice (e.g., paid, open).
+ *                       date:
+ *                         type: string
+ *                         description: The date the invoice was created.
+ *       500:
+ *         description: Error in fetching invoices.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error fetching invoices.
+ */
+
+router.get('/invoices', async (req, res) => {
+  try {
+    const { customerId } = req.query;
+
+    if (!customerId) {
+      return res.status(400).json({ message: 'Customer ID is required' });
+    }
+
+    const invoices = await stripe.invoices.list({
+      customer: customerId,
+    });
+
+    const formattedInvoices = invoices.data.map(invoice => ({
+      id: invoice.id,
+      amount_due: (invoice.amount_due / 100).toFixed(2),
+      status: invoice.status,
+      date: new Date(invoice.created * 1000).toISOString(),
+    }));
+
+    res.status(200).json({ invoices: formattedInvoices });
+  } catch (error) {
+    console.error('Error fetching invoices:', error);
+    res.status(500).json({ message: 'Error fetching invoices.' });
+  }
+});
+
 
 
 export default router;
