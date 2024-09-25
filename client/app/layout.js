@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <body className="min-h-screen min-w-screen">
           {children}
-          {/* <Toaster /> */}
+          <Toaster />
           <Analytics/>
           <ToastContainer 
             position="top-right"
