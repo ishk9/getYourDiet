@@ -293,24 +293,26 @@ router.get('/payment-status', async (req, res) => {
  *                   example: Error checking payment status.
  */
 
-router.get('/paid', async (req, res) => {
+router.get(`/paid/:userId`, async (req, res) => {
   try {
-    const { userId } = req.query;
-
+    console.log("Hitted api");
+    const userId = req.params.userId;
+    console.log("userid is :", userId);
     if (!userId) {
       return res.status(400).send('User ID is required.');
     }
     const sessionDetails = await Subscription.findOne({userId});
-
+    console.log("sessionDetails", sessionDetails);
     if(sessionDetails){
       res.status(200).json({
-        payment_status: true,
+        paymentStatus: true,
       });
     }
-    res.status(200).json({
-      payment_status: false,
-    });
-      
+    else{
+      res.status(200).json({
+        paymentStatus: false,
+      });
+    } 
   } catch (error) {
     console.error('Error checking payment status:', error);
     res.status(500).json({ message: 'Error checking payment status.' });
