@@ -32,9 +32,13 @@ const HomePage = () => {
         const params = new URLSearchParams(window.location.search);
         const sessionId = params.get('session_id');
         console.log("Session id: ", sessionId);
-
+        const userId = localStorage.getItem('userId');
         const fetchData = async() => {
-            const resp = await addSessionId(sessionId);
+            const data = {
+                userId,
+                sessionId
+            }
+            const resp = await addSessionId(data);
             console.log("Resp: ", resp);
             setIsUserPresent(resp);
         };
