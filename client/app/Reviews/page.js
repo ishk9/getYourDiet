@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react'
 import ReviewBox from '@/components/ReviewBox'
+import { motion, AnimatePresence } from "framer-motion";
 
 const ReviewPage = () => {
     const [dummyReviews, setDummyReviews] = useState([
@@ -28,18 +29,33 @@ const ReviewPage = () => {
 
     return (
         <div id="reviews" className='h-[70%] w-screen bg-white py-20 flex flex-col md:flex-row justify-center items-center'>
-            <div className='w-full md:w-1/2 h-full flex justify-center items-center'>
+            <motion.div 
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+                className='w-full md:w-1/2 h-full flex justify-center items-center'>
                 <h1 className='text-xl md:text-4xl font-bold font-sans w-2/3 uppercase'>
                     Making your fitness journey easier
                 </h1>
-            </div>
+            </motion.div>
 
             <div className='md:w-1/2 w-full md:mt-0 mt-6 h-full flex justify-center items-center'>
-                <ReviewBox 
-                    review={dummyReviews[currentReviewIndex].review} 
-                    name={dummyReviews[currentReviewIndex].name} 
-                    rating={dummyReviews[currentReviewIndex].rating} 
-                />
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={currentReviewIndex}
+                        initial={{ opacity: 0, x: 100 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -100 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        className="w-full"
+                    > 
+                        <ReviewBox 
+                            review={dummyReviews[currentReviewIndex].review} 
+                            name={dummyReviews[currentReviewIndex].name} 
+                            rating={dummyReviews[currentReviewIndex].rating} 
+                        />
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </div>
     )
