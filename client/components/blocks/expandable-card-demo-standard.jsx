@@ -11,7 +11,7 @@ export default function ExpandableCardDemo({userId}) {
   const router = useRouter();
   const [cards, setCards] = useState([]);
 
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {

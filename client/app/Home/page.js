@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { IoMdArrowRoundUp } from "react-icons/io";
 import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
-import { generateDiet, verifyResponse, verifyUser } from '@/lib/services';
+import { generateDiet, verifyResponse, verifyUser, addSessionId } from '@/lib/services';
 import { useRouter } from 'next/navigation';
 import  DietPage  from '../Diet/[userid]/page.js';
 import { useToast } from "@/hooks/use-toast";
@@ -26,6 +26,21 @@ const HomePage = () => {
             setIsUserPresent(resp);
         };
         fetchData();
+    }, []);
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get('session_id');
+        console.log("Session id: ", sessionId);
+
+        const fetchData = async() => {
+            const resp = await addSessionId(sessionId);
+            console.log("Resp: ", resp);
+            setIsUserPresent(resp);
+        };
+        if (sessionId) {
+            fetchData();
+        }
     }, []);
 
     const handleCuisineSelect = (index) => {

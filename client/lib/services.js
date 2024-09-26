@@ -81,6 +81,9 @@ export const getPriceInfo = async () => {
 export const makePayment = async(data) => {
     return await sendRequest('post',`${process.env.NEXT_PUBLIC_API_URL}/subscribe/checkout`, data);
 } 
+export const addSessionId = async(data) => {
+    return await sendRequest('post',`${process.env.NEXT_PUBLIC_API_URL}/subscribe/add-session-id`, data);
+} 
 
 // Diet services
 export const getDietDetails = async ({userId}) => {
