@@ -1,5 +1,6 @@
 import express from 'express';
 import Stripe from 'stripe';
+import Subscription from '../models/subscription.js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   maxNetworkRetries: 2,
@@ -25,6 +26,7 @@ const router = express.Router();
  *                 type: string
  *                 description: The subscription plan to purchase (e.g., "single", "family", "professional").
  *                 example: single
+ *            
  *     responses:
  *       200:
  *         description: Successfully created the checkout session.
@@ -52,8 +54,8 @@ const router = express.Router();
 
 router.post('/checkout', async (req, res) => {
   try {
-    const {plan} = req.body;
-    console.log("Plan is ", plan);
+    const { plan } = req.body;
+    console.log("Plan, email ", plan);
     if(!plan){
       return res.status(500).send("Invalid plan!");
     }
@@ -87,56 +89,11 @@ router.post('/checkout', async (req, res) => {
       success_url: `${process.env.BASE_URL}/Home?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.BASE_URL}`
     });
-    console.log("Session is", session);
-    res.status(200).send({url: session.url });
+    res.status(200).send({ url: session.url });
   } catch (error) {
     console.error(error);
     res.status(500).send('Error creating checkout session');
   }
-});
-
-/**
- * @swagger
- * /subscribe/complete:
- *   get:
- *     summary: Handle successful checkout
- *     description: Completes the payment and returns a success message.
- *     responses:
- *       200:
- *         description: Payment was successful.
- *       400:
- *         description: Invalid session ID.
- */
-router.get('/complete', async (req, res) => {
-  try {
-    const result = await Promise.all([
-      stripe.checkout.sessions.retrieve(req.query.session_id, {
-        expand: ['payment_intent.payment_method'],
-      }),
-      stripe.checkout.sessions.listLineItems(req.query.session_id),
-    ]);
-
-    console.log(JSON.stringify(result));
-
-    res.send('Your payment was successful');
-  } catch (error) {
-    console.error(error);
-    res.status(400).send('Invalid session ID');
-  }
-});
-
-/**
- * @swagger
- * /subscribe/cancel:
- *   get:
- *     summary: Handle checkout cancellation
- *     description: Redirects to the home page if payment is canceled.
- *     responses:
- *       302:
- *         description: Redirects to the home page.
- */
-router.get('/cancel', (req, res) => {
-  res.redirect('/');
 });
 
 
@@ -208,51 +165,37 @@ router.get('/plans', async (req, res) => {
   }
 });
 
-
-
 /**
  * @swagger
- * /subscribe/payment-methods:
+ * /subscribe/payment-status:
  *   get:
- *     summary: Fetch payment methods for a customer
- *     description: Fetches all payment methods associated with a specific customer.
+ *     summary: Check payment status and retrieve customer ID
+ *     description: Verifies the payment status for a Stripe session and returns the customer ID along with card details and payment amount.
  *     parameters:
  *       - in: query
- *         name: customerId
+ *         name: session_id
  *         schema:
  *           type: string
  *         required: true
- *         description: The customer ID.
+ *         description: The Stripe checkout session ID.
  *     responses:
  *       200:
- *         description: Successfully fetched payment methods.
+ *         description: Payment status and details retrieved successfully.
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 paymentMethods:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: string
- *                         description: The ID of the payment method.
- *                       brand:
- *                         type: string
- *                         description: The brand of the card.
- *                       last4:
- *                         type: string
- *                         description: The last four digits of the card.
- *                       exp_month:
- *                         type: integer
- *                         description: The expiration month of the card.
- *                       exp_year:
- *                         type: integer
- *                         description: The expiration year of the card.
- *       500:
- *         description: Error in fetching payment methods.
+ *                 payment_status:
+ *                   type: string
+ *                   description: The status of the payment (e.g., "complete", "incomplete").
+ *                   example: complete
+ *                 customer_id:
+ *                   type: string
+ *                   description: The ID of the customer associated with the session.
+ *                   example: cus_L8mIljdB3eqvLr
+ *       400:
+ *         description: Missing or invalid session ID.
  *         content:
  *           application/json:
  *             schema:
@@ -260,77 +203,9 @@ router.get('/plans', async (req, res) => {
  *               properties:
  *                 message:
  *                   type: string
- *                   example: Error fetching payment methods.
- */
-
-router.get('/payment-methods', async (req, res) => {
-  try {
-    const { customerId } = req.query;
-
-    if (!customerId) {
-      return res.status(400).json({ message: 'Customer ID is required' });
-    }
-
-    const paymentMethods = await stripe.paymentMethods.list({
-      customer: customerId,
-      type: 'card',
-    });
-
-    const formattedMethods = paymentMethods.data.map(method => ({
-      id: method.id,
-      brand: method.card.brand,
-      last4: method.card.last4,
-      exp_month: method.card.exp_month,
-      exp_year: method.card.exp_year,
-    }));
-
-    res.status(200).json({ paymentMethods: formattedMethods });
-  } catch (error) {
-    console.error('Error fetching payment methods:', error);
-    res.status(500).json({ message: 'Error fetching payment methods.' });
-  }
-});
-
-/**
- * @swagger
- * /subscribe/invoices:
- *   get:
- *     summary: Fetch invoices for a customer
- *     description: Fetches all invoices associated with a specific customer.
- *     parameters:
- *       - in: query
- *         name: customerId
- *         schema:
- *           type: string
- *         required: true
- *         description: The customer ID.
- *     responses:
- *       200:
- *         description: Successfully fetched invoices.
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 invoices:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: string
- *                         description: The invoice ID.
- *                       amount_due:
- *                         type: number
- *                         description: The amount due on the invoice.
- *                       status:
- *                         type: string
- *                         description: The status of the invoice (e.g., paid, open).
- *                       date:
- *                         type: string
- *                         description: The date the invoice was created.
+ *                   example: Session ID is required.
  *       500:
- *         description: Error in fetching invoices.
+ *         description: Error in retrieving payment status.
  *         content:
  *           application/json:
  *             schema:
@@ -338,34 +213,127 @@ router.get('/payment-methods', async (req, res) => {
  *               properties:
  *                 message:
  *                   type: string
- *                   example: Error fetching invoices.
+ *                   example: Error checking payment status.
  */
 
-router.get('/invoices', async (req, res) => {
+
+router.get('/payment-status', async (req, res) => {
   try {
-    const { customerId } = req.query;
+    const { userId } = req.query;
 
-    if (!customerId) {
-      return res.status(400).json({ message: 'Customer ID is required' });
+    if (!userId) {
+      return res.status(400).send('User ID is required.');
     }
+    const sessionDetails = await Subscription.findOne({userId});
+    const sessionId = sessionDetails.sessionId;
 
-    const invoices = await stripe.invoices.list({
-      customer: customerId,
+    // Retrieve the checkout session
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    // Retrieve the payment intent associated with the session
+    const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent);
+
+    // Extract card details and payment amount
+    const paymentAmount = paymentIntent.amount_received;
+
+    res.status(200).json({
+      payment_status: session.payment_status,
+      customer_id: session.customer,
+      payment_amount: paymentAmount / 100, // Convert amount from cents to dollars
     });
-
-    const formattedInvoices = invoices.data.map(invoice => ({
-      id: invoice.id,
-      amount_due: (invoice.amount_due / 100).toFixed(2),
-      status: invoice.status,
-      date: new Date(invoice.created * 1000).toISOString(),
-    }));
-
-    res.status(200).json({ invoices: formattedInvoices });
   } catch (error) {
-    console.error('Error fetching invoices:', error);
-    res.status(500).json({ message: 'Error fetching invoices.' });
+    console.error('Error checking payment status:', error);
+    res.status(500).json({ message: 'Error checking payment status.' });
   }
 });
+
+/**
+ * @swagger
+ * /subscribe/paid:
+ *   get:
+ *     summary: Check if a user has paid for a subscription
+ *     description: Verifies if the user has an active subscription by checking the database for the user's payment status.
+ *     parameters:
+ *       - in: query
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the user whose payment status is being checked.
+ *     responses:
+ *       200:
+ *         description: Payment status retrieved successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 payment_status:
+ *                   type: boolean
+ *                   description: Indicates whether the user has an active subscription.
+ *                   example: true
+ *       400:
+ *         description: Missing or invalid user ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: User ID is required.
+ *       500:
+ *         description: Error in checking payment status.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Error checking payment status.
+ */
+
+router.get('/paid', async (req, res) => {
+  try {
+    const { userId } = req.query;
+
+    if (!userId) {
+      return res.status(400).send('User ID is required.');
+    }
+    const sessionDetails = await Subscription.findOne({userId});
+
+    if(sessionDetails){
+      res.status(200).json({
+        payment_status: true,
+      });
+    }
+    res.status(200).json({
+      payment_status: false,
+    });
+      
+  } catch (error) {
+    console.error('Error checking payment status:', error);
+    res.status(500).json({ message: 'Error checking payment status.' });
+  }
+});
+
+router.post('/add-session-id', async (req, res) => {
+  try {
+    const { userId } = req.body;
+
+    if (!userId) {
+      return res.status(400).send('User ID is required.');
+    }
+    const subscription = await Subscription.create({ userId });
+    console.log("Subscription", subscription);
+    
+    res.status(200).json({ message: 'Session id added!' });    
+  } catch (error) {
+    console.error('Error checking payment status:', error);
+    res.status(500).json({ message: 'Error checking payment status.' });
+  }
+});
+
 
 
 
