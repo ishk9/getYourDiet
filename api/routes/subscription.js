@@ -319,14 +319,14 @@ router.get('/paid', async (req, res) => {
 
 router.post('/add-session-id', async (req, res) => {
   try {
-    const { userId } = req.body;
+    const { userId, sessionId } = req.body;
 
     if (!userId) {
       return res.status(400).send('User ID is required.');
     }
-    const subscription = await Subscription.create({ userId });
+    const subscription = await Subscription.create({ userId, sessionId });
     console.log("Subscription", subscription);
-    
+
     res.status(200).json({ message: 'Session id added!' });    
   } catch (error) {
     console.error('Error checking payment status:', error);
