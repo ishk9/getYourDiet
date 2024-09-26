@@ -40,6 +40,7 @@ const SignupForm = () => {
                 const resp = await signup(data);
                 console.log("Token: ", resp.token);
                 localStorage.setItem('token', resp.token);
+                localStorage.setItem('userId', resp.data._id);
                 setSignedIn(true);
                 router.push('/');
             } catch(err){
