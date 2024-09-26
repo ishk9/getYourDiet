@@ -43,11 +43,11 @@ const ReviewPage = () => {
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentReviewIndex}
-                        initial={{ opacity: 0, x: 100 }}
+                        initial={{ opacity: 0, x: 1000 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -100 }}
                         transition={{ duration: 0.5, ease: "easeInOut" }}
-                        className="w-full"
+                        className="w-full flex justify-center items-center"
                     > 
                         <ReviewBox 
                             review={dummyReviews[currentReviewIndex].review} 
