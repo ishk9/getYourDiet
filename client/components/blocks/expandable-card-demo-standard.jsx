@@ -3,7 +3,7 @@ import Image from "next/image";
 import  { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "../hooks/use-outside-click.js";
-import { getDiet } from "@/lib/services.js";
+import { getDiet, getIsSubscribed } from "@/lib/services.js";
 import { MdLockOutline } from "react-icons/md";
 import { useRouter } from "next/navigation";
 
@@ -11,19 +11,18 @@ export default function ExpandableCardDemo({userId}) {
   const router = useRouter();
   const [cards, setCards] = useState([]);
 
-  const [isSubscribed, setIsSubscribed] = useState(true);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const isSubscribed = await getIsSubscribed();
         console.log("userid in exp card is this:", userId);
         const resp = await getDiet({userId:userId});
         console.log("Resp diet: ", resp);
-
+        console.log("Show is: ", isSubscribed.paymentStatus);
         const fetchedCards = resp.data.meals.map((meal, index) => ({
           // description: resp.data.explanation,
           title: `${meal.meal_time}`,
-          show: !isSubscribed && index != 0 ? false : true,
+          show: !isSubscribed.paymentStatus && index != 0 ? false : true,
           src: "https://assets.aceternity.com/demos/lana-del-rey.jpeg",
           ctaText: "show",
           ctaLink: "https://ui.aceternity.com/templates",
