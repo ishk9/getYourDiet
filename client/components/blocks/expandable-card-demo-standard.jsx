@@ -16,6 +16,7 @@ export default function ExpandableCardDemo({userId}) {
       try {
         const isSubscribed = await getIsSubscribed();
         console.log("userid in exp card is this:", userId);
+        
         const resp = await getDiet({userId:userId});
         console.log("Resp diet: ", resp);
         console.log("Show is: ", isSubscribed.paymentStatus);
