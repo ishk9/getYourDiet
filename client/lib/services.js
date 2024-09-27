@@ -81,6 +81,10 @@ export const getIsSubscribed = async () => {
     const userId = localStorage.getItem('userId');
     return await sendRequest('get', `${process.env.NEXT_PUBLIC_API_URL}/subscribe/paid/${userId}`, null);
 };
+export const getDietLimit = async ({userId}) => {
+    // const userId = localStorage.getItem('userId');
+    return await sendRequest('get', `${process.env.NEXT_PUBLIC_API_URL}/subscribe/diet-limit/${userId}`, null);
+};
 export const makePayment = async(data) => {
     return await sendRequest('post',`${process.env.NEXT_PUBLIC_API_URL}/subscribe/checkout`, data);
 } 

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { IoMdArrowRoundUp } from "react-icons/io";
 import { TypewriterEffectSmooth } from "../../components/ui/typewriter-effect";
-import { generateDiet, verifyResponse, verifyUser, addSessionId } from '@/lib/services';
+import { generateDiet, verifyResponse, verifyUser, addSessionId, getDiet, getDietDetails, getDietLimit } from '@/lib/services';
 import { useRouter } from 'next/navigation';
 import  DietPage  from '../Diet/[userid]/page.js';
 import { useToast } from "@/hooks/use-toast";
@@ -27,6 +27,22 @@ const HomePage = () => {
         };
         fetchData();
     }, []);
+
+    const [dietLimit, setDietLimit] = useState(false);
+    useEffect(() => {
+        const userId = localStorage.getItem('userId');
+        const fetchData = async() => {
+            if(isUserPresent){
+                const resp = await getDietLimit({userId:userId});
+                if(resp){
+                    console.log("Limit: ", resp.data);
+                    setDietLimit(resp.data);
+                }
+
+            }
+        };
+        fetchData();
+    }, [isUserPresent]);
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
@@ -208,8 +224,14 @@ const HomePage = () => {
                                         <div className='flex md:flex-row flex-col w-full justify-start items-center mt-6'>
                                             <button 
                                                 onClick={() => {
-                                                    if(isUserPresent){
+                                                    if(isUserPresent && dietLimit){
                                                         setShowCuisines(true)
+                                                    } else if(!dietLimit) {
+                                                        toast({
+                                                            title: "Uh oh! Looks like you have exceeded the limit",
+                                                            description: "Please upgrade your subscription plan",
+                                                            
+                                                        })
                                                     } else {
                                                         router.push('/Login');
                                                     }
@@ -220,11 +242,18 @@ const HomePage = () => {
 
                                             <button 
                                                 onClick={() => {
-                                                    if(isUserPresent){
+                                                    if(isUserPresent && dietLimit){
                                                         setStartQues(true)
+                                                    } else if(!dietLimit) {
+                                                        toast({
+                                                            title: "Uh oh! Looks like you have exceeded the limit",
+                                                            description: "Please upgrade your subscription plan",
+                                                            
+                                                        })
                                                     } else {
                                                         router.push('/Login');
                                                     }
+                                                        
                                                 }}
                                                 className='w-[90%] md:mt-0 mt-2 md:w-1/3 h-12 bg-black hover:bg-[#292929] rounded-2xl mx-3 flex justify-center items-center'
                                             >
@@ -234,7 +263,7 @@ const HomePage = () => {
                                     </div>
                                 }
 
-                                {startQues &&
+                                {startQues && 
                                     <div className='flex flex-col w-[75%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center '>
                                         {currentWordIndex < words.length ? (
                                             <TypewriterEffectSmooth 
