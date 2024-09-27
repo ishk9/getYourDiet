@@ -230,7 +230,7 @@ const HomePage = () => {
                                                 onClick={() => {
                                                     if(isUserPresent && dietLimit){
                                                         setShowCuisines(true)
-                                                    } else if(!dietLimit) {
+                                                    } else if(isUserPresent && !dietLimit) {
                                                         toast({
                                                             title: "Uh oh! Looks like you have exceeded the limit",
                                                             description: "Please upgrade your subscription plan",
@@ -248,7 +248,7 @@ const HomePage = () => {
                                                 onClick={() => {
                                                     if(isUserPresent && dietLimit){
                                                         setStartQues(true)
-                                                    } else if(!dietLimit) {
+                                                    } else if(isUserPresent && !dietLimit) {
                                                         toast({
                                                             title: "Uh oh! Looks like you have exceeded the limit",
                                                             description: "Please upgrade your subscription plan",
