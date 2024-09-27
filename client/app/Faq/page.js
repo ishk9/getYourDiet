@@ -1,5 +1,6 @@
 "use client";
-import React from 'react'
+import React from 'react';
+import { motion } from "framer-motion";
 import {
     Accordion,
     AccordionContent,
@@ -10,8 +11,8 @@ import Image from 'next/image';
   
 const FaqPage = () => {
     return (
-        <div id="faq" className='h-[70%] w-screen bg-black flex py-20 flex-col md:flex-row justify-center items-center'>
-            <div className='w-full md:w-1/2 lg:w-[70%] h-full flex flex-col justify-center items-center px-4 md:px-0'>
+        <div id="faq" className='h-screen w-screen bg-black flex py-20 flex-col md:flex-row justify-center items-center'>
+            <div className='w-full md:w-1/2 lg:w-[70%] h-full flex flex-col justify-center items-center px-4 md:px-0 '>
                 <div className='flex justify-start items-start w-full md:w-1/2 lg:w-[70%] ml-2 md:ml-0'>
                     <h1 className='text-white text-[45px] font-bold uppercase'>Faq.</h1>
                 </div>
@@ -49,13 +50,25 @@ const FaqPage = () => {
 
             </div>
 
-            <div className='w-1/2 h-full flex justify-center items-center mt-20 md:mt-0'>
-                <Image 
+            <div className="w-1/2 h-full flex justify-center items-center mt-20 md:mt-0 relative">
+                {/* Image */}
+                <Image
                     src="/logo2.png"
                     alt="A description of the image"
                     height={200}
                     width={200}
+                    className="relative z-10 rounded-full"
                 />
+
+                {/* Sparkle animation */}
+                <div
+                    className="absolute w-[220px] h-[220px] border-2 border-transparent rounded-full"
+                    style={{
+                    border: "2px solid transparent",
+                    boxShadow: "0px 0px 10px rgba(255, 255, 255, 0.5)",
+                    }}
+                >
+                </div>
             </div>
 
         </div>

@@ -55,7 +55,7 @@ export default function Contact() {
     }
 
     return (
-        <div id="contact" className="h-screen w-screen flex md:flex-row flex-col justify-evenly items-center px-10 py-2 bg-black">
+        <div id="contact" className="md:h-screen h-auto w-screen flex md:flex-row flex-col justify-evenly items-center px-10 py-2 bg-black">
             {/* <div className='w-1/2 h-full'>
 
             </div> */}

@@ -11,7 +11,7 @@ const LandingPage = () => {
     return (
         <div className="bg-white">
             <Navbar />
-            <div className="bg-white">
+            <div className="bg-black">
                 <StarterPage />
                 <Reviews />
                 <PricingPage />

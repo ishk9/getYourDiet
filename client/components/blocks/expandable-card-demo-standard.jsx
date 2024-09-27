@@ -24,9 +24,8 @@ export default function ExpandableCardDemo({userId}) {
           // description: resp.data.explanation,
           title: `${meal.meal_time}`,
           show: !isSubscribed.paymentStatus && index != 0 ? false : true,
-          src: "https://assets.aceternity.com/demos/lana-del-rey.jpeg",
+          src: "/img.jpg",
           ctaText: "show",
-          ctaLink: "https://ui.aceternity.com/templates",
           content: () => (
             <div>
               {meal.options.map((option, idx) => (
@@ -106,11 +105,11 @@ export default function ExpandableCardDemo({userId}) {
             <motion.div layoutId={`image-${active.title}-${id}`}>
               <Image
                 priority
-                width={200}
-                height={200}
+                width={400}
+                height={400}
                 src={active.src}
                 alt={active.title}
-                className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top" />
+                className="w-full h-96 lg:h-96 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top" />
             </motion.div>
 
             <div>
@@ -127,14 +126,6 @@ export default function ExpandableCardDemo({userId}) {
                     {active.description}
                   </motion.p>
                 </div>
-
-                <motion.a
-                  layoutId={`button-${active.title}-${id}`}
-                  href={active.ctaLink}
-                  target="_blank"
-                  className="px-4 py-3 text-sm rounded-full font-bold bg-green-500 text-white">
-                  {active.ctaText}
-                </motion.a>
               </div>
               <div className="pt-4 relative px-4">
                 <motion.div

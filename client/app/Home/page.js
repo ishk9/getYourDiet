@@ -268,7 +268,7 @@ const HomePage = () => {
                                 }
 
                                 {startQues && 
-                                    <div className='flex flex-col w-[75%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center '>
+                                    <div className='flex flex-col w-[85%] min-h-[85%] sm:min-h-[70%] lg:min-h-[85%] justify-center items-center'>
                                         {currentWordIndex < words.length ? (
                                             <TypewriterEffectSmooth 
                                                 words={[words[currentWordIndex]]}
