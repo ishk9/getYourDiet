@@ -27,7 +27,8 @@ export default function ExpandableCardDemo({userId}) {
           src: "/img.jpg",
           ctaText: "show",
           content: () => (
-            <div>
+            <div className='flex flex-col h-full w-full'>
+              <h1 className='font-semibold text-base text-black'>Here are the following options that you can choose from</h1>
               {meal.options.map((option, idx) => (
                 <li className='my-[2px]' key={idx}>{option}</li>
               ))}
@@ -105,11 +106,11 @@ export default function ExpandableCardDemo({userId}) {
             <motion.div layoutId={`image-${active.title}-${id}`}>
               <Image
                 priority
-                width={400}
-                height={400}
+                width={300}
+                height={300}
                 src={active.src}
                 alt={active.title}
-                className="w-full h-96 lg:h-96 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top" />
+                className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-fill" />
             </motion.div>
 
             <div>
@@ -117,23 +118,23 @@ export default function ExpandableCardDemo({userId}) {
                 <div className="">
                   <motion.h3
                     layoutId={`title-${active.title}-${id}`}
-                    className="font-bold text-neutral-700 dark:text-neutral-200">
+                    className="font-bold text-black text-lg dark:text-neutral-200">
                     {active.title}
                   </motion.h3>
-                  <motion.p
+                  {/* <motion.p
                     layoutId={`description-${active.description}-${id}`}
                     className="text-neutral-600 dark:text-neutral-400">
                     {active.description}
-                  </motion.p>
+                  </motion.p> */}
                 </div>
               </div>
-              <div className="pt-4 relative px-4">
+              <div className="relative px-4">
                 <motion.div
                   layout
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-400 [mask:linear-gradient(to_bottom,white,white,transparent)] [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]">
+                  className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-400  [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]">
                   {typeof active.content === "function"
                     ? active.content()
                     : active.content}
