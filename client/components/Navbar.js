@@ -178,7 +178,7 @@ function Navbar() {
                         </MenubarTrigger>
                         <MenubarContent>
                             <MenubarItem>
-                                <Link href={isUserPresent ? `/Profile/${userId}` : '/Login'} className='h-full'>
+                                <Link href={isUserPresent ? `/Profile/${userId}` : '/Login'} className='h-full w-full'>
                                     <p>Profile</p>
                                 </Link>
                             </MenubarItem>
@@ -191,12 +191,12 @@ function Navbar() {
                                             localStorage.removeItem('userId');
                                             setIsUserPresent(false);
                                         }}
-                                        className='h-full'
+                                        className='h-full w-full'
                                     >
                                         <p>Logout</p>
                                     </button>
                                     :
-                                    <Link href={"/Login"} className='h-full'>
+                                    <Link href={"/Login"} className='h-full w-full'>
                                         <p>Login</p>
                                     </Link>
                                 }

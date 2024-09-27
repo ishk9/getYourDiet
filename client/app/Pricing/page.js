@@ -44,7 +44,7 @@ export default function PricingPage() {
         <div id="pricing" className="flex flex-col w-screen h-auto md:h-screen items-center px-5 py-10 md:py-2 bg-[#6EC0FF]">        
             <h1 className="text-[2em] md:text-[3em] font-semibold mt-10 md:mt-20 text-black">Pricing</h1>
             <div className="w-full md:w-[44%] flex flex-col justify-center items-center">
-                <p className='mt-3 text-black font-semibold'>Choose the plan that&apos;s right for you</p>
+                <p className='mt-3 text-black font-semibold'>Choose the plan that&apos;s best for you</p>
             </div>
 
             <div className='flex flex-col md:flex-row h-full w-full justify-center items-center mt-8 md:mt-12'>

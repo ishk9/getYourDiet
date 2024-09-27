@@ -7,8 +7,10 @@ import { LuUser } from "react-icons/lu";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import StrengthMeter from './StrengthMeter';
+import { useToast } from "@/hooks/use-toast";
 
 const SignupForm = () => {
+    const { toast } = useToast();
     const { setSignedIn } = useStore();
     const router = useRouter();
 
@@ -42,8 +44,15 @@ const SignupForm = () => {
                 localStorage.setItem('token', resp.token);
                 localStorage.setItem('userId', resp.data._id);
                 setSignedIn(true);
+                toast({
+                    title: "Signed up successfully!",
+                })
                 router.push('/');
             } catch(err){
+                toast({
+                    variant: "destructive",
+                    title: "Uh oh! Error signing up!",
+                })
                 console.log("Error signing up!");
             }
         }

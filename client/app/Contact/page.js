@@ -1,9 +1,10 @@
 "use client";
 import { useState } from 'react'
 import {sendUserFeedback} from '../../lib/services';
-import { toast } from 'react-toastify';
+import { useToast } from "@/hooks/use-toast";
 
 export default function Contact() {
+    const { toast } = useToast();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [feedback, setFeedback] = useState('');
@@ -25,12 +26,11 @@ export default function Contact() {
             else if (!emailRegex.test(email)) {
                 setError("Please enter a valid email address");
             }
-            toast.error(error, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                theme: "light",
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Error",
+                description: error,
+                
             })
         }
         else {
@@ -42,6 +42,12 @@ export default function Contact() {
             try{
                 const resp = await sendUserFeedback(data);
                 console.log(resp);
+                toast({
+                    title: "Feedback sent successfully!"                    
+                })
+                setName('');
+                setEmail('');
+                setFeedback('');
             } catch(err){
                 console.log("Error submitting details");
             }

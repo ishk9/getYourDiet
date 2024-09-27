@@ -29,14 +29,18 @@ const LoginForm = () => {
             localStorage.setItem('userId', resp.data._id);
 
             setSignedIn(true);
+            toast({
+                title: "Logged in successfully!",
+            })
             router.push('/');
 
         } catch(err){
             toast({
+                variant: "destructive",
                 title: "Uh oh! Error logging in",
                 description: "Invalid email or password",
+            })
                 
-              })
             console.log("Error logging up!");
         }
     };
