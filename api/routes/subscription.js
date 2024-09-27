@@ -1,6 +1,7 @@
 import express from 'express';
 import Stripe from 'stripe';
 import Subscription from '../models/subscription.js';
+import Diet from '../models/diet.js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
   maxNetworkRetries: 2,
@@ -170,14 +171,14 @@ router.get('/plans', async (req, res) => {
  * /subscribe/payment-status:
  *   get:
  *     summary: Check payment status and retrieve customer ID
- *     description: Verifies the payment status for a Stripe session and returns the customer ID along with card details and payment amount.
+ *     description: Verifies the payment status for a Stripe session based on the user ID and returns the customer ID along with card details and payment amount.
  *     parameters:
  *       - in: query
- *         name: session_id
+ *         name: userId
  *         schema:
  *           type: string
  *         required: true
- *         description: The Stripe checkout session ID.
+ *         description: The user ID to find the Stripe checkout session.
  *     responses:
  *       200:
  *         description: Payment status and details retrieved successfully.
@@ -194,8 +195,12 @@ router.get('/plans', async (req, res) => {
  *                   type: string
  *                   description: The ID of the customer associated with the session.
  *                   example: cus_L8mIljdB3eqvLr
+ *                 payment_amount:
+ *                   type: number
+ *                   description: The amount received for the payment (in dollars).
+ *                   example: 29.99
  *       400:
- *         description: Missing or invalid session ID.
+ *         description: Missing or invalid user ID.
  *         content:
  *           application/json:
  *             schema:
@@ -203,7 +208,7 @@ router.get('/plans', async (req, res) => {
  *               properties:
  *                 message:
  *                   type: string
- *                   example: Session ID is required.
+ *                   example: User ID is required.
  *       500:
  *         description: Error in retrieving payment status.
  *         content:
@@ -217,6 +222,7 @@ router.get('/plans', async (req, res) => {
  */
 
 
+
 router.get('/payment-status', async (req, res) => {
   try {
     const { userId } = req.query;
@@ -226,9 +232,10 @@ router.get('/payment-status', async (req, res) => {
     }
     const sessionDetails = await Subscription.findOne({userId});
     const sessionId = sessionDetails.sessionId;
-
+    
     // Retrieve the checkout session
     const session = await stripe.checkout.sessions.retrieve(sessionId);
+    console.log("Session details: ", session);
     // Retrieve the payment intent associated with the session
     const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent);
 
@@ -295,7 +302,6 @@ router.get('/payment-status', async (req, res) => {
 
 router.get(`/paid/:userId`, async (req, res) => {
   try {
-    console.log("Hitted api");
     const userId = req.params.userId;
     console.log("userid is :", userId);
     if (!userId) {
@@ -336,7 +342,98 @@ router.post('/add-session-id', async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /subscribe/diet-limit/{userId}:
+ *   get:
+ *     summary: Check the diet plan limit for a user
+ *     description: This endpoint checks the number of diet plans a user can have based on their subscription amount. The limits are determined by the payment amount in the user's Stripe session.
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The ID of the user whose diet limit is being checked.
+ *     responses:
+ *       200:
+ *         description: Successfully checked the diet limit.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: A message indicating that the limit check was successful.
+ *                   example: Checked the limit successfully!
+ *                 data:
+ *                   type: boolean
+ *                   description: true if the user can add more diets, false if they have reached the limit.
+ *                   example: true
+ *       400:
+ *         description: Missing or invalid user ID.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: A message indicating that the user ID is required.
+ *                   example: User ID is required.
+ *       500:
+ *         description: Error fetching the diet limit.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: A message indicating that an error occurred while fetching the diet limit.
+ *                   example: Error fetching the diet limit.
+ */
 
 
+router.get('/diet-limit/:userId', async(req, res) => {
+  try{
+    const userId = req.params.userId;
+    if (!userId) {
+      return res.status(400).send('User ID is required.');
+    }
+    const sessionDetails = await Subscription.findOne({userId});
+    const sessionId = sessionDetails.sessionId;
+
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    const amnt = session.amount_total;
+
+    var limit = 0;
+    switch (amnt) {
+      case 500:
+        limit = 1;
+        break;
+      case 1200:
+        limit = 4;
+        break;
+      case 2500:
+        limit = 12;
+        break;
+      default:
+        break;
+    }
+    const diets = await Diet.find({ userId: userId });
+    console.log("Limit: ", limit, "Created till now: ", diets.length);
+    if(diets.length >= limit){
+      res.status(200).json({ message: 'Checked the limit successfully!', data: false });
+    } else{
+      res.status(200).json({ message: 'Checked the limit successfully!', data: true });
+    }
+
+  } catch(err){
+    console.error('Error fetching the diet limit:', err);
+    res.status(500).json({ message: 'Error fetching the diet limit' });
+  }
+});
 
 export default router;
