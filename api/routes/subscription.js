@@ -403,31 +403,38 @@ router.get('/diet-limit/:userId', async(req, res) => {
       return res.status(400).send('User ID is required.');
     }
     const sessionDetails = await Subscription.findOne({userId});
-    const sessionId = sessionDetails.sessionId;
 
-    const session = await stripe.checkout.sessions.retrieve(sessionId);
-    const amnt = session.amount_total;
-
-    var limit = 0;
-    switch (amnt) {
-      case 500:
-        limit = 1;
-        break;
-      case 1200:
-        limit = 4;
-        break;
-      case 2500:
-        limit = 12;
-        break;
-      default:
-        break;
+    if(!sessionDetails){
+      res.status(200).json({ message: 'User has not chosen a plan yet', data: true });
     }
-    const diets = await Diet.find({ userId: userId });
-    console.log("Limit: ", limit, "Created till now: ", diets.length);
-    if(diets.length >= limit){
-      res.status(200).json({ message: 'Checked the limit successfully!', data: false });
-    } else{
-      res.status(200).json({ message: 'Checked the limit successfully!', data: true });
+
+    else{
+      const sessionId = sessionDetails.sessionId;
+
+      const session = await stripe.checkout.sessions.retrieve(sessionId);
+      const amnt = session.amount_total;
+
+      var limit = 0;
+      switch (amnt) {
+        case 500:
+          limit = 1;
+          break;
+        case 1200:
+          limit = 4;
+          break;
+        case 2500:
+          limit = 12;
+          break;
+        default:
+          break;
+      }
+      const diets = await Diet.find({ userId: userId });
+      console.log("Limit: ", limit, "Created till now: ", diets.length);
+      if(diets.length >= limit){
+        res.status(200).json({ message: 'Checked the limit successfully!', data: false });
+      } else{
+        res.status(200).json({ message: 'Checked the limit successfully!', data: true });
+      }
     }
 
   } catch(err){
