@@ -28,9 +28,15 @@ export default function ExpandableCardDemo({userId}) {
           ctaText: "show",
           content: () => (
             <div className='flex flex-col h-full w-full'>
-              <h1 className='font-semibold text-base text-black'>Here are the following options that you can choose from</h1>
+              <h1 className='font-semibold text-base text-black mb-4'>Here are the following options that you can choose from:</h1>
               {meal.options.map((option, idx) => (
-                <li className='my-[2px]' key={idx}>{option}</li>
+                <li 
+                  className='my-[2px] list-disc ml-4 pl-2 text-lg'
+                  key={idx}
+                  style={{ textIndent: '-1.1em', paddingLeft: '1.1em' }}
+                >
+                  {option}
+                </li>
               ))}
             </div>
           ),
