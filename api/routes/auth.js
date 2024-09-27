@@ -33,10 +33,6 @@ router.get('/verifyUser/:userId', validateUserId, verifyUserId);
  *                 format: email
  *                 description: Email address of the user
  *                 example: "johndoe@example.com"
- *               phoneNumber:
- *                 type: string
- *                 description: Phone number of the user
- *                 example: "1234567890"
  *               password:
  *                 type: string
  *                 description: password

@@ -28,7 +28,7 @@ const dietSchema = new mongoose.Schema({
     importanConsiderations: [{
         type: String
     }]
-});
+}, { timestamps: true });
 
 const Diet = mongoose.model('Diet', dietSchema);
 

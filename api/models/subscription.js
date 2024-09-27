@@ -9,7 +9,7 @@ const subscriptionSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-});
+}, { timestamps: true });
 
 const Subscription = mongoose.model('Subscription', subscriptionSchema);
 

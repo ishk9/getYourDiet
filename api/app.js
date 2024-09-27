@@ -16,21 +16,21 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(bodyParser.json());
 
-const allowedOrigins = ['http://localhost:3000', 'https://get-your-diet.vercel.app'];
-app.use(cors({
-  origin: function (origin, callback) {
-    // If origin is in the allowed list, allow it
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: 'GET,POST,PUT,DELETE,OPTIONS',
-  allowedHeaders: 'Content-Type, Authorization',
-  credentials: true
-}));
-app.options('*', cors());
+// const allowedOrigins = ['http://localhost:3000', 'https://get-your-diet.vercel.app'];
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     // If origin is in the allowed list, allow it
+//     if (allowedOrigins.includes(origin) || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   methods: 'GET,POST,PUT,DELETE,OPTIONS',
+//   allowedHeaders: 'Content-Type, Authorization',
+//   credentials: true
+// }));
+// app.options('*', cors());
 
 app.use('/feedback', feedbackRoutes); 
 app.use('/user', userRoutes);
