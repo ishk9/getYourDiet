@@ -95,6 +95,7 @@ const HomePage = () => {
                 setCurrentWordIndex(prevIndex => prevIndex + 1);
             } else {
                 toast({
+                    variant: "destructive",
                     title: "Uh oh! Invalid response ",
                     description: "Please enter a valid response to the question and submit again",
                     
@@ -133,6 +134,9 @@ const HomePage = () => {
                     const dietPlan = resp;
                     // console.log("Meals: ", dietPlan.data.meals, typeof(dietPlan.data.meals));
                     console.log("Id is: ", dietPlan.data._id);
+                    toast({
+                        title: "Diet generated successfully!",                        
+                    })
                     setTimeout(() => {
                         router.push(`/Diet/${dietPlan.data._id}`);
                     }, 1000);
@@ -169,10 +173,10 @@ const HomePage = () => {
         { text: "Enter your biological sex" },
         { text: "Enter your age" },
         { text: "What are your fitness goals?" },
-        // { text: "Do you have any allergies or intolerances?" },
-        // { text: "Any health conditions you suffer from?" },
+        { text: "Do you have any allergies or intolerances?" },
+        { text: "Any health conditions you suffer from?" },
         { text: "Do you have any specific meal frequency?" },
-        // { text: "Do you follow intermittent fasting?" },
+        { text: "Do you follow intermittent fasting?" },
         { text: "What is your activity level?" },
     ];
     const [tabs, setTabs] = useState([]);
