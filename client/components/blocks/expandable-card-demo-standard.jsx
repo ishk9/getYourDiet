@@ -6,6 +6,7 @@ import { useOutsideClick } from "../hooks/use-outside-click.js";
 import { getDiet, getIsSubscribed } from "@/lib/services.js";
 import { MdLockOutline } from "react-icons/md";
 import { useRouter } from "next/navigation";
+import BulletPoint from "../BulletPoint.js";
 
 export default function ExpandableCardDemo({userId}) {
   const router = useRouter();
@@ -30,13 +31,17 @@ export default function ExpandableCardDemo({userId}) {
             <div className='flex flex-col h-full w-full'>
               <h1 className='font-semibold text-base text-black mb-4'>Here are the following options that you can choose from:</h1>
               {meal.options.map((option, idx) => (
-                <li 
-                  className='my-[2px] list-disc ml-4 pl-2 text-lg'
-                  key={idx}
-                  style={{ textIndent: '-1.1em', paddingLeft: '1.1em' }}
-                >
-                  {option}
-                </li>
+                // <div key={idx} className='flex'>
+                //   <li 
+                //     className='my-[2px] list-disc ml-4 pl-2 text-[16px]'
+                //     style={{ textIndent: '-1.1em', paddingLeft: '1.1em' }}
+                //   >
+                //     {option.split("(")[0]}
+                //     <span className='font-serif'>({option.split("(")[1]}</span>
+                //   </li>
+                //   {/* <p className='font-serif'>{option.split("(")[1]}</p> */}
+                // </div>
+                <BulletPoint key={idx} txt={option.split("(")[0]} calorie={option.split("(")[1]}/>
               ))}
             </div>
           ),
@@ -109,7 +114,7 @@ export default function ExpandableCardDemo({userId}) {
             layoutId={`card-${active.title}-${id}`}
             ref={ref}
             className="w-full max-w-[500px]  h-full md:h-fit md:max-h-[90%]  flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden">
-            <motion.div layoutId={`image-${active.title}-${id}`}>
+            {/* <motion.div layoutId={`image-${active.title}-${id}`}>
               <Image
                 priority
                 width={300}
@@ -117,7 +122,7 @@ export default function ExpandableCardDemo({userId}) {
                 src={active.src}
                 alt={active.title}
                 className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-fill" />
-            </motion.div>
+            </motion.div> */}
 
             <div>
               <div className="flex justify-between items-start p-4">
@@ -189,7 +194,7 @@ export default function ExpandableCardDemo({userId}) {
           </div>
           <motion.button
             layoutId={`button-${card.title}-${id}`}
-            className={`${card.show ? "px-4 py-2 text-sm rounded-full font-bold bg-gray-100 hover:bg-green-500 hover:text-white text-black mt-4 md:mt-0" : ""}`}>
+            className={`${card.show ? "px-4 py-2 text-sm rounded-full font-bold bg-gray-100 hover:bg-[#6EC0FF] hover:text-white text-black mt-4 md:mt-0" : ""}`}>
               {
                 card.show ? 
                 <p>

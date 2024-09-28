@@ -179,7 +179,7 @@ const HomePage = () => {
         { text: "Do you follow intermittent fasting?" },
         { text: "What is your activity level?" },
     ];
-    const [tabs, setTabs] = useState([]);
+
     return (
         <>
             {
