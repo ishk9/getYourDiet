@@ -34,7 +34,7 @@ const generateDiet = async (req, res) => {
             Consider them and generate a diet plan. 
             Return the diet plan in valid JSON format with keys for title, goal, meals, activity level, meals, explanation, importantConsiderations. 
             Also Important that each meal option should have the meal size and meal info like carbs, protein, fats in the same line, for example have 200gms of oatmeal
-            Dont include * in the texts. Also keep in mind that the meals array should be in this format only {meal_time, options: []}
+            Dont include * in the texts. Also keep in mind that the meals array should be in this format only {meal_time, options: [single line containing info like 150 gms of almonds (25gm of protein)]}
             Here are the requirements-> ${requirements}
         `;
 
