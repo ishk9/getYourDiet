@@ -31,16 +31,6 @@ export default function ExpandableCardDemo({userId}) {
             <div className='flex flex-col h-full w-full'>
               <h1 className='font-semibold text-base text-black mb-4'>Here are the following options that you can choose from:</h1>
               {meal.options.map((option, idx) => (
-                // <div key={idx} className='flex'>
-                //   <li 
-                //     className='my-[2px] list-disc ml-4 pl-2 text-[16px]'
-                //     style={{ textIndent: '-1.1em', paddingLeft: '1.1em' }}
-                //   >
-                //     {option.split("(")[0]}
-                //     <span className='font-serif'>({option.split("(")[1]}</span>
-                //   </li>
-                //   {/* <p className='font-serif'>{option.split("(")[1]}</p> */}
-                // </div>
                 <BulletPoint key={idx} txt={option.split("(")[0]} calorie={option.split("(")[1]}/>
               ))}
             </div>
@@ -124,12 +114,12 @@ export default function ExpandableCardDemo({userId}) {
                 className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-fill" />
             </motion.div> */}
 
-            <div>
+            <div className='h-full'>
               <div className="flex justify-between items-start p-4">
                 <div className="">
                   <motion.h3
                     layoutId={`title-${active.title}-${id}`}
-                    className="font-bold text-black text-lg dark:text-neutral-200">
+                    className="font-bold text-black text-3xl md:text-xl dark:text-neutral-200">
                     {active.title}
                   </motion.h3>
                   {/* <motion.p
@@ -145,7 +135,7 @@ export default function ExpandableCardDemo({userId}) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="text-neutral-600 text-xs md:text-sm lg:text-base h-40 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-400  [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]">
+                  className="text-neutral-600 text-xs md:text-sm lg:text-base h-80 md:h-fit pb-10 flex flex-col items-start gap-4 overflow-auto dark:text-neutral-400  [scrollbar-width:none] [-ms-overflow-style:none] [-webkit-overflow-scrolling:touch]">
                   {typeof active.content === "function"
                     ? active.content()
                     : active.content}
