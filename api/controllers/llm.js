@@ -30,7 +30,8 @@ const generateDiet = async (req, res) => {
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const prompt = `
-            These are all the requirements. They are in a <question -> answer> format. 
+            These are all the requirements. They are in a <question -> answer> format. Also if there is a list of cusines present then make sure
+            that the diet contains the cusines.
             Consider them and generate a diet plan. 
             Return the diet plan in valid JSON format with keys for title, goal, meals, activity level, meals, explanation, importantConsiderations. 
             Also Important that each meal option should have the meal size and meal info like carbs, protein, fats in the same line, for example have 200gms of oatmeal
