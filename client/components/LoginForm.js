@@ -32,7 +32,7 @@ const LoginForm = () => {
             toast({
                 title: "Logged in successfully!",
             })
-            router.push('/');
+            router.back();
 
         } catch(err){
             toast({
