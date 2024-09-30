@@ -5,14 +5,18 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const ReviewPage = () => {
     const [dummyReviews, setDummyReviews] = useState([
-        { review: "The service was excellent and the food was delicious. Highly recommended!", name: "Alice Smith", rating: 5 },
-        { review: "A decent experience, but the food could have been better. Service was slow.", name: "Bob Johnson", rating: 3 },
-        { review: "Amazing atmosphere and the dishes were full of flavor. Will visit again.", name: "Catherine Brown", rating: 4 },
-        { review: "Not satisfied. The food was cold and the staff were not attentive.", name: "David Wilson", rating: 2 },
-        { review: "Loved the desserts! They were the highlight of the meal. A sweet surprise!", name: "Ella Davis", rating: 5 },
-        { review: "The menu is a bit overpriced, but the quality justifies it. Great experience overall.", name: "Franklin Thomas", rating: 4 },
-        { review: "Average experience. Nothing stood out, but nothing was particularly bad either.", name: "Grace Lee", rating: 3 },
+        { review: "This app completely transformed my fitness routine. The personalized plans are spot on!", name: "Emily Carter", rating: 5 },
+        { review: "I’ve tried a few diet plans before, but this one actually works. Highly recommended.", name: "Liam O'Reilly", rating: 5 },
+        { review: "Good app, but I wish there were more customization options for specific dietary needs.", name: "Sophie Leclerc", rating: 3 },
+        { review: "The AI-generated plans are impressive. It feels like they are tailored just for me!", name: "Noah Fischer", rating: 4 },
+        { review: "The research-backed approach is what makes this app stand out. It's not just generic advice.", name: "Olivia Taylor", rating: 5 },
+        { review: "I loved how the app integrates scientific research into the plans. Really effective.", name: "Zoe Anderson", rating: 5 },
+        { review: "It’s been a good experience overall, but the pricing could be a bit more competitive.", name: "Thomas Richards", rating: 4 },
+        { review: "A perfect tool for busy professionals looking to stay healthy!", name: "James Thompson", rating: 5 },
+        { review: "Great results so far! The meal plans are simple and easy to follow.", name: "Ethan Williams", rating: 4 },
+        { review: "I expected a bit more flexibility with the workout plans. It's still a solid app.", name: "Isabella Jensen", rating: 3 }
     ]);
+    
     
 
     const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
@@ -22,7 +26,7 @@ const ReviewPage = () => {
             setCurrentReviewIndex((prevIndex) => 
                 (prevIndex + 1) % dummyReviews.length
             );
-        }, 2000);
+        }, 2500);
 
         return () => clearInterval(interval);
     }, [dummyReviews.length]);
@@ -34,8 +38,8 @@ const ReviewPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
                 className='w-full md:w-1/2 h-full flex justify-center items-center'>
-                <h1 className='text-xl md:text-4xl font-bold font-sans w-2/3 uppercase'>
-                    Making your fitness journey easier
+                <h1 className='text-xl md:text-4xl font-bold font-sans w-[50%] uppercase'>
+                    Proven Results, Personal Stories
                 </h1>
             </motion.div>
 

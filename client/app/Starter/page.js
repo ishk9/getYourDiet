@@ -7,23 +7,23 @@ import { motion } from "framer-motion";
 export default function StarterPage() {
     const router = useRouter();
     return (
-        <div className="flex w-screen h-screen justify-center items-center px-4 md:px-10 bg-[#E7C25A]">
-            <div className="flex lg:w-3/4 w-full md:w-3/4 cursor-default">
+        <div className="flex w-screen h-screen justify-center items-center px-4 md:px-4 bg-[#E7C25A]">
+            <div className="flex lg:w-full w-full md:w-full cursor-default">
                 <div className="flex flex-col w-full justify-center items-start">
                     <motion.h1 
                         initial={{ y: 50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="font-extrabold text-black lg:text-[7em] text-[2.5em] md:text-[4em] leading-[1.1] md:leading-[1] tracking-[-1px] md:tracking-[-2px] uppercase">
-                       Eat food that is Healthy
+                        className="font-extrabold text-black lg:text-[6em] text-[2.5em] md:text-[4em] leading-[1.1] md:leading-[1] tracking-[-1px] md:tracking-[-2px] uppercase">
+                       Personalized Nutrition, Perfected by Science
                     </motion.h1>
 
                     <motion.p 
                         initial={{ y: 50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="mt-6 lg:w-1/2 w-full flex lg:text-lg font-semibold text-[11px] text-black">
-                        Our app is designed to help you successfully create a diet based on your body and the food you like. Easily optimize your eating schedule.
+                        className="mt-6 lg:w-[45%] w-full flex lg:text-xl font-semibold text-[11px] text-black">
+                        Leverage AI-powered insights from top-tier research to create a diet routine that works specifically for you.
                     </motion.p>
                     <motion.button 
                         initial={{ y: 100, opacity: 0 }} // Start from below and transparent
@@ -41,7 +41,7 @@ export default function StarterPage() {
                 </div>
             </div>      
 
-            <div className="lg:w-1/4 w-1/12"></div>       
+            <div className="lg:w-[0%] w-1/12"></div>       
         </div>
     )
 }

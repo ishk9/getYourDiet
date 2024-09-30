@@ -132,12 +132,14 @@ const HomePage = () => {
                     const resp = await generateDiet(data);
                     console.log("Response of diet:", resp);
                     const dietPlan = resp;
-                    // console.log("Meals: ", dietPlan.data.meals, typeof(dietPlan.data.meals));
                     console.log("Id is: ", dietPlan.data._id);
                     toast({
                         title: "Diet generated successfully!",                        
                     })
                     setTimeout(() => {
+                        toast({
+                            title: "Sorry! We occurred an error generating your diet",                        
+                        })
                         router.push(`/Diet/${dietPlan.data._id}`);
                     }, 1000);
 
@@ -284,7 +286,7 @@ const HomePage = () => {
                                 }
 
                                 {/* Chat box */}
-                                {!showCuisines &&
+                                {!showCuisines && startQues &&
                                     <div className='h-14 md:h-20 md:w-[85%] w-[95%] border flex justify-between items-center border-black rounded-2xl mb-4'>
                                         <input 
                                             className='h-full w-full rounded-2xl p-2 text-base md:text-3xl outline-none' 
