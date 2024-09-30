@@ -35,7 +35,7 @@ export default function StarterPage() {
                         px-4 border-2 border-black rounded-2xl mt-6
                         hover:text-black hover:scale-105"
                     >
-                        <p className="font-semibold lg:text-base text-[12px] mr-2 text-black">Start Your Journey</p>
+                        <p className="font-semibold lg:text-base text-[14px] mr-2 text-black">Start Your Journey</p>
                         <FaArrowRightLong color='black'/>
                     </motion.button>
                 </div>
