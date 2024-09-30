@@ -22,7 +22,7 @@ export default function StarterPage() {
                         initial={{ y: 50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="mt-6 lg:w-[45%] w-full flex lg:text-xl font-semibold text-[11px] text-black">
+                        className="mt-6 lg:w-[45%] w-full flex lg:text-xl font-semibold text-[16px] text-black">
                         Leverage AI-powered insights from top-tier research to create a diet routine that works specifically for you.
                     </motion.p>
                     <motion.button 

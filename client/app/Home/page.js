@@ -66,13 +66,14 @@ const HomePage = () => {
     const handleCuisineSelect = (index) => {
         if (selectedCuisines.includes(index)) {
             setSelectedCuisines(selectedCuisines.filter(id => id !== index));
-        } else if(selectedCuisines.length < 7) {
+        } else if(selectedCuisines.length < 2) {
             setSelectedCuisines([...selectedCuisines, index]);
         }
     };
     const handleSubmitCusines = () => {
         console.log(selectedCuisines);
         setShowCuisines(false);
+        setStartQues(true);
     };
 
     const handleAnswerSubmit = async() => {
@@ -124,8 +125,16 @@ const HomePage = () => {
                 const stringData = mappedData.map(word => 
                     `<${word.question} -> ${word.answer}>`
                 ).join(' ');
-    
-                const data = { requirements: stringData }
+                
+                var stringCusines = "";
+                if(selectedCuisines.length != 0){
+                    stringCusines = selectedCuisines.map(index => 
+                        cuisines[index]
+                    ).join(',');
+                    console.log("SEl: ", stringCusines);
+                }
+
+                const data = { requirements: stringCusines + stringData }
                 console.log("String data: ", data);
 
                 try {
@@ -137,13 +146,13 @@ const HomePage = () => {
                         title: "Diet generated successfully!",                        
                     })
                     setTimeout(() => {
-                        toast({
-                            title: "Sorry! We occurred an error generating your diet",                        
-                        })
                         router.push(`/Diet/${dietPlan.data._id}`);
                     }, 1000);
-
+                    
                 } catch (err) {
+                    toast({
+                        title: "Sorry! We occurred an error generating your diet",                        
+                    })
                     console.log("Error:", err);
                 }
             }
@@ -202,7 +211,7 @@ const HomePage = () => {
                                 {
                                     showCuisines && !startQues &&
                                     <div className='flex flex-col w-[90%] sm:w-[75%] h-auto justify-center items-center'>
-                                        <h1 className='text-[30px] sm:text-[45px] font-normal leading-[1] text-center mt-4 md:mt-0'>Choose your cuisines<span className='text-base font-semibold ml-2'>({selectedCuisines.length}/7)</span></h1>
+                                        <h1 className='text-[30px] sm:text-[45px] font-normal leading-[1] text-center mt-4 md:mt-0'>Choose your cuisines<span className='text-base font-semibold ml-2'>({selectedCuisines.length}/2)</span></h1>
                                         <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full mt-4'>
                                             {cuisines.map((cuisine, index) => (
                                                 <button 

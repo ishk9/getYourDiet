@@ -191,7 +191,7 @@ function Navbar() {
                                             localStorage.removeItem('userId');
                                             setIsUserPresent(false);
                                         }}
-                                        className='h-full w-full'
+                                        className='h-full w-full flex justify-start items-center'
                                     >
                                         <p>Logout</p>
                                     </button>
