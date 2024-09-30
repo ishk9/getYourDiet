@@ -14,7 +14,6 @@ const ReviewPage = () => {
         { review: "It’s been a good experience overall, but the pricing could be a bit more competitive.", name: "Thomas Richards", rating: 4 },
         { review: "A perfect tool for busy professionals looking to stay healthy!", name: "James Thompson", rating: 5 },
         { review: "Great results so far! The meal plans are simple and easy to follow.", name: "Ethan Williams", rating: 4 },
-        { review: "I expected a bit more flexibility with the workout plans. It's still a solid app.", name: "Isabella Jensen", rating: 3 }
     ]);
     
     
