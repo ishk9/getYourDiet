@@ -35,8 +35,8 @@ function PriceCard({ id, name, price, popular, points }) {
                 </div>
             </div>
 
-            <div className={`border-2 mt-4 md:mt-8 w-full ${popular ? "bg-black" : "bg-white"} rounded-lg`}>
-                <p className={`py-2 px-4 font-semibold ${popular ? "text-white" : "text-black"} md:text-base text-[12px]`}>
+            <div className={`border-2 mt-4 md:mt-8 w-full bg-white rounded-lg`}>
+                <p className={`py-2 px-4 font-semibold text-black md:text-base text-[12px]`}>
                     Get Started
                 </p>
             </div>

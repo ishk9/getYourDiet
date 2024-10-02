@@ -2,15 +2,15 @@
 import PriceCard from '@/components/PriceCard';
 
 const prices = [
-    {id: 1, name: 'Single', price: 'free', description: 'Best for single users', popular: 0, points: [
+    {id: 1, name: 'Single', price: '5', description: 'Best for single users', popular: 0, points: [
         { id: 1, point: 'Single diet plan' },
         { id: 2, point: 'Shareable diet plans' },
     ]},
-    {id: 2, name: 'Family', price: '15', description: 'Best for family', popular: 1, points: [
+    {id: 2, name: 'Family', price: '12', description: 'Best for family', popular: 1, points: [
         { id: 1, point: 'Multiple diets for family' },
         { id: 2, point: 'Shareable diet plans' },
     ]},
-    {id: 3, name: 'Professional', price: '30', description: 'Best for Professional', popular: 0, points: [
+    {id: 3, name: 'Professional', price: '25', description: 'Best for Professional', popular: 0, points: [
         { id: 1, point: 'Unlimited diet plans' },
         { id: 2, point: 'Shareable diet plans' },
     ]},
